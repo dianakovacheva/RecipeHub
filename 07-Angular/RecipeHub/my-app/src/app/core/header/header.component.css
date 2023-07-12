@@ -1,8 +1,13 @@
 .example-spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .mat-tab-group {
   margin-bottom: 48px;
 }
-  
+
+.recipehub-logo {
+  height: auto;
+  width: 140px;
+  vertical-align: middle;
+}
