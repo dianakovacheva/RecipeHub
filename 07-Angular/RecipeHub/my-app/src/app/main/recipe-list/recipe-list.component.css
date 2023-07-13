@@ -1,6 +1,6 @@
 .page-header {
-text-align: center;
-margin: 30px;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .example-card {
@@ -16,10 +16,12 @@ margin: 30px;
 .recipes-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-template-rows: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  place-content: center;
+  overflow-x: none;
+  overflow-y: scroll;
   gap: 1rem;
-  padding-right: 2rem;
-  padding-left: 2rem;
+  padding: 40px 2rem;
 }
 
 mat-card {
@@ -36,4 +38,5 @@ mat-card-actions {
   justify-content: flex-end;
   gap: 1.5rem;
 }
+
 

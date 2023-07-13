@@ -1,21 +1,35 @@
 <div class="page-header">
     <h2>Latest Recipes</h2>
 </div>
+
 <div class="recipes-container">
     <mat-card *ngFor="let tile of tiles" class="example-card">
-        <mat-card-header>
+        <!-- <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
             <mat-card-title>Shiba Inu</mat-card-title>
             <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        </mat-card-header> -->
+        <img mat-card-image
+            src="https://img.jamieoliver.com/jamieoliver/recipe-database/oldImages/large/1462_2_1442315133.jpg?tr=w-800,h-1066"
+            alt="Photo of a Shiba Inu">
+        <mat-card-header>
+            <mat-card-subtitle>
+                Write the type of the cuisine here
+            </mat-card-subtitle>
+            <mat-card-title>
+                Write the name of the dish
+            </mat-card-title>
+            <mat-card-subtitle>
+                10K likes • 13 July 2023
+            </mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
+        <!-- <mat-card-content>
             <p>
                 The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
                 A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
                 bred for hunting.
             </p>
-        </mat-card-content>
+        </mat-card-content> -->
         <mat-card-actions>
             <span class="material-symbols-outlined">
                 <button class="mdc-icon-button" mat-icon-button aria-label="Icon-button with hearth icon">
