@@ -1,8 +1,7 @@
 <div class="page-header">
-    <h2>Recipes</h2>
+    <h2>Latest Recipes</h2>
 </div>
 <div class="recipes-container">
-
     <mat-card *ngFor="let tile of tiles" class="example-card">
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
@@ -18,13 +17,16 @@
             </p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button><span class="material-symbols-outlined">
-                    favorite
-                </span>LIKE</button>
-            <button mat-button><span class="material-symbols-outlined">
-                    share
-                </span>SHARE</button>
+            <span class="material-symbols-outlined">
+                <button class="mdc-icon-button" mat-icon-button aria-label="Icon-button with hearth icon">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+            </span>
+            <span class="material-symbols-outlined">
+                <button class="mdc-icon-button" mat-icon-button aria-label="Icon-button with share icon">
+                    <mat-icon>share</mat-icon>
+                </button>
+            </span>
         </mat-card-actions>
     </mat-card>
-
 </div>

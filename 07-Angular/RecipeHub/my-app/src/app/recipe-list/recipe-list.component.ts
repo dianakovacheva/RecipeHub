@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { NgFor } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 export interface Tile {
   color: string;
@@ -19,7 +20,7 @@ export interface Tile {
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css'],
   standalone: true,
-  imports: [MatGridListModule, MatCardModule, NgFor],
+  imports: [MatGridListModule, MatCardModule, NgFor, MatIconModule],
 })
 export class RecipeListComponent {
   tiles: Tile[] = [

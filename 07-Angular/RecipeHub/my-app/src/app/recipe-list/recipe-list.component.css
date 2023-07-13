@@ -1,11 +1,10 @@
 .page-header {
 text-align: center;
-margin-top: 60px;
+margin: 30px;
 }
 
 .example-card {
   max-width: 400px;
-  padding: 0 16px;
   width: 100%;
 }
 
@@ -19,8 +18,22 @@ margin-top: 60px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-template-rows: repeat(3, 1fr);
   gap: 1rem;
-  margin-top: 60px;
+  padding-right: 2rem;
+  padding-left: 2rem;
 }
 
+mat-card {
+  cursor: pointer;
+}
 
+mat-card-content {
+  padding-top: 20px;
+}
+
+mat-card-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
 
