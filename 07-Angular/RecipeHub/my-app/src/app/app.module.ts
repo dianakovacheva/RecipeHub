@@ -7,17 +7,24 @@ import { MatCommonModule } from '@angular/material/core';
 import { AppComponent } from '../app/app.component';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
-import { RecipeListComponent } from './main/recipe-list/recipe-list.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    FooterComponent,
+    PageNotFoundComponent,
+    AboutUsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HeaderComponent,
-    RecipeListComponent,
     BrowserAnimationsModule,
     MatCommonModule,
+    RecipeListComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
