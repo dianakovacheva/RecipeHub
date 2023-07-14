@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 /**
  * @title Basic toolbar
@@ -21,6 +21,7 @@ import { Router } from '@angular/router';
     MatIconModule,
     MatMenuModule,
     MatTabsModule,
+    RouterModule,
   ],
 })
 export class HeaderComponent implements OnInit {
