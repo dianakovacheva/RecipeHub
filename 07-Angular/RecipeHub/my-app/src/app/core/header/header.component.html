@@ -1,16 +1,13 @@
 <mat-toolbar>
-    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-    </button> -->
     <span><img class="recipehub-logo" src="../../../assets/RecipeHub-logotype.png" alt="RecipeHub-logotype"></span>
-    <span class="example-spacer"></span>
-    <nav>
-        <mat-tab-group animationDuration="0ms">
-            <mat-tab label="Recipes">Content 1</mat-tab>
-            <mat-tab label="Create Recipe">Content 2</mat-tab>
-            <mat-tab label="About Us">About Us</mat-tab>
-        </mat-tab-group>
-    </nav>
+    <span class="nav-spacer"></span>
+    <section>
+        <div class="nav-button-row">
+            <button mat-button>Recipes</button>
+            <button mat-button>Create Recipe</button>
+            <button mat-button>About Us</button>
+        </div>
+    </section>
     <div class="search-button">
         <span class="material-symbols-outlined">
             <button mat-icon-button aria-label="Icon-button with search icon">
@@ -18,23 +15,15 @@
             </button>
         </span>
     </div>
-
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="User menu">
         <mat-icon>person</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+    <mat-menu #menu="matMenu" xPosition="before">
         <button mat-menu-item>
-            <mat-icon>dialpad</mat-icon>
-            <span>Redial</span>
-        </button>
-        <button mat-menu-item disabled>
-            <mat-icon>voicemail</mat-icon>
-            <span>Check voice mail</span>
+            <span>Login</span>
         </button>
         <button mat-menu-item>
-            <mat-icon>notifications_off</mat-icon>
-            <span>Disable alerts</span>
+            <span>Register</span>
         </button>
     </mat-menu>
-
 </mat-toolbar>

@@ -1,18 +1,15 @@
-.example-spacer {
+.nav-spacer {
   flex: 1 1 auto;
-}
-
-mat-toolbar {
-  padding-right: 2rem;
-  padding-left: 2rem;
-}
-
-.mat-tab-group {
-  margin-bottom: 48px;
 }
 
 .recipehub-logo {
   height: auto;
   width: 140px;
   vertical-align: middle;
+}
+
+.nav-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+  font-weight: 700;
+  text-transform: uppercase;
 }
