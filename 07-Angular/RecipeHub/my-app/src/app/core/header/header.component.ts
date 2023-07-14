@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
+import { Router } from '@angular/router';
 
 /**
  * @title Basic toolbar
@@ -23,6 +24,6 @@ import { MatTabsModule } from '@angular/material/tabs';
   ],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
   ngOnInit() {}
 }

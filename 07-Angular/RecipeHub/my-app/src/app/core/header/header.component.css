@@ -6,6 +6,7 @@
   height: auto;
   width: 140px;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 .nav-button-row .mat-mdc-button-base {

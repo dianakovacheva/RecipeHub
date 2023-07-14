@@ -1,29 +1,38 @@
-<mat-toolbar>
-    <span><img class="recipehub-logo" src="../../../assets/RecipeHub-logotype.png" alt="RecipeHub-logotype"></span>
-    <span class="nav-spacer"></span>
-    <section>
-        <div class="nav-button-row">
-            <button mat-button>Recipes</button>
-            <button mat-button>Create Recipe</button>
-            <button mat-button>About Us</button>
+<header>
+    <mat-toolbar>
+        <span><a routerLink="/"><img class="recipehub-logo" src="../../../assets/RecipeHub-logotype.png"
+                    alt="RecipeHub-logotype"></a></span>
+        <span class="nav-spacer"></span>
+        <section>
+            <div class="nav-button-row">
+                <a mat-button routerLink="/recipes">Recipes</a>
+                <a mat-button routerLink="/create-recipe">Create Recipe</a>
+                <a mat-button routerLink="/about-us">About Us</a>
+            </div>
+        </section>
+        <div class="search-button">
+            <span class="material-symbols-outlined">
+                <a mat-icon-button routerLink="/search"><mat-icon>search</mat-icon></a>
+                <!-- <button mat-icon-button aria-label="Icon-button with search icon">
+                    <mat-icon>search</mat-icon>
+                </button> -->
+            </span>
         </div>
-    </section>
-    <div class="search-button">
-        <span class="material-symbols-outlined">
-            <button mat-icon-button aria-label="Icon-button with search icon">
-                <mat-icon>search</mat-icon>
+        <div class="user-menu-button">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="User menu">
+                <mat-icon>person</mat-icon>
             </button>
-        </span>
-    </div>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="User menu">
-        <mat-icon>person</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu" xPosition="before">
-        <button mat-menu-item>
-            <span>Login</span>
-        </button>
-        <button mat-menu-item>
-            <span>Register</span>
-        </button>
-    </mat-menu>
-</mat-toolbar>
+            <mat-menu #menu="matMenu" xPosition="before">
+                <a mat-menu-item routerLink="/login">Login</a>
+                <!-- <button mat-menu-item>
+                    <span>Login</span>
+                </button> -->
+                <a mat-menu-item routerLink="/register">Register</a>
+                <!-- <button mat-menu-item>
+                    <span>Register</span>
+                </button> -->
+            </mat-menu>
+        </div>
+
+    </mat-toolbar>
+</header>
