@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import {
   FormControl,
   Validators,
@@ -29,9 +30,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     ReactiveFormsModule,
     NgIf,
+    MatIconModule,
   ],
 })
 export class RegisterComponent {
+  submitted = false;
+  hide = true;
+
   constructor(private router: Router) {}
 
   firstName = new FormControl('', [
@@ -72,5 +77,33 @@ export class RegisterComponent {
     }
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  password = new FormControl('', [
+    Validators.required,
+    Validators.minLength(8),
+  ]);
+
+  getErrorMessagePassword() {
+    if (this.password.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.password.hasError('minlength')
+      ? 'Password must be at least 8 characters'
+      : '';
+  }
+
+  rePassword = new FormControl('', Validators.required);
+
+  getErrorMessageRePassword() {
+    if (this.rePassword.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    if (this.password.value !== this.rePassword.value) {
+      this.rePassword.setErrors({ noMatch: true });
+    }
+    return this.rePassword.hasError('noMatch') ? 'Passwords must match' : '';
   }
 }

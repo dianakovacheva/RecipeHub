@@ -1,4 +1,4 @@
-<div class="login-form">
+<div class="register-form">
     <h2>Register</h2>
     <div class="form-field-container">
         <mat-form-field>
@@ -17,11 +17,34 @@
     <div class="form-field-container">
         <mat-form-field>
             <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" [formControl]="email" required>
+            <input matInput placeholder="john.doe@gmail.com" [formControl]="email" required>
             <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
         </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" style="margin-right:5px;">Register</button>
+    <div class="form-field-container">
+        <mat-form-field>
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+            <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div class="form-field-container">
+        <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="rePassword" required>
+            <mat-error *ngIf="rePassword.invalid">{{getErrorMessageRePassword()}}</mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary">Sign Up</button>
     <br>
-    <p class="message">Already registered? <a href="/login">Login</a></p>
+    <p>Already registered? <a href="/login">Login</a></p>
 </div>
