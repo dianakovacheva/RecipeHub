@@ -13,10 +13,6 @@ import { NgIf } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-/**
- * @title Card with sub-title
- */
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
