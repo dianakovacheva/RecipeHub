@@ -1,0 +1,11 @@
+app-header {
+  min-height: fit-content;
+}
+
+.main-content {
+  flex: 1;
+}
+
+app-footer {
+  min-height: fit-content;
+}
