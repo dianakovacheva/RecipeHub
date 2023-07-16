@@ -1,36 +1,27 @@
 <div class="login-form">
-    <mat-card class="login-form-card" style="text-align: center">
-        <mat-card-header>
-            <mat-card-title class="page-title">Register</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <div class="first-name-container">
-                <mat-form-field>
-                    <mat-label>Enter your first name</mat-label>
-                    <input matInput placeholder="John" [formControl]="firstName" required>
-                    <mat-error *ngIf="firstName.invalid">{{getErrorMessageFirstName()}}</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="last-name-container">
-                <mat-form-field>
-                    <mat-label>Enter your last name</mat-label>
-                    <input matInput placeholder="Doe" [formControl]="lastName" required>
-                    <mat-error *ngIf="lastName.invalid">{{getErrorMessageLastName()}}</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="email-container">
-                <mat-form-field>
-                    <mat-label>Enter your email</mat-label>
-                    <input matInput placeholder="pat@example.com" [formControl]="email" required>
-                    <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
-                </mat-form-field>
-            </div>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button color="primary" style="margin-right:5px;">Register</button>
-        </mat-card-actions>
-        <mat-card-content>
-            <p class="message">Already registered? <a href="#">Login</a></p>
-        </mat-card-content>
-    </mat-card>
+    <h2>Register</h2>
+    <div class="form-field-container">
+        <mat-form-field>
+            <mat-label>Enter your first name</mat-label>
+            <input matInput placeholder="John" [formControl]="firstName" required>
+            <mat-error *ngIf="firstName.invalid">{{getErrorMessageFirstName()}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="form-field-container">
+        <mat-form-field>
+            <mat-label>Enter your last name</mat-label>
+            <input matInput placeholder="Doe" [formControl]="lastName" required>
+            <mat-error *ngIf="lastName.invalid">{{getErrorMessageLastName()}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="form-field-container">
+        <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+        </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" style="margin-right:5px;">Register</button>
+    <br>
+    <p class="message">Already registered? <a href="/login">Login</a></p>
 </div>
