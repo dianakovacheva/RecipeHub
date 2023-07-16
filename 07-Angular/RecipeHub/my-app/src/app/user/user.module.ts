@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RouterModule } from '@angular/router';
+import { UserRoutingModule } from './user-routing.module';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ProfileComponent],
-  imports: [CommonModule, RouterModule],
-  exports: [LoginComponent, RegisterComponent, ProfileComponent],
+  declarations: [ProfileComponent],
+  imports: [CommonModule, UserRoutingModule, LoginComponent, RegisterComponent],
 })
 export class UserModule {}

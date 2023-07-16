@@ -6,22 +6,25 @@ import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
-    path: 'profile/:username',
-    component: ProfileComponent,
-  },
-  {
     path: 'login',
     component: LoginComponent,
+    // canActivate: [AuthActivate],
   },
   {
     path: 'register',
     component: RegisterComponent,
+    // canActivate: [AuthActivate],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    // canActivate: [AuthActivate],
   },
 ];
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class UserRoutingModule {}
