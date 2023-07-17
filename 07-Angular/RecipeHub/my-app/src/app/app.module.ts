@@ -11,7 +11,6 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
-import { AboutUsComponent } from './about-us/about-us.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 @NgModule({
@@ -19,7 +18,6 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
     AppComponent,
     MainComponent,
     HomeComponent,
-    AboutUsComponent,
     PageNotFoundComponent,
   ],
   imports: [

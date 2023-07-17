@@ -3,7 +3,11 @@ app-header {
 }
 
 .main-content {
-  flex: 1;
+  flex: 1; /* Pushes down the footer */
+  width: 90vw;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-top: 2rem;
 }
 
 app-footer {
