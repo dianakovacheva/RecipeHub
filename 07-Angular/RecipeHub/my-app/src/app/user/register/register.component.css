@@ -13,3 +13,7 @@ mat-form-field {
 .form-field-container {
   width: min(400px, 90%);
 }
+
+.form-header {
+  text-align: center;
+}

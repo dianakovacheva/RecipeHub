@@ -1,5 +1,8 @@
 <div class="register-form">
-    <h2>Register</h2>
+    <div class="form-header">
+        <h2>Create an account</h2>
+        <p>Sign up to save and review your favorite recipes.</p>
+    </div>
     <div class="form-field-container">
         <mat-form-field>
             <mat-label>Enter your first name</mat-label>
@@ -24,27 +27,27 @@
     <div class="form-field-container">
         <mat-form-field>
             <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+            <input matInput [type]="hidePass ? 'password' : 'text'" [formControl]="password" required>
             <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <button mat-icon-button matSuffix (click)="hidePass = !hidePass" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePass">
+                <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
     </div>
     <div class="form-field-container">
         <mat-form-field>
             <mat-label>Confirm Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="rePassword" required>
+            <input matInput [type]="hideRePass ? 'password' : 'text'" [formControl]="rePassword" required>
             <mat-error *ngIf="rePassword.invalid">{{getErrorMessageRePassword()}}</mat-error>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <button mat-icon-button matSuffix (click)="hideRePass = !hideRePass" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hideRePass">
+                <mat-icon>{{hideRePass ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
     </div>
 
     <button mat-raised-button color="primary">Sign Up</button>
     <br>
-    <p>Already registered? <a href="/login">Login</a></p>
+    <p>Have an account? <a href="/login">Log In</a></p>
 </div>

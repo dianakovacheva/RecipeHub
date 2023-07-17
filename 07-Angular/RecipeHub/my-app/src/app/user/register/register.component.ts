@@ -31,7 +31,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 export class RegisterComponent {
   submitted = false;
-  hide = true;
+  hidePass = true;
+  hideRePass = true;
 
   constructor(private router: Router) {}
 
