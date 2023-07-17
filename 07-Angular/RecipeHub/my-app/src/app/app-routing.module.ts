@@ -5,6 +5,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'about-us',
     component: AboutUsComponent,
+  },
+  {
+    path: 'recipe-details',
+    component: RecipeDetailsComponent,
   },
   {
     path: '**',

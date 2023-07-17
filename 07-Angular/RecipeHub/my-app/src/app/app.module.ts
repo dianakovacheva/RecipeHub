@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     UserModule,
     AppRoutingModule,
     RecipeListComponent,
+    RecipeDetailsComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

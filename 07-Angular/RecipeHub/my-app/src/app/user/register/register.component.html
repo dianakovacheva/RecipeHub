@@ -37,7 +37,7 @@
     </div>
     <div class="form-field-container">
         <mat-form-field>
-            <mat-label>Confirm Password</mat-label>
+            <mat-label>Confirm password</mat-label>
             <input matInput [type]="hideRePass ? 'password' : 'text'" [formControl]="rePassword" required>
             <mat-error *ngIf="rePassword.invalid">{{getErrorMessageRePassword()}}</mat-error>
             <button mat-icon-button matSuffix (click)="hideRePass = !hideRePass" [attr.aria-label]="'Hide password'"
@@ -46,7 +46,6 @@
             </button>
         </mat-form-field>
     </div>
-
     <button mat-raised-button color="primary">Sign Up</button>
     <br>
     <p>Have an account? <a href="/login">Log In</a></p>
