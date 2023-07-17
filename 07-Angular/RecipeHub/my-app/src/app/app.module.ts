@@ -18,8 +18,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AppComponent,
     MainComponent,
     HomeComponent,
-    PageNotFoundComponent,
     AboutUsComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
