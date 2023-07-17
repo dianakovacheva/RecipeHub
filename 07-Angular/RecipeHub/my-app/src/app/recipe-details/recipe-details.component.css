@@ -10,13 +10,14 @@ p {
 }
 
 .img .recipe-hero-img {
+  width: 100%;
   display: block;
   object-fit: cover;
 }
 
 .recipe-hero-img {
-  height: 300px;
-  border-radius: 5px;
+  height: 25vw;
+  border-radius: 0.25rem;
 }
 
 .recipe-info > p {
