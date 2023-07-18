@@ -1,14 +1,31 @@
 <main class="recipe-container">
     <div class="recipe-page">
         <section class="recipe-hero">
-            <img src="https://images.immediate.co.uk/production/volatile/sites/30/2023/04/Air-fryer-crispy-chilli-beef-0cc563b.jpg?quality=90&webp=true&resize=600,545"
-                class="img recipe-hero-img" />
+            <div>
+                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2023/04/Air-fryer-crispy-chilli-beef-0cc563b.jpg?quality=90&webp=true&resize=600,545"
+                    class="img recipe-hero-img" />
+                <!--Action buttons under recipe image-->
+                <div class="recipe-action-buttons">
+                    <button mat-raised-button color="primary">
+                        <mat-icon>favorite</mat-icon>
+                        <span>Save</span>
+                    </button>
+                    <button mat-raised-button color="primary">
+                        <mat-icon>comment</mat-icon>
+                        <span>Comment</span>
+                    </button>
+                    <button mat-raised-button color="primary">
+                        <mat-icon>print</mat-icon>
+                        <span>Print</span>
+                    </button>
+                </div>
+            </div>
             <article class="recipe-info">
                 <h1>Banana Pancakes</h1>
                 <div class="recipe-meta-data">
                     <span>Recipe by: Diana Kovacheva</span>
-                    <span>Comments: 155</span>
-                    <span>Likes: 10</span>
+                    <span>155 Comments</span>
+                    <span>10 Saves</span>
                 </div>
                 <p>
                     Shabby chic humblebrag banh mi bushwick, banjo kale chips
@@ -63,11 +80,11 @@
                 </div>
             </article>
         </section>
-        <!-- content -->
+        <!-- Recipe Ingredients List -->
         <section class="recipe-content">
             <article class="recipe-ingredients-list">
                 <div>
-                    <h4>Ingredients</h4>
+                    <h2>Ingredients</h2>
                     <ul class="ingredients-list">
                         <li class="single-ingredient">
                             1 1/2 cups dry pancake mix
@@ -81,8 +98,9 @@
                     </ul>
                 </div>
             </article>
+            <!-- Recipe Instructions-->
             <article class="recipe-instructions">
-                <h4>Instructions</h4>
+                <h2>Instructions</h2>
                 <!-- single instruction -->
                 <div class="single-instruction">
                     <header>
@@ -122,46 +140,77 @@
                 <!-- end of single instruction -->
             </article>
         </section>
-        <section class="similar-recipes">
-            <h4>Similar Recipes</h4>
-            <!--Add dynamic template-->
-            <div class="recipes-container">
-                <mat-card *ngFor="let tile of tiles" class="recipe-card">
-                    <!-- <mat-card-header>
-                        <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title>Shiba Inu</mat-card-title>
-                        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                    </mat-card-header> -->
-                    <img mat-card-image
-                        src="https://img.jamieoliver.com/jamieoliver/recipe-database/oldImages/large/1462_2_1442315133.jpg?tr=w-800,h-1066"
-                        alt="Photo of a Shiba Inu">
+        <!--Comments Section-->
+        <section class="comments-section">
+            <div>
+                <h2>Comments</h2>
+                <mat-card class="comment-card">
                     <mat-card-header>
-                        <mat-card-subtitle>
-                            Write the type of the cuisine here
-                        </mat-card-subtitle>
-                        <mat-card-title>
-                            Write the name of the dish
-                        </mat-card-title>
-                        <mat-card-subtitle>
-                            10K likes • 13 July 2023
-                        </mat-card-subtitle>
+                        <div mat-card-avatar class="comment-header-image"></div>
+                        <mat-card-title>Diana Kovacheva</mat-card-title>
+                        <mat-card-subtitle>4 weeks ago</mat-card-subtitle>
                     </mat-card-header>
-                    <!-- <mat-card-content>
+                    <mat-card-content>
                         <p>
-                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                            Japan.
+                            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                            originally
                             bred for hunting.
                         </p>
-                    </mat-card-content> -->
-                    <mat-card-actions>
-                        <span class="material-symbols-outlined">
-                            <button class="mdc-icon-button" mat-icon-button aria-label="Icon-button with hearth icon">
-                                <mat-icon>favorite</mat-icon>
-                            </button>
-                        </span>
-                    </mat-card-actions>
+                    </mat-card-content>
                 </mat-card>
             </div>
+            <div>
+                <mat-card class="comment-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="comment-header-image"></div>
+                        <mat-card-title>Diana Kovacheva</mat-card-title>
+                        <mat-card-subtitle>4 weeks ago</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>
+                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                            Japan.
+                            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                            originally
+                            bred for hunting.
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </section>
+        <!--Similar Recipes-->
+        <!--Add dynamic template-->
+        <h2 class="similar-recipes-header">Similar Recipes</h2>
+        <section class="recipes-container">
+            <mat-card class="recipe-card">
+                <img mat-card-image
+                    src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/meatball-lasagne-e64e936.jpg?quality=90&webp=true&resize=500,454"
+                    alt="Photo of a Shiba Inu">
+                <mat-card-header>
+                    <mat-card-subtitle>Add the type of the cuisine here</mat-card-subtitle>
+                    <mat-card-title>Add the name of the dish</mat-card-title>
+                </mat-card-header>
+            </mat-card>
+            <mat-card class="recipe-card">
+                <img mat-card-image
+                    src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/meatball-lasagne-e64e936.jpg?quality=90&webp=true&resize=500,454"
+                    alt="Photo of a Shiba Inu">
+                <mat-card-header>
+                    <mat-card-subtitle>Add the type of the cuisine here</mat-card-subtitle>
+                    <mat-card-title>Add the name of the dish</mat-card-title>
+                </mat-card-header>
+            </mat-card>
+            <mat-card class="recipe-card">
+                <img mat-card-image
+                    src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/meatball-lasagne-e64e936.jpg?quality=90&webp=true&resize=500,454"
+                    alt="Photo of a Shiba Inu">
+                <mat-card-header>
+                    <mat-card-subtitle>Add the type of the cuisine here</mat-card-subtitle>
+                    <mat-card-title>Add the name of the dish</mat-card-title>
+                </mat-card-header>
+            </mat-card>
         </section>
     </div>
 </main>

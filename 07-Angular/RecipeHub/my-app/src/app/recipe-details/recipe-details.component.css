@@ -1,3 +1,9 @@
+h2 {
+  font-size: 1.563rem;
+  margin-bottom: 1.38rem;
+  font-weight: 400;
+}
+
 p {
   margin-top: 0;
   margin-bottom: 1.5rem;
@@ -21,6 +27,24 @@ p {
   max-width: 100%;
 }
 
+.recipe-action-buttons {
+  display: flex;
+  margin: 2rem 0;
+  align-items: center;
+}
+
+.recipe-action-buttons button:first-child {
+  margin-left: 0;
+}
+
+.recipe-action-buttons button {
+  margin-left: 1rem;
+}
+
+.recipe-info h1 {
+  font-size: 2.441rem;
+}
+
 .recipe-meta-data {
   display: flex;
   margin-bottom: 1rem;
@@ -39,11 +63,6 @@ p {
   padding-left: 1rem;
 }
 
-.recipe-info h1 {
-  font-size: 2.441rem;
-  text-align: left;
-}
-
 .recipe-info > p {
   border-top: 1px solid #c5b9a0;
   border-bottom: 1px solid #c5b9a0;
@@ -57,7 +76,6 @@ p {
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin: 2rem 0;
-  text-align: left;
   padding-bottom: 2rem;
   border-bottom: 1px solid #c5b9a0;
 }
@@ -86,7 +104,7 @@ p {
   font-size: 14px;
   padding: 0.05rem 0.5rem;
   margin: 0 0.25rem;
-
+  color: #3f51b5;
   text-decoration: none;
 }
 
@@ -96,6 +114,8 @@ p {
     align-items: center;
   }
 }
+
+/* Recipe Content */
 
 .recipe-content {
   padding: 3rem 0;
@@ -109,28 +129,18 @@ p {
   }
 }
 
+/* Recipe Ingredients List */
+
 .recipe-ingredients-list {
   display: grid;
   row-gap: 2rem;
-}
-
-.recipe-ingredients-list h4,
-.recipe-instructions h4,
-.similar-recipes h4 {
-  font-size: 1.563rem;
-  margin-bottom: 0px;
-  margin-bottom: 1.38rem;
-  font-weight: 400;
-  line-height: 1.3;
-  line-height: 1.75;
 }
 
 .single-ingredient {
   font-size: 17px;
   line-height: 1.75;
   border-bottom: 1px solid #c5b9a0;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
+  padding: 0.3rem 0;
 }
 
 .single-ingredient:first-child {
@@ -156,6 +166,7 @@ p {
   font-weight: 600;
   margin-bottom: 0;
 }
+
 .single-instruction > p {
   font-size: 17px;
   line-height: 1.75;
@@ -166,37 +177,66 @@ p {
   background: #c5b9a0;
 }
 
-/* Similar Recipes */
+/* Comments Section */
 
-.similar-recipes h4 {
-  text-align: center;
+.comments-section {
+  display: grid;
+  grid-auto-rows: auto;
+  place-content: start;
+  gap: 2rem 5rem;
+  overflow-x: none;
+  overflow-y: scroll;
+  padding-bottom: 5rem;
 }
+
+/* grid-template-columns: 1fr 2fr; */
+
+.comments-header {
+  font-size: 1.563rem;
+  margin-bottom: 1.38rem;
+  font-weight: 400;
+}
+
+.comment-card {
+  max-width: 600px;
+}
+
+.comment-card:hover {
+  background-color: white;
+  cursor: default;
+}
+
+.comment-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+/* Similar Recipes */
 
 .recipes-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-rows: auto;
   place-content: center;
   overflow-x: none;
   overflow-y: scroll;
-  gap: 1rem;
-  padding-bottom: 40px;
+  gap: 2rem;
+  padding-bottom: 5rem;
 }
 
-mat-card {
+.similar-recipes-header {
+  text-align: center;
+  font-size: 1.563rem;
+  font-weight: 400;
+}
+
+.recipe-card:hover {
+  background: #f5f5f5;
   cursor: pointer;
 }
 
-mat-card:hover {
-  background: #f5f5f5;
-}
-
-mat-card-content {
-  padding-top: 20px;
-}
-
-mat-card-actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+mat-card-header,
+mat-card-subtitle,
+mat-card-title {
+  padding-bottom: 8px;
 }

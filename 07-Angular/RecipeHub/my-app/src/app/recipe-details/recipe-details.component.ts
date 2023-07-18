@@ -4,6 +4,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { NgFor } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 export interface Tile {
   color: string;
@@ -27,6 +28,7 @@ export interface Tile {
     MatCardModule,
     MatGridListModule,
     NgFor,
+    MatButtonModule,
   ],
 })
 export class RecipeDetailsComponent {
