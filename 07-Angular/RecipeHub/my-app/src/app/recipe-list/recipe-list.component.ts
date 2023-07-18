@@ -3,6 +3,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { NgFor } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatBadgeModule } from '@angular/material/badge';
 
 export interface Tile {
   color: string;
@@ -20,7 +22,14 @@ export interface Tile {
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css'],
   standalone: true,
-  imports: [MatGridListModule, MatCardModule, NgFor, MatIconModule],
+  imports: [
+    MatGridListModule,
+    MatCardModule,
+    NgFor,
+    MatIconModule,
+    MatButtonModule,
+    MatBadgeModule,
+  ],
 })
 export class RecipeListComponent {
   tiles: Tile[] = [
@@ -29,4 +38,10 @@ export class RecipeListComponent {
     { text: 'Three', cols: 1, rows: 1, color: 'lightblue' },
     { text: 'Four', cols: 1, rows: 1, color: 'lightgreen' },
   ];
+
+  hidden = false;
+
+  toggleBadgeVisibility() {
+    this.hidden = !this.hidden;
+  }
 }
