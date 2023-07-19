@@ -1,6 +1,5 @@
 .mainbox {
   display: flex;
-  margin-top: 30px;
   flex-direction: column;
   align-items: center;
 }
