@@ -25,6 +25,7 @@ p {
   overflow-x: none;
   overflow-y: scroll;
   gap: 2rem;
+  padding-bottom: 2rem;
 }
 
 .recipe-card:hover {
@@ -46,7 +47,6 @@ mat-card-subtitle {
 .recipes-catalog {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
 
 .show-more-btn-holder {

@@ -221,7 +221,7 @@ p {
   overflow-x: none;
   overflow-y: scroll;
   gap: 2rem;
-  padding-bottom: 5rem;
+  padding-bottom: 2rem;
 }
 
 .similar-recipes-header {

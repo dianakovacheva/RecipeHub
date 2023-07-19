@@ -14,12 +14,7 @@ import { UserModule } from './user/user.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 @NgModule({
-  declarations: [
-    AppComponent,
-    MainComponent,
-    HomeComponent,
-    PageNotFoundComponent,
-  ],
+  declarations: [AppComponent, MainComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -30,6 +25,7 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
     AppRoutingModule,
     RecipeListComponent,
     RecipeDetailsComponent,
+    HomeComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
