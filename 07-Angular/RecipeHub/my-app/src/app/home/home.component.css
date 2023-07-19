@@ -42,7 +42,7 @@
   right: -20px;
   top: 10px;
   display: block;
-  padding: 8px 20px;
+  padding: 5px 15px;
   overflow: hidden;
   border-width: 0;
   outline: none;
@@ -51,10 +51,9 @@
   color: #ecf0f1;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
   transition: background-color 0.3s;
-}
-
-.btn {
-  position: relative;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.0892857143em;
 }
 
 /* Recipe content */
@@ -83,8 +82,6 @@ p {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-auto-rows: auto;
   place-content: center;
-  overflow-x: none;
-  overflow-y: scroll;
   gap: 2rem;
   padding-bottom: 2rem;
 }
