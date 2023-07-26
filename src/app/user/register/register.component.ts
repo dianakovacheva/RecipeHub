@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 import {
   FormControl,
   Validators,
   FormsModule,
   ReactiveFormsModule,
-} from '@angular/forms';
-import { NgIf } from '@angular/common';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+  FormGroup,
+} from "@angular/forms";
+import { NgIf } from "@angular/common";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { UserService } from "./user.service";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  selector: "app-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.css"],
   standalone: true,
   imports: [
     MatCardModule,
@@ -30,77 +32,107 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   ],
 })
 export class RegisterComponent {
-  submitted = false;
-  hidePass = true;
-  hideRePass = true;
+  submitted: boolean = false;
+  hidePass: boolean = true;
+  hideRePass: boolean = true;
 
-  constructor(private router: Router) {}
+  constructor(private userService: UserService, private router: Router) {}
 
-  firstName = new FormControl('', [
-    Validators.required,
-    Validators.minLength(2),
-  ]);
+  registerForm = new FormGroup({
+    firstName: new FormControl("", [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
+    lastName: new FormControl("", [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
+    rePassword: new FormControl("", Validators.required),
+  });
 
+  // Functions that check if there is a error and return appropriate error message
   getErrorMessageFirstName() {
-    if (this.firstName.hasError('required')) {
-      return 'You must enter a value';
+    const firstNameInput = this.registerForm.get("firstName");
+
+    if (firstNameInput!.hasError("required")) {
+      return "You must enter a value.";
     }
 
-    return this.firstName.hasError('minlength')
-      ? 'First name must be min 2 chars long.'
-      : '';
+    return firstNameInput!.hasError("minlength")
+      ? "First name must be min 2 chars long."
+      : "";
   }
-
-  lastName = new FormControl('', [
-    Validators.required,
-    Validators.minLength(2),
-  ]);
 
   getErrorMessageLastName() {
-    if (this.lastName.hasError('required')) {
-      return 'You must enter a value';
+    const lastNameInput = this.registerForm.get("lastName");
+
+    if (lastNameInput!.hasError("required")) {
+      return "You must enter a value.";
     }
 
-    return this.lastName.hasError('minlength')
-      ? 'Last name must be min 2 chars long.'
-      : '';
+    return lastNameInput!.hasError("minlength")
+      ? "Last name must be min 2 chars long."
+      : "";
   }
-
-  email = new FormControl('', [Validators.required, Validators.email]);
 
   getErrorMessageEmail() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
+    const emailInput = this.registerForm.get("email");
+    if (emailInput!.hasError("required")) {
+      return "You must enter a value.";
     }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return emailInput!.hasError("email") ? "Not a valid email." : "";
   }
-
-  password = new FormControl('', [
-    Validators.required,
-    Validators.minLength(8),
-  ]);
 
   getErrorMessagePassword() {
-    if (this.password.hasError('required')) {
-      return 'You must enter a value';
+    const passwordInput = this.registerForm.get("password");
+
+    if (passwordInput!.hasError("required")) {
+      return "You must enter a value.";
     }
 
-    return this.password.hasError('minlength')
-      ? 'Password must be at least 8 characters'
-      : '';
+    return passwordInput!.hasError("minlength")
+      ? "Password must be at least 8 characters."
+      : "";
   }
 
-  rePassword = new FormControl('', Validators.required);
-
   getErrorMessageRePassword() {
-    if (this.rePassword.hasError('required')) {
-      return 'You must enter a value';
+    const rePasswordInput = this.registerForm.get("rePassword");
+    const passwordInput = this.registerForm.get("password");
+
+    if (rePasswordInput!.hasError("required")) {
+      return "You must enter a value.";
     }
 
-    if (this.password.value !== this.rePassword.value) {
-      this.rePassword.setErrors({ noMatch: true });
+    if (passwordInput?.value !== rePasswordInput?.value) {
+      rePasswordInput!.setErrors({ noMatch: true });
     }
-    return this.rePassword.hasError('noMatch') ? 'Passwords must match' : '';
+
+    return rePasswordInput!.hasError("noMatch") ? "Passwords must match." : "";
+  }
+
+  // Register function that will be called on form submit event
+  register(): void {
+    if (this.registerForm.invalid) {
+      return;
+    }
+
+    // Pass form data to register function of userService
+    this.userService
+      .register(
+        this.registerForm.value.firstName ?? "",
+        this.registerForm.value.lastName ?? "",
+        this.registerForm.value.email ?? "",
+        this.registerForm.value.password ?? "",
+        this.registerForm.value.rePassword ?? ""
+      )
+      .subscribe(() => {
+        this.router.navigate(["/recipes"]);
+      });
   }
 }
