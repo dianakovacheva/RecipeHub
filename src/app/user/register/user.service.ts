@@ -34,7 +34,7 @@ export class UserService implements OnDestroy {
     rePassword: string
   ) {
     return this.http
-      .post<User>(`/${environment.backendURL}/register`, {
+      .post<User>(`${environment.backendURL}/register`, {
         firstName,
         lastName,
         email,
@@ -46,25 +46,25 @@ export class UserService implements OnDestroy {
 
   login(email: string, password: string) {
     return this.http
-      .post<User>(`/${environment.backendURL}/login`, { email, password })
+      .post<User>(`${environment.backendURL}/login`, { email, password })
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
   logout() {
     return this.http
-      .post<User>(`/${environment.backendURL}/logout`, {})
+      .post<User>(`${environment.backendURL}/logout`, {})
       .pipe(tap(() => this.user$$.next(undefined)));
   }
 
   getUserProfile() {
     return this.http
-      .get<User>(`/${environment.backendURL}/users/profile`)
+      .get<User>(`${environment.backendURL}/users/profile`)
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
   updateUserProfile(firstName: string, lastName: string, email: string) {
     return this.http
-      .put<User>(`/${environment.backendURL}/users/profile`, {
+      .put<User>(`${environment.backendURL}/users/profile`, {
         firstName,
         lastName,
         email,

@@ -118,6 +118,8 @@ export class RegisterComponent {
 
   // Register function that will be called on form submit event
   register(): void {
+    console.log(this.registerForm.value.firstName);
+
     if (this.registerForm.invalid) {
       return;
     }
@@ -132,7 +134,7 @@ export class RegisterComponent {
         this.registerForm.value.rePassword ?? ""
       )
       .subscribe(() => {
-        this.router.navigate(["/recipes"]);
+        this.router.navigate(["/"]);
       });
   }
 }

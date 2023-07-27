@@ -1,6 +1,6 @@
 <header>
     <mat-toolbar>
-        <span><a routerLink=""><img class="recipehub-logo" src="../../../assets/RecipeHub-logotype.png"
+        <span><a routerLink="/"><img class="recipehub-logo" src="../../../assets/RecipeHub-logotype.png"
                     alt="RecipeHub-logotype"></a></span>
         <span class="nav-spacer"></span>
         <section>
@@ -8,7 +8,7 @@
                 <a mat-button routerLink="/recipes">Recipes</a>
                 <a mat-button routerLink="/create-recipe">Create Recipe</a>
                 <a mat-button routerLink="/meal-planner">Meal Planner</a>
-                <a mat-button routerLink="/recipe-details">Recipe Details</a>
+                <a mat-button routerLink="/recipe-details/:recipeId">Recipe Details</a>
             </div>
         </section>
         <div class="search-button">
@@ -26,8 +26,8 @@
             <mat-menu #menu="matMenu" xPosition="before">
                 <a mat-menu-item routerLink="/auth/login">Log In</a>
                 <a mat-menu-item routerLink="/auth/register">Register</a>
-                <a mat-menu-item routerLink="/auth/my-profile">My Profile</a>
-                <a mat-menu-item routerLink="/auth/">Log Out</a>
+                <a mat-menu-item routerLink="/my-profile">My Profile</a>
+                <a mat-menu-item routerLink="">Log Out</a>
             </mat-menu>
         </div>
     </mat-toolbar>
