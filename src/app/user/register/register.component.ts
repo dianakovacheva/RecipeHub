@@ -13,7 +13,7 @@ import {
 import { NgIf } from "@angular/common";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { UserService } from "./user.service";
+import { UserService } from "../user.service";
 
 @Component({
   selector: "app-register",
@@ -55,7 +55,7 @@ export class RegisterComponent {
     rePassword: new FormControl("", Validators.required),
   });
 
-  // Functions that check if there is a error and return appropriate error message
+  // Functions that check if there is an error and return appropriate error message
   getErrorMessageFirstName() {
     const firstNameInput = this.registerForm.get("firstName");
 
@@ -118,8 +118,6 @@ export class RegisterComponent {
 
   // Register function that will be called on form submit event
   register(): void {
-    console.log(this.registerForm.value.firstName);
-
     if (this.registerForm.invalid) {
       return;
     }

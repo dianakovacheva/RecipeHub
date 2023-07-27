@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { Component } from "@angular/core";
+import { UserService } from "../user.service";
+import { Router } from "@angular/router";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 import {
   FormControl,
   Validators,
   FormsModule,
   ReactiveFormsModule,
-} from '@angular/forms';
-import { NgIf } from '@angular/common';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-
+  FormGroup,
+} from "@angular/forms";
+import { NgIf } from "@angular/common";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
   standalone: true,
   imports: [
     MatCardModule,
@@ -30,39 +31,55 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   ],
 })
 export class LoginComponent {
-  submitted = false;
-  hide = true;
+  submitted: boolean = false;
+  hidePass: boolean = true;
 
-  constructor(private router: Router) {}
+  constructor(private userService: UserService, private router: Router) {}
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  loginForm = new FormGroup({
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
+  });
 
+  // Functions that check if there is an error and return appropriate error message
   getErrorMessageEmail() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
+    const emailInput = this.loginForm.get("email");
+
+    if (emailInput!.hasError("required")) {
+      return "You must enter a value";
     }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return emailInput!.hasError("email") ? "Not a valid email" : "";
   }
-
-  password = new FormControl('', [
-    Validators.required,
-    Validators.minLength(8),
-  ]);
 
   getErrorMessagePassword() {
-    if (this.password.hasError('required')) {
-      return 'You must enter a value';
+    const passwordInput = this.loginForm.get("password");
+    if (passwordInput!.hasError("required")) {
+      return "You must enter a value";
     }
 
-    return this.password.hasError('minlength')
-      ? 'Password must be at least 8 characters'
-      : '';
+    return passwordInput!.hasError("minlength")
+      ? "Password must be at least 8 characters"
+      : "";
   }
 
-  // login(): void {
-  //   // ToDo: for now we are not handling the data
-  //   // this.userService.login();
-  //   this.router.navigate(['/']);
-  // }
+  // Login function that will be called on form submit event
+  login(): void {
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    // Pass form data to login function of userService
+    this.userService
+      .login(
+        this.loginForm.value.email ?? "",
+        this.loginForm.value.password ?? ""
+      )
+      .subscribe(() => {
+        this.router.navigate(["/"]);
+      });
+  }
 }

@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from "@angular/core";
 import { User } from "src/app/models/User";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Subscription, tap } from "rxjs";
-import { environment } from "../../../environments/environment";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -34,7 +34,7 @@ export class UserService implements OnDestroy {
     rePassword: string
   ) {
     return this.http
-      .post<User>(`${environment.backendURL}/register`, {
+      .post<User>(`${environment.backendURL}/auth/register`, {
         firstName,
         lastName,
         email,
@@ -46,7 +46,7 @@ export class UserService implements OnDestroy {
 
   login(email: string, password: string) {
     return this.http
-      .post<User>(`${environment.backendURL}/login`, { email, password })
+      .post<User>(`${environment.backendURL}/auth/login`, { email, password })
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
