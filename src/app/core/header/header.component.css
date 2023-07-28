@@ -14,3 +14,13 @@
   font-weight: 700;
   text-transform: uppercase;
 }
+
+mat-form-field {
+  margin-right: 12px;
+}
+
+.guest-navigation,
+.user-navigation {
+  padding: 0;
+  margin: 0;
+}
