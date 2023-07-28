@@ -14,6 +14,12 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { UserService } from "../user.service";
 import { Router, RouterModule } from "@angular/router";
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarModule,
+  MatSnackBarVerticalPosition,
+} from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-register",
@@ -30,6 +36,7 @@ import { Router, RouterModule } from "@angular/router";
     NgIf,
     MatIconModule,
     RouterModule,
+    MatSnackBarModule,
   ],
 })
 export class RegisterComponent {
@@ -37,7 +44,11 @@ export class RegisterComponent {
   hidePass: boolean = true;
   hideRePass: boolean = true;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    public welcomeUserSnackBar: MatSnackBar
+  ) {}
 
   registerForm = new FormGroup({
     firstName: new FormControl("", [
@@ -117,6 +128,17 @@ export class RegisterComponent {
     return rePasswordInput!.hasError("noMatch") ? "Passwords must match." : "";
   }
 
+  // Get user's first and last name
+  get userFullName(): string {
+    const userFistName = this.userService.user?.firstName;
+    const userLastName = this.userService.user?.lastName;
+    return `Welcome ${userFistName} ${userLastName}` || "";
+  }
+
+  // Welcome user after login
+  horizontalPosition: MatSnackBarHorizontalPosition = "end";
+  verticalPosition: MatSnackBarVerticalPosition = "top";
+
   // Register function that will be called on form submit event
   register(): void {
     if (this.registerForm.invalid) {
@@ -133,7 +155,13 @@ export class RegisterComponent {
         this.registerForm.value.rePassword ?? ""
       )
       .subscribe(() => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/"]).then(() => {
+          this.welcomeUserSnackBar.open(this.userFullName, "", {
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+            duration: 3000,
+          });
+        });
       });
   }
 }

@@ -29,21 +29,19 @@ import { UserService } from "src/app/user/user.service";
   ],
 })
 export class HeaderComponent {
+  constructor(private userService: UserService, private router: Router) {}
 
-
-  get userFullName(): string {
-    const userFistName = this.userService.user?.firstName;
-    const userLastName = this.userService.user?.lastName;
-    return `Welcome ${userFistName} ${userLastName}` || "";
+  get isLoggedIn(): boolean {
+    return this.userService.isLoggedIn;
   }
 
   logout(): void {
     this.userService.logout().subscribe({
       next: () => {
-        this.router.navigate(["/auth/login"]);
+        this.router.navigate(["/"]);
       },
       error: () => {
-        this.router.navigate(["/auth/login"]);
+        this.router.navigate(["/"]);
       },
     });
   }

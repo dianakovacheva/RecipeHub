@@ -25,7 +25,7 @@
                     <a mat-menu-item routerLink="/auth/login">Log In</a>
                     <a mat-menu-item routerLink="/auth/register">Register</a>
                 </ul>
-                <span *ngIf="isLoggedIn" (click)="openSnackBar()" aria-label="Welcome logged in user"></span>
+
                 <ul class="user-navigation" *ngIf="isLoggedIn">
                     <a mat-menu-item routerLink="/users/user-profile">Profile</a>
                     <a mat-menu-item (click)="logout()">Log Out</a>
