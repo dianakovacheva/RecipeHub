@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
@@ -14,6 +13,7 @@ import { NgIf } from "@angular/common";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { UserService } from "../user.service";
+import { Router, RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-register",
@@ -29,6 +29,7 @@ import { UserService } from "../user.service";
     ReactiveFormsModule,
     NgIf,
     MatIconModule,
+    RouterModule,
   ],
 })
 export class RegisterComponent {
