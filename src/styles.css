@@ -19,3 +19,15 @@ app-root {
 app-root {
   --max-width: 1120px;
 }
+
+.snackbar-success {
+  --mdc-snackbar-container-color: #497530;
+}
+
+.snackbar-error {
+  --mdc-snackbar-container-color: red;
+}
+
+.mat-mdc-snack-bar-container {
+  transform: translateY(60px) !important;
+}
