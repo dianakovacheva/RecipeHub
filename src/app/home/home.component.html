@@ -5,7 +5,8 @@
             <h1>Welcome to RecipeHub</h1>
             <h5>Connect with food lovers, exchange tips, and be inspired. Join us and let your taste buds rejoice!</h5>
             <div class="show-more-btn-holder">
-                <button mat-raised-button color="primary">Get Started</button>
+                <button mat-raised-button color="primary" [routerLink]="['/auth/login']"
+                    routerLinkActive="router-link-active">Get Started</button>
             </div>
         </div>
     </div>
