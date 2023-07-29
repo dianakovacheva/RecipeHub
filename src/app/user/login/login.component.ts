@@ -14,12 +14,7 @@ import { NgIf } from "@angular/common";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { Router, RouterModule } from "@angular/router";
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarModule,
-  MatSnackBarVerticalPosition,
-} from "@angular/material/snack-bar";
+import { SnackBarService } from "src/app/snack-bar-notification/snack-bar.service";
 
 @Component({
   selector: "app-login",
@@ -36,7 +31,6 @@ import {
     NgIf,
     MatIconModule,
     RouterModule,
-    MatSnackBarModule,
   ],
 })
 export class LoginComponent {
@@ -46,7 +40,7 @@ export class LoginComponent {
   constructor(
     private userService: UserService,
     private router: Router,
-    public welcomeUserSnackBar: MatSnackBar
+    private snackBar: SnackBarService
   ) {}
 
   loginForm = new FormGroup({
@@ -79,17 +73,6 @@ export class LoginComponent {
       : "";
   }
 
-  // Get user's first and last name
-  get userFullName(): string {
-    const userFistName = this.userService.user?.firstName;
-    const userLastName = this.userService.user?.lastName;
-    return `Welcome ${userFistName} ${userLastName}` || "";
-  }
-
-  // Welcome user after login
-  horizontalPosition: MatSnackBarHorizontalPosition = "end";
-  verticalPosition: MatSnackBarVerticalPosition = "top";
-
   // Login function that will be called on form submit event
   login(): void {
     if (this.loginForm.invalid) {
@@ -103,13 +86,8 @@ export class LoginComponent {
         this.loginForm.value.password ?? ""
       )
       .subscribe(() => {
-        this.router.navigate(["/"]).then(() => {
-          this.welcomeUserSnackBar.open(this.userFullName, "", {
-            horizontalPosition: this.horizontalPosition,
-            verticalPosition: this.verticalPosition,
-            duration: 3000,
-          });
-        });
+        this.router.navigate(["/"]);
+        this.snackBar.greetUser();
       });
   }
 }
