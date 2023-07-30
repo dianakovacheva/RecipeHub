@@ -1,9 +1,10 @@
-<div class="container">
-    <form class="login-form" [formGroup]="loginForm" (submit)="login()">
+<div class="form-container">
+    <form class="bordered-form" [formGroup]="loginForm" (submit)="login()">
         <div class="form-header">
-            <h2>Log In</h2>
+            <h2 class="form-title">Log In</h2>
         </div>
-        <div class=" form-field-container">
+        <div class="form-field-container">
+            <!-- Email -->
             <mat-form-field>
                 <mat-label>Enter your email</mat-label>
                 <input matInput placeholder="john.doe@gmail.com" formControlName="email" required>
@@ -11,6 +12,7 @@
             </mat-form-field>
         </div>
         <div class="form-field-container">
+            <!-- Password -->
             <mat-form-field>
                 <mat-label>Enter your password</mat-label>
                 <input matInput [type]="hidePass ? 'password' : 'text'" formControlName="password" required>
