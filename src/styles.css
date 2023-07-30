@@ -9,6 +9,43 @@ body {
   font-size: 14px;
 }
 
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-field-container {
+  width: min(700px, 90%);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 600px;
+  margin: 20px;
+  padding: 20px;
+  width: min(700px, 90%);
+}
+
+.form-title {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.call-to-action-text {
+  margin: 20px;
+  padding: 5px 30px;
+  text-align: center;
+}
+
+.bordered-form {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 app-root {
   display: flex;
   flex-direction: column;
