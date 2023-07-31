@@ -40,6 +40,9 @@ The application have:
 - **User Profile Page**: Users can see and maintain their profile information.
 - **Create Recipe Page**: Users can see the create recipe page.
 - **Create Recipes**: Users can create and submit their own recipes.
+- **Edit Recipe Page**: Users can see the edit recipe page.
+- **Edit Recipe Form**: Users can edit their own recipes.
+- **Delete Recipe** Users can delete their own recipes.
 - **Save Recipes**: Users can save recipes to their profiles.
 - **Comment Recipe**: Users can comment other users's recipes.
 
