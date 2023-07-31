@@ -10,10 +10,10 @@ It allows users to explore, search and create their own recipes. Authenticated u
 ## Table of Contents
 
 - [Features](#features)
-- [Screenshots](#screenshots)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
 - [Access the application](#access-the-application)
+- [Screenshots](#screenshots)
 
 ## Features
 
@@ -46,16 +46,6 @@ The application have:
 - **Save Recipes**: Users can save recipes to their profiles.
 - **Comment Recipe**: Users can comment other users's recipes.
 
-## Screenshots
-
-#### Home Page
-
-![Home Page](./src//assets//recipeHub-Screenshots/recipeHub-home-page.png)
-
-#### Recipe Details Page
-
-![Home Page](./src//assets//recipeHub-Screenshots/recipeHub-recipe-details-page.png)
-
 ## Tech Stack
 
 - **Angular**
@@ -81,3 +71,13 @@ After completing the installation you can start the development server using: ng
 
 - **Client-side**: Open your web browser and navigate to http://localhost:4200 to access the client-side application.
 - **Server-side**: The server-side API endpoints will be available at http://localhost:3000/api.
+
+## Screenshots
+
+#### Home Page
+
+![Home Page](./src//assets//recipeHub-Screenshots/recipeHub-home-page.png)
+
+#### Recipe Details Page
+
+![Home Page](./src//assets//recipeHub-Screenshots/recipeHub-recipe-details-page.png)
