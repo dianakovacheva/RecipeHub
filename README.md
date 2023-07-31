@@ -70,7 +70,7 @@ To run RecipeHub locally on your machine, follow these steps:
 After completing the installation you can start the development server using: ng serve
 
 - **Client-side**: Open your web browser and navigate to http://localhost:4200 to access the client-side application.
-- **Server-side**: The server-side API endpoints will be available at http://localhost:3000/api.
+- **Server-side**: The server-side API endpoints will be available at http://localhost:3000/api
 
 ## Screenshots
 
