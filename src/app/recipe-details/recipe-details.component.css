@@ -87,25 +87,29 @@ p {
   margin-bottom: 0;
 }
 
-.recipe-tags {
+.dish-type-section {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
   font-size: 0.7em;
   font-weight: 600;
   text-transform: uppercase;
 }
 
-.recipe-tags p {
+.dish-type-section span p {
+  display: inline-block;
   font-size: 14px;
 }
 
-.recipe-tags a {
+.dish-type-section span ul {
+  display: inline;
+}
+
+.dish-type-section ul li {
+  float: left;
   font-size: 14px;
-  padding: 0.05rem 0.5rem;
+  padding: 0rem 0.5rem;
   margin: 0 0.25rem;
   color: #3f51b5;
-  text-decoration: none;
+  list-style: none;
 }
 
 @media screen and (min-width: 992px) {
