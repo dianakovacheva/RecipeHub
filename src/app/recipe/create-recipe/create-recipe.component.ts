@@ -125,4 +125,5 @@ export class CreateRecipeComponent {
   //   timeOption: this.timeOptionControl,
   // });
 
+  createRecipe() {}
 }
