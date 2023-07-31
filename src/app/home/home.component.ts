@@ -5,6 +5,7 @@ import { NgFor } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatBadgeModule } from "@angular/material/badge";
+import { ProgressSpinnerComponent } from "src/app/sharedComponents/progress-spinner/progress-spinner.component";
 
 /**
  * @title Dynamic grid-list
@@ -21,6 +22,7 @@ import { MatBadgeModule } from "@angular/material/badge";
     MatButtonModule,
     MatBadgeModule,
     RouterModule,
+    ProgressSpinnerComponent,
   ],
 })
 export class HomeComponent implements OnInit {
