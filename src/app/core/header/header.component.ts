@@ -7,6 +7,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatTabsModule } from "@angular/material/tabs";
 import { Router, RouterModule } from "@angular/router";
 import { UserService } from "src/app/user/user.service";
+import { SnackBarService } from "src/app/snack-bar-notification/snack-bar.service";
 
 /**
  * @title Basic toolbar
@@ -29,7 +30,11 @@ import { UserService } from "src/app/user/user.service";
   ],
 })
 export class HeaderComponent {
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private snackBar: SnackBarService
+  ) {}
 
   get isLoggedIn(): boolean {
     return this.userService.isLoggedIn;
@@ -39,9 +44,11 @@ export class HeaderComponent {
     this.userService.logout().subscribe({
       next: () => {
         this.router.navigate(["/"]);
+        this.snackBar.goodbyeUser();
       },
-      error: () => {
+      error: (err) => {
         this.router.navigate(["/"]);
+        this.snackBar.notifyError(err);
       },
     });
   }
