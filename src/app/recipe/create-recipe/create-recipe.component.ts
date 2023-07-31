@@ -34,8 +34,43 @@ export class CreateRecipeComponent {
   // private URL_PATTERN =
   //   /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/i;
 
+  private IMAGE_URL_PATTERN =
+    /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|bmp|svg)/;
 
   constructor() {}
+
+  createRecipeForm = new FormGroup({
+    title: new FormControl("", [Validators.required, Validators.minLength(2)]),
+    // author
+    // comments
+    // saves
+    summary: new FormControl("", [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(300),
+    ]),
+    imageUrl: new FormControl("", [Validators.pattern(this.IMAGE_URL_PATTERN)]),
+    preparationMinutes: new FormControl("", [
+      Validators.required,
+      Validators.min(1),
+    ]),
+    cookingMinutes: new FormControl("", [
+      Validators.required,
+      Validators.min(1),
+    ]),
+    servings: new FormControl("", [Validators.required, Validators.min(1)]),
+    pricePerServing: new FormControl("", [
+      Validators.required,
+      Validators.min(0),
+    ]),
+    dishTypes: new FormControl([], [Validators.required]),
+    extendedIngredients: new FormControl(
+      "",
+      [Validators.required]
+      // [this.initIngredient()]
+    ),
+    analyzedInstructions: new FormControl("", [Validators.required]),
+  });
 
   // Dish Type Options
   dishTypeOptions: DishType[] = [
