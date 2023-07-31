@@ -12,6 +12,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
 import { NgFor } from "@angular/common";
 // import { TimeOption } from "src/app/models/TimeOption";
+import { DishType } from "src/app/models/DishType";
 @Component({
   selector: "app-create-recipe",
   templateUrl: "./create-recipe.component.html",
@@ -35,6 +36,29 @@ export class CreateRecipeComponent {
 
 
   constructor() {}
+
+  // Dish Type Options
+  dishTypeOptions: DishType[] = [
+    { value: "main-course", viewValue: "Main Course" },
+    { value: "side-dish", viewValue: "Side Dish" },
+    { value: "dessert", viewValue: "Dessert" },
+    { value: "appetizer", viewValue: "Appetizer" },
+    { value: "salad", viewValue: "Salad" },
+    { value: "bread", viewValue: "Bread" },
+    { value: "breakfast", viewValue: "Breakfast" },
+    { value: "soup", viewValue: "Soup" },
+    { value: "beverage", viewValue: "Beverage" },
+    { value: "sauce", viewValue: "Sauce" },
+    { value: "marinade", viewValue: "Marinade" },
+    { value: "fingerfood", viewValue: "Fingerfood" },
+    { value: "snack", viewValue: "Snack" },
+    { value: "drink", viewValue: "Drink" },
+  ];
+
+  dishTypeOptionControl = new FormControl(this.dishTypeOptions[0].value);
+  dishTypeOptionsForm = new FormGroup({
+    dishTypeOption: this.dishTypeOptionControl,
+  });
 
   // initIngredient() {
   //   return new FormGroup({
