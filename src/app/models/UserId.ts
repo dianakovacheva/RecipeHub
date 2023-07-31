@@ -7,7 +7,5 @@ export interface UserId {
   userRecipesList: string[];
   userCommentsList: string[];
   userSavedRecipes: string[];
-  created_at: string;
-  updatedAt: string;
-  __v: number;
+  createdAt: string;
 }
