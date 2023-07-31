@@ -68,6 +68,7 @@ The application have:
 To run RecipeHub locally on your machine, follow these steps:
 
 - **Clone the Repository**: git clone https://github.com/dianakovacheva/RecipeHub
+- **Clone the Backend Repository**: git clone https://github.com/dianakovacheva/RecipeHub-Backend
 - **Navigate to the project directory**: cd RecipeHub
 - **Install the required dependencies**: npm install
 
