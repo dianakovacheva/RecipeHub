@@ -1,5 +1,6 @@
 h2 {
   font-size: 1.563rem;
+  margin-top: 2rem;
   margin-bottom: 1.38rem;
   font-weight: 400;
 }
@@ -191,6 +192,7 @@ p {
   overflow-x: none;
   overflow-y: scroll;
   padding-bottom: 5rem;
+  border-top: 1px solid #c5b9a0;
 }
 
 /* grid-template-columns: 1fr 2fr; */
@@ -232,6 +234,8 @@ p {
   text-align: center;
   font-size: 1.563rem;
   font-weight: 400;
+  padding-top: 2rem;
+  border-top: 1px solid #c5b9a0;
 }
 
 .recipe-card:hover {
