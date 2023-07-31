@@ -1,6 +1,6 @@
 # RecipeHub
 
-![RecipeHub Logo](./src//assets/RecipeHub-logo-with-mascot.png)
+![RecipeHub Logo](./src//assets/RecipeHub-logo-with-mascot-background.jpg)
 
 ## Angular Project
 
