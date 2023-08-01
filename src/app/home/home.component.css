@@ -1,8 +1,7 @@
 .banner {
-  /* The image used */
-  --max-width: 1120px;
+  /* Banner image */
   background-image: url(../../assets/ingredients-cooking-gray-concrete.jpg);
-  height: 250px;
+  height: 320px;
   background-size: cover;
   /* Prevent image from repeating */
   background-repeat: no-repeat;
@@ -24,11 +23,19 @@
 .hero-text h1 {
   font-size: 2.441rem;
   font-weight: 700;
+  line-height: 100%;
 }
 
 .hero-text h5 {
   font-size: 17px;
   line-height: 26px;
+}
+
+/* Mobile App */
+@media (max-width: 800px) {
+  .hero-text {
+    width: 70%;
+  }
 }
 
 .user-recipe,
