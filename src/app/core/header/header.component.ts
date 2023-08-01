@@ -8,6 +8,8 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { Router, RouterModule } from "@angular/router";
 import { UserService } from "src/app/user/user.service";
 import { SnackBarService } from "src/app/snack-bar-notification/snack-bar.service";
+import { NgOptimizedImage } from "@angular/common";
+import { MatDividerModule } from "@angular/material/divider";
 
 /**
  * @title Basic toolbar
@@ -27,6 +29,8 @@ import { SnackBarService } from "src/app/snack-bar-notification/snack-bar.servic
     RouterModule,
     CommonModule,
     NgIf,
+    NgOptimizedImage,
+    MatDividerModule,
   ],
 })
 export class HeaderComponent {

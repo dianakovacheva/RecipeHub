@@ -1,10 +1,12 @@
 <header>
     <mat-toolbar>
-        <span><a routerLink="/"><img class="recipehub-logo" src="../../../assets/RecipeHub-logo-with-mascot.png"
-                    alt="RecipeHub-logotype"></a></span>
+        <!-- Using ngSrc images will be optimized -->
+        <span><a routerLink="/"><img class="recipehub-logo" ngSrc="../../../assets/RecipeHub-logo-with-mascot.png"
+                    alt="RecipeHub-logotype" width="400" height="200" priority></a></span>
         <span class="nav-spacer"></span>
-        <section>
-            <div class="nav-button-row">
+        <!-- Desktop Menu -->
+        <section class="nav-button-row">
+            <div>
                 <a mat-button routerLink="/recipes">Recipes</a>
                 <a mat-button routerLink="/create-recipe">Create Recipe</a>
                 <!-- <a mat-button routerLink="/meal-planner">Meal Planner</a> -->
@@ -21,15 +23,36 @@
                 <mat-icon>person</mat-icon>
             </button>
             <mat-menu #menu="matMenu" xPosition="before">
-                <ul class="guest-navigation" *ngIf="!isLoggedIn">
+                <div class="guest-navigation" *ngIf="!isLoggedIn">
                     <a mat-menu-item routerLink="/auth/login">Log In</a>
                     <a mat-menu-item routerLink="/auth/register">Register</a>
-                </ul>
-
-                <ul class="user-navigation" *ngIf="isLoggedIn">
+                </div>
+                <div class="user-navigation" *ngIf="isLoggedIn">
                     <a mat-menu-item routerLink="/users/user-profile">Profile</a>
                     <a mat-menu-item (click)="logout()">Log Out</a>
-                </ul>
+                </div>
+            </mat-menu>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <button mat-icon-button [matMenuTriggerFor]="mobileMenu" aria-label="Mobile menu">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <mat-menu #mobileMenu="matMenu" xPosition="before">
+                <div>
+                    <a mat-menu-item routerLink="/recipes">Recipes</a>
+                </div>
+                <div class="guest-navigation" *ngIf="!isLoggedIn">
+                    <mat-divider></mat-divider>
+                    <a mat-menu-item routerLink="/auth/login">Log In</a>
+                    <a mat-menu-item routerLink="/auth/register">Register</a>
+                </div>
+                <div class="user-navigation" *ngIf="isLoggedIn">
+                    <a mat-menu-item routerLink="/create-recipe">Create Recipe</a>
+                    <mat-divider></mat-divider>
+                    <a mat-menu-item routerLink="/users/user-profile">Profile</a>
+                    <a mat-menu-item (click)="logout()">Log Out</a>
+                </div>
             </mat-menu>
         </div>
     </mat-toolbar>

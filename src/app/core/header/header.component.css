@@ -24,3 +24,22 @@ mat-form-field {
   padding: 0;
   margin: 0;
 }
+
+/* Desktop Menu */
+@media (max-width: 800px) {
+  .nav-button-row,
+  .user-menu-button {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+/* Mobile Menu */
+@media (min-width: 800px) {
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+}
