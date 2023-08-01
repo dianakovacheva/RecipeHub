@@ -1,6 +1,6 @@
 import { UserId } from "./UserId";
 
-export interface User {
+export interface Recipe {
   recipeApiId: string;
   _id: string;
   title: string;
