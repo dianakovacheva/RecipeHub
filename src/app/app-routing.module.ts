@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { RecipeListComponent } from "./recipe-list/recipe-list.component";
 
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { HomeComponent } from "./home/home.component";
 import { RecipeDetailsComponent } from "./recipe-details/recipe-details.component";
 import { CreateRecipeComponent } from "./recipe/create-recipe/create-recipe.component";
+import { RecipesListComponent } from "./recipes-list/recipes-list.component";
 
 const routes: Routes = [
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: "recipes",
-    component: RecipeListComponent,
+    component: RecipesListComponent,
   },
   {
     path: "create-recipe",
