@@ -5,8 +5,6 @@ import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatBadgeModule } from "@angular/material/badge";
 
-import { NgOptimizedImage } from "@angular/common";
-
 import { ProgressSpinnerComponent } from "src/app/sharedComponents/progress-spinner/progress-spinner.component";
 
 /**
@@ -25,7 +23,6 @@ import { ProgressSpinnerComponent } from "src/app/sharedComponents/progress-spin
     MatBadgeModule,
     RouterModule,
     ProgressSpinnerComponent,
-    NgOptimizedImage,
   ],
 })
 export class HomeComponent implements OnInit {
