@@ -1,0 +1,19 @@
+mat-form-field {
+  min-width: 100%;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: min(700px, 90%);
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+.form-row > .form-field-container-time,
+.form-row > .form-field-container-serving {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+}
