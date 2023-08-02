@@ -30,10 +30,8 @@ const routes: Routes = [
     path: "create-recipe",
     component: CreateRecipeComponent,
   },
-  {
-    path: "recipe-details/:recipeId",
-    component: RecipeDetailsComponent,
-  },
+  { path: "recipe-details/:recipeId", component: RecipeDetailsComponent },
+ 
   {
     path: "**",
     component: PageNotFoundComponent,
