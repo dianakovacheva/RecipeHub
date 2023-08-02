@@ -133,7 +133,7 @@ export class RegisterComponent {
         this.registerForm.value.rePassword ?? ""
       )
       .subscribe(() => {
-        this.router.navigate(["/"]).then();
+        this.router.navigate(["/"]);
       });
   }
 }
