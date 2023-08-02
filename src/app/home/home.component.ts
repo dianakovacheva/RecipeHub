@@ -4,12 +4,10 @@ import { NgFor } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatBadgeModule } from "@angular/material/badge";
+import { NgIf } from "@angular/common";
 
 import { ProgressSpinnerComponent } from "src/app/sharedComponents/progress-spinner/progress-spinner.component";
-
-/**
- * @title Dynamic grid-list
- */
+import { UserService } from "../user/user.service";
 
 @Component({
   selector: "app-home",
@@ -23,10 +21,15 @@ import { ProgressSpinnerComponent } from "src/app/sharedComponents/progress-spin
     MatBadgeModule,
     RouterModule,
     ProgressSpinnerComponent,
+    NgIf,
   ],
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router) {}
+  get isLoggedIn(): boolean {
+    return this.userService.isLoggedIn;
+  }
+
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {}
 }

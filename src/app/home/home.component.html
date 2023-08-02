@@ -4,7 +4,7 @@
         <div class="hero-text">
             <h1>Welcome to RecipeHub</h1>
             <h5>Connect with food lovers, exchange tips, and be inspired. Join us and let your taste buds rejoice!</h5>
-            <div class="show-more-btn-holder">
+            <div class="show-more-btn-holder" *ngIf="!isLoggedIn">
                 <button mat-raised-button color="primary" [routerLink]="['/auth/register']"
                     routerLinkActive="router-link-active">Get Started</button>
             </div>
