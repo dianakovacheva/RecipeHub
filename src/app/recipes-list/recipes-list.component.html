@@ -8,7 +8,9 @@
         <!-- Recipe Card -->
         <div *ngFor="let recipe of recipesList">
             <mat-card class="recipes-list-card" [routerLink]="['/recipe-details',recipe._id]">
-                <img mat-card-image src="{{recipe.imageURL}}" alt="Photo of {{recipe.title}}">
+                <img *ngIf="!recipe.imageURL" src="../../assets/recipe-placeholder-image.jpg"
+                    alt="recipe-placeholder-image">
+                <img *ngIf="recipe.imageURL" mat-card-image src="{{recipe.imageURL}}" alt="Photo of {{recipe.title}}">
                 <mat-card-header>
                     <mat-card-subtitle class="recipe-dish-type">{{recipe.dishTypes}}</mat-card-subtitle>
                     <mat-card-title>{{recipe.title}}</mat-card-title>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { NgFor } from "@angular/common";
+import { NgFor, NgIf } from "@angular/common";
 
 import { CommonModule } from "@angular/common";
 import { MatGridListModule } from "@angular/material/grid-list";
@@ -38,6 +38,7 @@ import { Recipe } from "../models/Recipe";
     MatBadgeModule,
     MatCardModule,
     RouterModule,
+    NgIf,
   ],
   templateUrl: "./recipes-list.component.html",
   styleUrls: ["./recipes-list.component.css"],
