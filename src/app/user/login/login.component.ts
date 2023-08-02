@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { UserService } from "../user.service";
+import { NgIf } from "@angular/common";
+
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
@@ -10,10 +11,11 @@ import {
   ReactiveFormsModule,
   FormGroup,
 } from "@angular/forms";
-import { NgIf } from "@angular/common";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { Router, RouterModule } from "@angular/router";
+
+import { UserService } from "../user.service";
 import { SnackBarService } from "src/app/snack-bar-notification/snack-bar.service";
 
 @Component({
