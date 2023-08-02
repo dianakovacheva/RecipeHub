@@ -14,12 +14,9 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
 import { Router, RouterModule } from "@angular/router";
 
-import { environment } from "src/environments/environment";
 import { DishType } from "src/app/models/DishType";
 import { RecipeService } from "../recipe.service";
 import { SnackBarService } from "src/app/snack-bar-notification/snack-bar.service";
-
-const backendURL = environment.backendURL;
 
 @Component({
   selector: "app-create-recipe",
