@@ -1,0 +1,107 @@
+<div class="form-container">
+    <form class="bordered-form" [formGroup]="createRecipeForm" (submit)="createRecipe()">
+        <div class="form-header">
+            <h2 class="form-title">Create a recipe</h2>
+            <p class="call-to-action-text">Are you ready to unleash your inner chef and share your gastronomic
+                masterpieces with the world? It's
+                time to craft your very own recipe and join our vibrant community of food enthusiasts!</p>
+        </div>
+        <!-- Recipe Title -->
+        <div class="form-field-container">
+            <mat-form-field>
+                <mat-label>Recipe Title</mat-label>
+                <input matInput formControlName="title" required>
+                <mat-error *ngIf="createRecipeForm.get('title')?.invalid">{{getErrorMessageTitle()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <!-- Dish Types -->
+        <div class="form-field-container">
+            <mat-form-field>
+                <mat-label>Dish Type</mat-label>
+                <mat-select formControlName="dishTypes" multiple required>
+                    <mat-option *ngFor="let dishType of dishTypeOptions" [value]="dishType.value">
+                        {{dishType.viewValue}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="createRecipeForm.get('dishTypes')?.invalid">{{getErrorMessageDishTypes()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <!-- Summary -->
+        <div class="form-field-container">
+            <mat-form-field>
+                <mat-label>Recipe Summary</mat-label>
+                <textarea matInput formControlName="summary" rows="3" required></textarea>
+                <mat-error *ngIf="createRecipeForm.get('summary')?.invalid">{{getErrorMessageSummary()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-row">
+            <div class="form-field-container-time">
+                <!-- Preparation Time -->
+                <mat-form-field>
+                    <mat-label>Preparation Time (mins)</mat-label>
+                    <input matInput type="number" min="1" formControlName="preparationMinutes" required>
+                    <mat-error
+                        *ngIf="createRecipeForm.get('preparationMinutes')?.invalid">{{getErrorMessagePreparationMinutes()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <!-- Cooking Time -->
+            <div class="form-field-container-time">
+                <mat-form-field>
+                    <mat-label>Cooking Time (mins)</mat-label>
+                    <input matInput type="number" min="1" formControlName="cookingMinutes" required>
+                    <mat-error
+                        *ngIf="createRecipeForm.get('cookingMinutes')?.invalid">{{getErrorMessageCookingMinutes()}}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row">
+            <!-- Servings -->
+            <div class="form-field-container-serving">
+                <mat-form-field>
+                    <mat-label>Servings (i.e. 4)</mat-label>
+                    <input matInput type="number" min="1" formControlName="servings" required>
+                    <mat-error
+                        *ngIf="createRecipeForm.get('servings')?.invalid">{{getErrorMessageServings()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <!-- Price per servings -->
+            <div class="form-field-container-serving">
+                <mat-form-field>
+                    <mat-label>Costs per Serving ($)</mat-label>
+                    <input matInput type="number" min="1" formControlName="pricePerServing" required>
+                    <mat-error
+                        *ngIf="createRecipeForm.get('servings')?.invalid">{{getErrorMessagePricePerServing()}}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Ingredients -->
+        <div class="form-field-container">
+            <mat-form-field>
+                <mat-label>Ingredients (one ingredient per line, i.e. "150 > gr > sugar")</mat-label>
+                <textarea matInput formControlName="extendedIngredients" rows="5" required
+                    placeholder="Example:&#10;150 > gr > sugar&#10;2 > pcs > eggs"></textarea>
+                <mat-error
+                    *ngIf="createRecipeForm.get('extendedIngredients')?.invalid">{{getErrorMessageExtendedIngredients()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <!-- Instructions -->
+        <div class="form-field-container">
+            <mat-form-field>
+                <mat-label>Cooking Steps (one step per line")</mat-label>
+                <textarea matInput formControlName="analyzedInstructions" rows="5" required
+                    placeholder="Example:&#10;Boil 3l water&#10;Dice the onions"></textarea>
+                <mat-error
+                    *ngIf="createRecipeForm.get('analyzedInstructions')?.invalid">{{getErrorMessageAnalyzedInstructions()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <!-- ImageURL -->
+        <div class="form-field-container">
+            <mat-form-field>
+                <mat-label>Image URL</mat-label>
+                <input matInput formControlName="imageURL">
+                <mat-error *ngIf="createRecipeForm.get('imageURL')?.invalid">{{getErrorMessageImageUrl()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary">Create</button>
+    </form>
+</div>
