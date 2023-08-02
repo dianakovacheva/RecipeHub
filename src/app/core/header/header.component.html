@@ -7,11 +7,9 @@
         <section class="nav-button-row">
             <div *ngIf="!isLoggedIn">
                 <a mat-button routerLink="/recipes">Recipes</a>
-                <a mat-button routerLink="/recipe-details/:recipeId">Recipe Details</a>
             </div>
             <div *ngIf="isLoggedIn">
                 <a mat-button routerLink="/recipes">Recipes</a>
-                <a mat-button routerLink="/recipe-details/:recipeId">Recipe Details</a>
                 <a mat-button routerLink="/create-recipe">Create Recipe</a>
                 <!-- <a mat-button routerLink="/meal-planner">Meal Planner</a> -->
             </div>
