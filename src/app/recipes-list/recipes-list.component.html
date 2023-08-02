@@ -1,4 +1,3 @@
-<!--Add dynamic template-->
 <div class="recipes-catalog-hero">
     <h2 class="recipes-catalog-header">Recipes</h2>
     <p>Discover, share and explore a world of mouth-watering recipes. From quick and easy weeknight meals to gourmet
@@ -7,6 +6,15 @@
 <div class="recipes-catalog">
     <section class="recipes-container">
         <!-- Recipe Card -->
+        <div *ngFor="let recipe of recipesList">
+            <mat-card class="recipes-list-card" [routerLink]="['/recipe-details',recipe._id]">
+                <img mat-card-image src="{{recipe.imageURL}}" alt="Photo of {{recipe.title}}">
+                <mat-card-header>
+                    <mat-card-subtitle class="recipe-dish-type">{{recipe.dishTypes}}</mat-card-subtitle>
+                    <mat-card-title>{{recipe.title}}</mat-card-title>
+                </mat-card-header>
+            </mat-card>
+        </div>
     </section>
     <div class="show-more-btn-holder">
         <button mat-raised-button color="primary">Load More</button>

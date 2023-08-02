@@ -54,3 +54,13 @@ mat-card-subtitle {
   flex-direction: column;
   align-items: center;
 }
+
+/* Recipe Card */
+.recipes-list-card mat-card-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+.recipe-dish-type {
+  text-transform: uppercase;
+}

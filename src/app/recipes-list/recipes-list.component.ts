@@ -1,20 +1,26 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { NgFor } from "@angular/common";
+
 import { CommonModule } from "@angular/common";
 import { MatGridListModule } from "@angular/material/grid-list";
-import { NgFor } from "@angular/common";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatBadgeModule } from "@angular/material/badge";
-import { Recipe } from "../models/Recipe";
-import { SpoonacularAPIService } from "../spoonacularAPI/spoonacular-api.service";
+import { MatCardModule } from "@angular/material/card";
+import { RouterModule } from "@angular/router";
+
+//  import { SpoonacularAPIService } from "../spoonacularAPI/spoonacular-api.service";
+import { RecipeService } from "../recipe/recipe.service";
 import { UserService } from "../user/user.service";
 
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
+import { Recipe } from "../models/Recipe";
+
+// export interface Tile {
+//   color: string;
+//   cols: number;
+//   rows: number;
+//   text: string;
+// }
 
 /**
  * @title Dynamic grid-list
@@ -30,17 +36,19 @@ export interface Tile {
     MatIconModule,
     MatButtonModule,
     MatBadgeModule,
+    MatCardModule,
+    RouterModule,
   ],
   templateUrl: "./recipes-list.component.html",
   styleUrls: ["./recipes-list.component.css"],
 })
-export class RecipesListComponent {
-  tiles: Tile[] = [
-    { text: "One", cols: 1, rows: 1, color: "lightblue" },
-    { text: "Two", cols: 1, rows: 1, color: "lightgreen" },
-    { text: "Three", cols: 1, rows: 1, color: "lightblue" },
-    { text: "Four", cols: 1, rows: 1, color: "lightgreen" },
-  ];
+export class RecipesListComponent implements OnInit {
+  // tiles: Tile[] = [
+  //   { text: "One", cols: 1, rows: 1, color: "lightblue" },
+  //   { text: "Two", cols: 1, rows: 1, color: "lightgreen" },
+  //   { text: "Three", cols: 1, rows: 1, color: "lightblue" },
+  //   { text: "Four", cols: 1, rows: 1, color: "lightgreen" },
+  // ];
 
   hidden = false;
 
@@ -52,7 +60,7 @@ export class RecipesListComponent {
   isLoggedIn: boolean = true;
 
   constructor(
-    private apiService: SpoonacularAPIService,
+    private recipeService: RecipeService,
     private userService: UserService
   ) {}
 
@@ -60,8 +68,9 @@ export class RecipesListComponent {
     return this.userService.isLoggedIn;
   }
 
+  // Get All Recipes
   ngOnInit(): void {
-    this.apiService.getRecipes().subscribe({
+    this.recipeService.getAllRecipes().subscribe({
       next: (recipes) => {
         this.recipesList = recipes;
         this.isLoggedIn = false;
