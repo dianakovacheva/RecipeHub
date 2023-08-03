@@ -1,0 +1,178 @@
+<main class="recipe-container" *ngIf="recipe">
+    <div class="recipe-page">
+        <section class="recipe-hero">
+            <div>
+                <!-- Recipe Image -->
+                <img *ngIf="!recipe.imageURL" src="../../assets/recipe-placeholder-image.jpg"
+                    alt="recipe-placeholder-image" height="350px">
+                <img *ngIf="recipe.imageURL" src="{{recipe.imageURL}}" class="img recipe-hero-img"
+                    alt="Photo of {{recipe.title}}" width="650px" height="650px" />
+                <!--Action buttons under recipe image-->
+                <div class="recipe-action-buttons">
+                    <div *ngIf="!isLoggedIn">
+                        <button mat-raised-button color="primary">
+                            <mat-icon>favorite</mat-icon>
+                            <span>Save</span>
+                        </button>
+                        <button mat-raised-button color="primary">
+                            <mat-icon>comment</mat-icon>
+                            <span>Comment</span>
+                        </button>
+                    </div>
+                    <div *ngIf="isLoggedIn">
+                        <button mat-raised-button color="primary" [routerLink]="['./edit']"
+                            routerLinkActive="router-link-active">
+                            <mat-icon>edit</mat-icon>
+                            <span>Edit
+                                recipe</span>
+                        </button>
+                        <button mat-raised-button color="warn">
+                            <mat-icon>delete</mat-icon>
+                            <span>Delete recipe</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <article class="recipe-info">
+                <!-- Recipe Title -->
+                <h1>{{recipe.title}}</h1>
+                <div class="recipe-meta-data">
+                    <!-- Recipe Author -->
+                    <span>Recipe by: {{ recipe.author.firstName }} {{ recipe.author.lastName }}</span>
+                    <!-- Recipe Comments Count -->
+                    <span>{{recipe.commentsList.length}} Comments</span>
+                    <!-- Recipe Saves Count -->
+                    <span>{{recipe.saves.length}} Saves</span>
+                </div>
+                <!-- Recipe Summary -->
+                <p>{{recipe.summary}}</p>
+                <div class="recipe-icons">
+                    <!-- Recipe Preparation Time -->
+                    <article>
+                        <span class="material-symbols-outlined">
+                            schedule
+                        </span>
+                        <h5>Prep Time:</h5>
+                        <p>{{recipe.preparationMinutes}} min.</p>
+                    </article>
+                    <!-- Recipe Cooking Time -->
+                    <article>
+                        <span class="material-icons-outlined">
+                            <span class="material-symbols-outlined">
+                                soup_kitchen
+                            </span>
+                        </span>
+                        <h5>Cook Time:</h5>
+                        <p>{{recipe.cookingMinutes}} min.</p>
+                    </article>
+                    <!-- Recipe Servings -->
+                    <article>
+                        <span class="material-symbols-outlined">
+                            group
+                        </span>
+                        <h5>Servings:</h5>
+                        <p>{{recipe.servings}}</p>
+                    </article>
+                    <!-- Recipe Price per Serving -->
+                    <article>
+                        <span class="material-symbols-outlined">
+                            monetization_on
+                        </span>
+                        <h5>Costs per serving:</h5>
+                        <p>${{recipe.pricePerServing}}</p>
+                    </article>
+                </div>
+                <!-- Dish Types -->
+                <div class="dish-type-section">
+                    <span>
+                        <p>Dish Type:</p>
+                    </span>
+                    <span>
+                        <ul *ngFor="let dishType of recipe.dishTypes">
+                            <li>
+                                {{dishType}}
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </article>
+        </section>
+        <!-- Recipe Ingredients List -->
+        <section class=" recipe-content">
+            <article class="recipe-ingredients-list">
+                <div>
+                    <h2>Ingredients</h2>
+
+                    <mat-list *ngFor="let ingredient of recipe.extendedIngredients; let i = index">
+                        <mat-list-item> {{ingredient.name}}</mat-list-item>
+                        <mat-divider *ngIf="i != (recipe.extendedIngredients.length-1)"></mat-divider>
+                    </mat-list>
+
+                    <!-- <ul class="ingredients-list" *ngFor="let ingredient of recipe.extendedIngredients; let i = index">
+                        <li class="single-ingredient">
+                            {{ingredient.name}}
+                        </li>
+
+                        <mat-list *ngFor="let ingredient of recipe.extendedIngredients; let i = index">
+                            <mat-list-item> {{ingredient.name}}</mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-list>
+                        <mat-divider *ngIf="i =! recipe.extendedIngredients.length-1"></mat-divider>
+                    </ul> -->
+                </div>
+            </article>
+            <!-- Recipe Instructions-->
+            <article class="recipe-instructions">
+                <h2>Instructions</h2>
+                <!-- single instruction -->
+                <div class="single-instruction"
+                    *ngFor="let instruction of recipe.analyzedInstructions[0].steps; let i = index">
+                    <header>
+                        <p>step {{instruction.number}}</p>
+                        <div></div>
+                    </header>
+                    <p>
+                        {{instruction.step}}
+                    </p>
+                </div>
+                <!-- end of single instruction -->
+            </article>
+        </section>
+        <!--Comments Section-->
+        <!-- <section class="comments-section">
+            <div>
+                <h2>Comments</h2>
+                <mat-card class=" comment-card" *ngFor="let comment of recipe.commentsList">
+                    <mat-card-header>
+                        <div mat-card-avatar class="comment-header-image"></div>
+                        <mat-card-title>Diana Kovacheva</mat-card-title>
+                        <mat-card-subtitle>4 weeks ago</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>
+                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                            Japan.
+                            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                            originally
+                            bred for hunting.
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </section> -->
+        <!--Similar Recipes-->
+        <!--Add dynamic template-->
+        <!-- <h2 class="similar-recipes-header">Similar Recipes</h2>
+        <section class="recipes-container">
+            <mat-card class="recipe-card">
+                <img mat-card-image
+                    src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/meatball-lasagne-e64e936.jpg?quality=90&webp=true&resize=500,454"
+                    alt="Photo of a Shiba Inu">
+                <mat-card-header>
+                    <mat-card-subtitle>Add the type of the cuisine here</mat-card-subtitle>
+                    <mat-card-title>Add the name of the dish</mat-card-title>
+                </mat-card-header>
+            </mat-card>
+        </section> -->
+    </div>
+</main>
