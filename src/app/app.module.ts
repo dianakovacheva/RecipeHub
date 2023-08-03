@@ -9,13 +9,14 @@ import { CoreModule } from "./core/core.module";
 import { MainComponent } from "./main/main.component";
 import { HttpClientModule } from "@angular/common/http";
 import { HomeComponent } from "./home/home.component";
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { RecipeDetailsComponent } from "./recipe-details/recipe-details.component";
 import { UserModule } from "./user/user.module";
+import { SharedModule } from "./shared/shared.module";
 import { CreateRecipeComponent } from "./recipe/create-recipe/create-recipe.component";
-import { RecipesListComponent } from "./recipes-list/recipes-list.component";
+import { RecipeDetailsComponent } from "./recipe/recipe-details/recipe-details.component";
+import { RecipeCatalogComponent } from "./recipe/recipe-catalog/recipe-catalog.component";
+
 @NgModule({
-  declarations: [AppComponent, MainComponent, PageNotFoundComponent],
+  declarations: [AppComponent, MainComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -23,12 +24,13 @@ import { RecipesListComponent } from "./recipes-list/recipes-list.component";
     HttpClientModule,
     CoreModule,
     AppRoutingModule,
-    RecipeDetailsComponent,
     HomeComponent,
-    UserModule,
     MatSnackBarModule,
+    UserModule,
+    SharedModule,
     CreateRecipeComponent,
-    RecipesListComponent,
+    RecipeDetailsComponent,
+    RecipeCatalogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

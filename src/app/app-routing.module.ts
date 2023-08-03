@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { PageNotFoundComponent } from "./core/page-not-found/page-not-found.component";
 import { HomeComponent } from "./home/home.component";
-import { RecipeDetailsComponent } from "./recipe-details/recipe-details.component";
 import { CreateRecipeComponent } from "./recipe/create-recipe/create-recipe.component";
-import { RecipesListComponent } from "./recipes-list/recipes-list.component";
+import { RecipeDetailsComponent } from "./recipe/recipe-details/recipe-details.component";
+import { RecipeCatalogComponent } from "./recipe/recipe-catalog/recipe-catalog.component";
 
 const routes: Routes = [
   {
@@ -22,21 +22,23 @@ const routes: Routes = [
     loadChildren: () =>
       import("./user/user.module").then((model) => model.UserModule),
   },
+  { path: "recipes", component: RecipeCatalogComponent },
   {
-    path: "recipes",
-    component: RecipesListComponent,
+    path: "recipe-details/:recipeId/edit",
+    component: CreateRecipeComponent,
+  },
+  {
+    path: "recipe-details/:recipeId",
+    component: RecipeDetailsComponent,
   },
   {
     path: "create-recipe",
     component: CreateRecipeComponent,
   },
-  { path: "recipe-details/:recipeId", component: RecipeDetailsComponent },
-  { path: "recipe-details/:recipeId/edit", component: CreateRecipeComponent },
-
   {
     path: "**",
     component: PageNotFoundComponent,
-  }, // Wildcard route for a 404 page
+  },
 ];
 
 @NgModule({
