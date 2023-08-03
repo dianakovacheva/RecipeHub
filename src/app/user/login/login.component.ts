@@ -16,7 +16,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { Router, RouterModule } from "@angular/router";
 
 import { UserService } from "../user.service";
-import { SnackBarService } from "src/app/snack-bar-notification/snack-bar.service";
+import { SnackBarService } from "src/app/shared/snack-bar-notification/snack-bar.service";
 
 @Component({
   selector: "app-login",
