@@ -17,8 +17,8 @@
                 <mat-label>Password</mat-label>
                 <input matInput [type]="hidePass ? 'password' : 'text'" formControlName="password" required>
                 <mat-error *ngIf="loginForm.get('password')?.invalid">{{getErrorMessagePassword()}}</mat-error>
-                <button mat-icon-button matSuffix (click)="hidePass = !hidePass" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hidePass">
+                <button type="button" mat-icon-button matSuffix (click)="hidePass = !hidePass"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePass">
                     <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
