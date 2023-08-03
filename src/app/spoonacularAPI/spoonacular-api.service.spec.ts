@@ -1,5 +1,4 @@
 import { TestBed } from "@angular/core/testing";
-
 import { SpoonacularAPIService } from "./spoonacular-api.service";
 
 describe("SpoonacularAPIService", () => {

@@ -3,10 +3,9 @@ import { CommonModule } from "@angular/common";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { ProfileComponent } from "./profile/profile.component";
-import { UserRoutingModule } from "./user-routing.module";
+import { UserRoutingModule } from "./user-routing/user-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { SharedModule } from "src/shared/shared.module";
-
+import { SharedModule } from "../shared/shared.module";
 @NgModule({
   declarations: [ProfileComponent],
   imports: [
