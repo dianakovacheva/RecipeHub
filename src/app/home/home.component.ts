@@ -6,9 +6,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatBadgeModule } from "@angular/material/badge";
 import { NgIf } from "@angular/common";
 
-import { ProgressSpinnerComponent } from "src/app/sharedComponents/progress-spinner/progress-spinner.component";
+import { ProgressSpinnerComponent } from "../shared/progress-spinner/progress-spinner.component";
 import { UserService } from "../user/user.service";
-
+import { RecipesGalleryComponent } from "../recipe/recipes-gallery/recipes-gallery.component";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -22,6 +22,7 @@ import { UserService } from "../user/user.service";
     RouterModule,
     ProgressSpinnerComponent,
     NgIf,
+    RecipesGalleryComponent,
   ],
 })
 export class HomeComponent implements OnInit {
