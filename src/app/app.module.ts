@@ -14,7 +14,6 @@ import { RecipeDetailsComponent } from "./recipe-details/recipe-details.componen
 import { UserModule } from "./user/user.module";
 import { CreateRecipeComponent } from "./recipe/create-recipe/create-recipe.component";
 import { RecipesListComponent } from "./recipes-list/recipes-list.component";
-import { RecipesListCardComponent } from "./recipes-list-card/recipes-list-card.component";
 @NgModule({
   declarations: [AppComponent, MainComponent, PageNotFoundComponent],
   imports: [
@@ -30,7 +29,6 @@ import { RecipesListCardComponent } from "./recipes-list-card/recipes-list-card.
     MatSnackBarModule,
     CreateRecipeComponent,
     RecipesListComponent,
-    RecipesListCardComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
