@@ -3,10 +3,10 @@
         <section class="recipe-hero">
             <div>
                 <!-- Recipe Image -->
-                <img *ngIf="!recipe.imageURL" src="../../assets/recipe-placeholder-image.jpg"
-                    alt="recipe-placeholder-image" height="350px">
+                <img *ngIf="!recipe.imageURL" src="../../../assets/images/recipe-placeholder-image.jpg"
+                    class="img recipe-hero-img" alt="recipe-placeholder-image">
                 <img *ngIf="recipe.imageURL" src="{{recipe.imageURL}}" class="img recipe-hero-img"
-                    alt="Photo of {{recipe.title}}" width="650px" height="650px" />
+                    alt="Photo of {{recipe.title}}" />
                 <!--Action buttons under recipe image-->
                 <div class="recipe-action-buttons">
                     <div *ngIf="!isLoggedIn">

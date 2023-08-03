@@ -38,8 +38,6 @@ mat-card-subtitle {
 
 .card-image-holder {
   height: 250px;
-  background-image: url("../../../assets/recipe-placeholder-image.jpg");
-  background-size: cover;
 }
 
 .recipe-dish-type {

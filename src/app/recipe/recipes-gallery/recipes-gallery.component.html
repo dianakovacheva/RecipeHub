@@ -4,6 +4,8 @@
         <div *ngFor="let recipe of recipesList">
             <mat-card class="recipes-list-card" [routerLink]="['/recipe-details',recipe._id]">
                 <section class="card-image-holder">
+                    <img *ngIf="!recipe.imageURL" mat-card-image
+                        src="../../../assets/images/recipe-placeholder-image.jpg" alt="Photo of {{recipe.title}}">
                     <img *ngIf="recipe.imageURL" mat-card-image src="{{recipe.imageURL}}"
                         alt="Photo of {{recipe.title}}">
                 </section>
