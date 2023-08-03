@@ -31,7 +31,8 @@ const routes: Routes = [
     component: CreateRecipeComponent,
   },
   { path: "recipe-details/:recipeId", component: RecipeDetailsComponent },
- 
+  { path: "recipe-details/:recipeId/edit", component: CreateRecipeComponent },
+
   {
     path: "**",
     component: PageNotFoundComponent,
