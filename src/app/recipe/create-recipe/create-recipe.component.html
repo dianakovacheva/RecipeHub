@@ -1,7 +1,7 @@
 <div class="form-container">
     <form class="bordered-form" [formGroup]="createRecipeForm" (submit)="createRecipe()">
         <div class="form-header">
-            <h2 class="form-title">Create a recipe</h2>
+            <h2 class="form-title">{{ isEditMode ? 'Edit the recipe' : 'Create a recipe' }}</h2>
             <p class="call-to-action-text">Are you ready to unleash your inner chef and share your gastronomic
                 masterpieces with the world? It's
                 time to craft your very own recipe and join our vibrant community of food enthusiasts!</p>
@@ -102,6 +102,6 @@
                 <mat-error *ngIf="createRecipeForm.get('imageURL')?.invalid">{{getErrorMessageImageUrl()}}</mat-error>
             </mat-form-field>
         </div>
-        <button mat-raised-button color="primary">Create</button>
+        <button mat-raised-button color="primary"> {{ isEditMode ? 'Update' : 'Create' }}</button>
     </form>
 </div>

@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Recipe } from "../../models/Recipe";
+import { Component, OnInit } from "@angular/core";
 import { NgFor, NgIf } from "@angular/common";
 
 import { MatInputModule } from "@angular/material/input";
@@ -12,11 +13,14 @@ import {
 } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
-import { Router, RouterModule } from "@angular/router";
+import { Router, RouterModule, ActivatedRoute } from "@angular/router";
 
 import { DishType } from "src/app/models/DishType";
 import { RecipeService } from "../recipe.service";
-import { SnackBarService } from "src/app/snack-bar-notification/snack-bar.service";
+import { SnackBarService } from "src/app/shared/snack-bar-notification/snack-bar.service";
+
+type ArrOfStrings = string[];
+const arrOfStrings: ArrOfStrings = [];
 
 @Component({
   selector: "app-create-recipe",
@@ -35,14 +39,44 @@ import { SnackBarService } from "src/app/snack-bar-notification/snack-bar.servic
     RouterModule,
   ],
 })
-export class CreateRecipeComponent {
-  submitted: boolean = false;
+export class CreateRecipeComponent implements OnInit {
+  isEditMode: boolean = false;
+  recipeId: string = "";
 
   constructor(
     private recipeService: RecipeService,
     private router: Router,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    private activatedRoute: ActivatedRoute
   ) {}
+
+  ngOnInit() {
+    this.recipeId = this.activatedRoute.snapshot.paramMap.get(
+      "recipeId"
+    ) as string;
+    if (this.recipeId) {
+      this.isEditMode = true;
+
+      this.recipeService.getRecipeById(this.recipeId).subscribe((recipe) => {
+        this.createRecipeForm.patchValue({
+          title: recipe.title,
+          summary: recipe.summary,
+          imageURL: recipe.imageURL,
+          preparationMinutes: recipe.preparationMinutes.toString(),
+          cookingMinutes: recipe.cookingMinutes.toString(),
+          servings: recipe.servings.toString(),
+          pricePerServing: recipe.pricePerServing.toString(),
+          dishTypes: recipe.dishTypes,
+          extendedIngredients: this.recipeService.convertRecipeIngredients(
+            recipe.extendedIngredients
+          ),
+          analyzedInstructions: this.recipeService.convertRecipeSteps(
+            recipe.analyzedInstructions[0].steps
+          ),
+        });
+      });
+    }
+  }
 
   // private URL_PATTERN =
   //   /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/i;
@@ -50,6 +84,7 @@ export class CreateRecipeComponent {
   private IMAGE_URL_PATTERN =
     /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|bmp|svg)/;
 
+  // Create Recipe Form
   createRecipeForm = new FormGroup({
     title: new FormControl("", [Validators.required, Validators.minLength(2)]),
     summary: new FormControl("", [
@@ -71,7 +106,7 @@ export class CreateRecipeComponent {
       Validators.required,
       Validators.min(0),
     ]),
-    dishTypes: new FormControl([], [Validators.required]),
+    dishTypes: new FormControl(arrOfStrings, [Validators.required]),
     extendedIngredients: new FormControl("", [Validators.required]),
     analyzedInstructions: new FormControl("", [Validators.required]),
   });
@@ -217,23 +252,44 @@ export class CreateRecipeComponent {
       return;
     }
 
-    // Pass recipe data from form input value
-    this.recipeService
-      .createRecipe(
-        this.createRecipeForm.value.title ?? "",
-        Number(this.createRecipeForm.value.preparationMinutes),
-        Number(this.createRecipeForm.value.cookingMinutes),
-        Number(this.createRecipeForm.value.servings),
-        Number(this.createRecipeForm.value.pricePerServing),
-        this.createRecipeForm.value.imageURL ?? "",
-        this.createRecipeForm.value.summary ?? "",
-        this.createRecipeForm.value.dishTypes ?? [],
-        this.createRecipeForm.value.extendedIngredients ?? "",
-        this.createRecipeForm.value.analyzedInstructions ?? ""
-      )
-      .subscribe((createdRecipe) => {
-        this.router.navigate([`/recipe-details/${createdRecipe._id}`]);
-        this.snackBar.notifySuccess("Recipe created!");
-      });
+    if (!this.isEditMode) {
+      // Pass recipe data from form input value
+      this.recipeService
+        .createRecipe(
+          this.createRecipeForm.value.title ?? "",
+          Number(this.createRecipeForm.value.preparationMinutes),
+          Number(this.createRecipeForm.value.cookingMinutes),
+          Number(this.createRecipeForm.value.servings),
+          Number(this.createRecipeForm.value.pricePerServing),
+          this.createRecipeForm.value.imageURL ?? "",
+          this.createRecipeForm.value.summary ?? "",
+          this.createRecipeForm.value.dishTypes ?? [],
+          this.createRecipeForm.value.extendedIngredients ?? "",
+          this.createRecipeForm.value.analyzedInstructions ?? ""
+        )
+        .subscribe((createdRecipe) => {
+          this.router.navigate([`/recipe-details/${createdRecipe._id}`]);
+          this.snackBar.notifySuccess("Recipe created!");
+        });
+    } else {
+      this.recipeService
+        .editRecipe(
+          this.recipeId,
+          this.createRecipeForm.value.title ?? "",
+          Number(this.createRecipeForm.value.preparationMinutes),
+          Number(this.createRecipeForm.value.cookingMinutes),
+          Number(this.createRecipeForm.value.servings),
+          Number(this.createRecipeForm.value.pricePerServing),
+          this.createRecipeForm.value.imageURL ?? "",
+          this.createRecipeForm.value.summary ?? "",
+          this.createRecipeForm.value.dishTypes ?? [],
+          this.createRecipeForm.value.extendedIngredients ?? "",
+          this.createRecipeForm.value.analyzedInstructions ?? ""
+        )
+        .subscribe((editedRecipe) => {
+          this.router.navigate([`/recipe-details/${editedRecipe._id}`]);
+          this.snackBar.notifySuccess("Recipe updated!");
+        });
+    }
   }
 }
