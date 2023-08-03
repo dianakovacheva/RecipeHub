@@ -1,50 +1,59 @@
-<main class="recipe-container">
+<main class="recipe-container" *ngIf="recipe">
     <div class="recipe-page">
         <section class="recipe-hero">
             <div>
-                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2023/04/Air-fryer-crispy-chilli-beef-0cc563b.jpg?quality=90&webp=true&resize=600,545"
-                    class="img recipe-hero-img" />
+                <!-- Recipe Image -->
+                <img *ngIf="!recipe.imageURL" src="../../assets/recipe-placeholder-image.jpg"
+                    alt="recipe-placeholder-image" height="350px">
+                <img *ngIf="recipe.imageURL" src="{{recipe.imageURL}}" class="img recipe-hero-img"
+                    alt="Photo of {{recipe.title}}" width="650px" height="650px" />
                 <!--Action buttons under recipe image-->
                 <div class="recipe-action-buttons">
-                    <button mat-raised-button color="primary">
-                        <mat-icon>favorite</mat-icon>
-                        <span>Save</span>
-                    </button>
-                    <button mat-raised-button color="primary">
-                        <mat-icon>comment</mat-icon>
-                        <span>Comment</span>
-                    </button>
-                    <!-- <button mat-raised-button color="primary">
-                        <mat-icon>print</mat-icon>
-                        <span>Print</span>
-                    </button> -->
+                    <div *ngIf="!isLoggedIn">
+                        <button mat-raised-button color="primary">
+                            <mat-icon>favorite</mat-icon>
+                            <span>Save</span>
+                        </button>
+                        <button mat-raised-button color="primary">
+                            <mat-icon>comment</mat-icon>
+                            <span>Comment</span>
+                        </button>
+                    </div>
+                    <div *ngIf="isLoggedIn">
+                        <button mat-raised-button color="primary">
+                            <mat-icon>edit</mat-icon>
+                            <span>Edit recipe</span>
+                        </button>
+                        <button mat-raised-button color="warn">
+                            <mat-icon>delete</mat-icon>
+                            <span>Delete recipe</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <article class="recipe-info">
-                <h1>Banana Pancakes</h1>
+                <!-- Recipe Title -->
+                <h1>{{recipe.title}}</h1>
                 <div class="recipe-meta-data">
-                    <span>Recipe by: Diana Kovacheva</span>
-                    <span>155 Comments</span>
-                    <span>10 Saves</span>
+                    <!-- Recipe Author -->
+                    <span>Recipe by: {{ recipe.author.firstName }} {{ recipe.author.lastName }}</span>
+                    <!-- Recipe Comments Count -->
+                    <span>{{recipe.commentsList.length}} Comments</span>
+                    <!-- Recipe Saves Count -->
+                    <span>{{recipe.saves.length}} Saves</span>
                 </div>
-                <p>
-                    Shabby chic humblebrag banh mi bushwick, banjo kale chips
-                    meggings. Cred selfies sartorial, cloud bread disrupt blue bottle
-                    seitan. Dreamcatcher tousled bitters, health goth vegan venmo
-                    whatever street art lyft shabby chic pitchfork beard. Drinking
-                    vinegar poke tbh, iPhone coloring book polaroid truffaut tousled
-                    ramps pug trust fund letterpress. Portland four loko austin
-                    chicharrones bitters single-origin coffee. Leggings letterpress
-                    occupy pour-over.
-                </p>
+                <!-- Recipe Summary -->
+                <p>{{recipe.summary}}</p>
                 <div class="recipe-icons">
+                    <!-- Recipe Preparation Time -->
                     <article>
                         <span class="material-symbols-outlined">
                             schedule
                         </span>
                         <h5>Prep Time:</h5>
-                        <p>30 min.</p>
+                        <p>{{recipe.preparationMinutes}} min.</p>
                     </article>
+                    <!-- Recipe Cooking Time -->
                     <article>
                         <span class="material-icons-outlined">
                             <span class="material-symbols-outlined">
@@ -52,37 +61,34 @@
                             </span>
                         </span>
                         <h5>Cook Time:</h5>
-                        <p>15 min.</p>
+                        <p>{{recipe.cookingMinutes}} min.</p>
                     </article>
+                    <!-- Recipe Servings -->
                     <article>
                         <span class="material-symbols-outlined">
                             group
                         </span>
                         <h5>Servings:</h5>
-                        <p>6</p>
+                        <p>{{recipe.servings}}</p>
                     </article>
+                    <!-- Recipe Price per Serving -->
                     <article>
                         <span class="material-symbols-outlined">
                             monetization_on
                         </span>
                         <h5>Costs per serving:</h5>
-                        <p>$1.27</p>
+                        <p>${{recipe.pricePerServing}}</p>
                     </article>
                 </div>
+                <!-- Dish Types -->
                 <div class="dish-type-section">
                     <span>
                         <p>Dish Type:</p>
                     </span>
                     <span>
-                        <ul>
+                        <ul *ngFor="let dishType of recipe.dishTypes">
                             <li>
-                                breakfast
-                            </li>
-                            <li>
-                                dessert
-                            </li>
-                            <li>
-                                snack
+                                {{dishType}}
                             </li>
                         </ul>
                     </span>
@@ -94,66 +100,47 @@
             <article class="recipe-ingredients-list">
                 <div>
                     <h2>Ingredients</h2>
-                    <ul class="ingredients-list">
+
+                    <mat-list *ngFor="let ingredient of recipe.extendedIngredients; let i = index">
+                        <mat-list-item> {{ingredient.name}}</mat-list-item>
+                        <mat-divider *ngIf="i != (recipe.extendedIngredients.length-1)"></mat-divider>
+                    </mat-list>
+
+                    <!-- <ul class="ingredients-list" *ngFor="let ingredient of recipe.extendedIngredients; let i = index">
                         <li class="single-ingredient">
-                            1 1/2 cups dry pancake mix
+                            {{ingredient.name}}
                         </li>
-                        <li class="single-ingredient">
-                            1/2 cup flax seed meal
-                        </li>
-                        <li class="single-ingredient">
-                            1 cup skim milk
-                        </li>
-                    </ul>
+
+                        <mat-list *ngFor="let ingredient of recipe.extendedIngredients; let i = index">
+                            <mat-list-item> {{ingredient.name}}</mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-list>
+                        <mat-divider *ngIf="i =! recipe.extendedIngredients.length-1"></mat-divider>
+                    </ul> -->
                 </div>
             </article>
             <!-- Recipe Instructions-->
             <article class="recipe-instructions">
                 <h2>Instructions</h2>
                 <!-- single instruction -->
-                <div class="single-instruction">
+                <div class="single-instruction"
+                    *ngFor="let instruction of recipe.analyzedInstructions[0].steps; let i = index">
                     <header>
-                        <p>step 1</p>
+                        <p>step {{instruction.number}}</p>
                         <div></div>
                     </header>
                     <p>
-                        I'm baby mustache man braid fingerstache small batch venmo
-                        succulents shoreditch.
-                    </p>
-                </div>
-                <!-- end of single instruction -->
-                <!-- single instruction -->
-                <div class="single-instruction">
-                    <header>
-                        <p>step 2</p>
-                        <div></div>
-                    </header>
-                    <p>
-                        Pabst pitchfork you probably haven't heard of them, asymmetrical
-                        seitan tousled succulents wolf banh mi man bun bespoke selfies
-                        freegan ethical hexagon.
-                    </p>
-                </div>
-                <!-- end of single instruction -->
-                <!-- single instruction -->
-                <div class="single-instruction">
-                    <header>
-                        <p>step 3</p>
-                        <div></div>
-                    </header>
-                    <p>
-                        Polaroid iPhone bitters chambray. Cornhole swag kombucha
-                        live-edge.
+                        {{instruction.step}}
                     </p>
                 </div>
                 <!-- end of single instruction -->
             </article>
         </section>
         <!--Comments Section-->
-        <section class="comments-section">
+        <!-- <section class="comments-section">
             <div>
                 <h2>Comments</h2>
-                <mat-card class=" comment-card">
+                <mat-card class=" comment-card" *ngFor="let comment of recipe.commentsList">
                     <mat-card-header>
                         <div mat-card-avatar class="comment-header-image"></div>
                         <mat-card-title>Diana Kovacheva</mat-card-title>
@@ -170,28 +157,10 @@
                     </mat-card-content>
                 </mat-card>
             </div>
-            <div>
-                <mat-card class="comment-card">
-                    <mat-card-header>
-                        <div mat-card-avatar class="comment-header-image"></div>
-                        <mat-card-title>Diana Kovacheva</mat-card-title>
-                        <mat-card-subtitle>4 weeks ago</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p>
-                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                            Japan.
-                            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
-                            originally
-                            bred for hunting.
-                        </p>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-        </section>
+        </section> -->
         <!--Similar Recipes-->
         <!--Add dynamic template-->
-        <h2 class="similar-recipes-header">Similar Recipes</h2>
+        <!-- <h2 class="similar-recipes-header">Similar Recipes</h2>
         <section class="recipes-container">
             <mat-card class="recipe-card">
                 <img mat-card-image
@@ -202,24 +171,6 @@
                     <mat-card-title>Add the name of the dish</mat-card-title>
                 </mat-card-header>
             </mat-card>
-            <mat-card class="recipe-card">
-                <img mat-card-image
-                    src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/meatball-lasagne-e64e936.jpg?quality=90&webp=true&resize=500,454"
-                    alt="Photo of a Shiba Inu">
-                <mat-card-header>
-                    <mat-card-subtitle>Add the type of the cuisine here</mat-card-subtitle>
-                    <mat-card-title>Add the name of the dish</mat-card-title>
-                </mat-card-header>
-            </mat-card>
-            <mat-card class="recipe-card">
-                <img mat-card-image
-                    src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/meatball-lasagne-e64e936.jpg?quality=90&webp=true&resize=500,454"
-                    alt="Photo of a Shiba Inu">
-                <mat-card-header>
-                    <mat-card-subtitle>Add the type of the cuisine here</mat-card-subtitle>
-                    <mat-card-title>Add the name of the dish</mat-card-title>
-                </mat-card-header>
-            </mat-card>
-        </section>
+        </section> -->
     </div>
 </main>
