@@ -5,16 +5,24 @@ import { Recipe } from "../models/Recipe";
 
 const backendURL = environment.backendURL;
 
-type AnalyzedStep = {
+// Define the structure of the type cooking step data returned from the API
+type cookingStep = {
   number: number;
   step: string;
 };
 
+// Define the structure of the type analyzedInstructions data returned from the API
+type analyzedInstructions = {
+  steps: cookingStep[];
+};
+
+// Define the structure of the type measure data returned from the API
 type Measure = {
   amount: number;
   unitShort: string;
 };
 
+// Define the structure of the type extendedIngredient data returned from the API
 type ExtendedIngredient = {
   name: string;
   measures: {
@@ -28,11 +36,13 @@ type ExtendedIngredient = {
 export class RecipeService {
   constructor(private http: HttpClient) {}
 
+  // Convert Ingredients to Array
   convertIngredientsToArray(ingredients: string): ExtendedIngredient[] {
     const ingredientsArr = ingredients.split("\n");
 
     const returnObject: ExtendedIngredient[] = [];
 
+    // Loop through the ingredients array and split each ingredient into its amount, unit and name by ">"
     for (const ingredient of ingredientsArr) {
       const [amount, unitShort, name] = ingredient.split(" > ");
       const measure: Measure = {
@@ -49,15 +59,17 @@ export class RecipeService {
     return returnObject;
   }
 
+  // Convert Steps to Array of Objects
   convertStepstoArray(steps: string) {
     let stepsArr = steps.split("\n");
     stepsArr = stepsArr.filter((step) => step).map((step) => step.trim());
-
-    const returnObject: AnalyzedStep[] = [];
+    // Create an array of objects with the structure of the type analyzedInstructions
+    const returnObject: analyzedInstructions[] = [{ steps: [] }];
 
     for (const [i, step] of stepsArr.entries()) {
-      returnObject.push({ number: i + 1, step: step });
+      returnObject[0].steps.push({ number: i + 1, step: step });
     }
+    // Return the array of objects as a string to fit the API's requirenments
     return JSON.stringify(returnObject);
   }
 
@@ -96,5 +108,74 @@ export class RecipeService {
         withCredentials: true,
       }
     );
+  }
+
+  // Get All Recipes
+  getAllRecipes() {
+    https: return this.http.get<Recipe[]>(`${backendURL}/recipes`);
+  }
+
+  // Get Recipe by Id
+  getRecipeById(recipeId: string) {
+    https: return this.http.get<Recipe>(
+      `${backendURL}/recipes/recipe-details/${recipeId}`
+    );
+  }
+
+  editRecipe(
+    recipeId: string,
+    title: string,
+    preparationMinutes: number,
+    cookingMinutes: number,
+    servings: number,
+    pricePerServing: number,
+    imageURL: string,
+    summary: string,
+    dishTypes: string[],
+    extendedIngredients: any,
+    analyzedInstructions: any
+  ) {
+    let convertedSteps = this.convertStepstoArray(analyzedInstructions);
+    let convertedIngredients = JSON.stringify(
+      this.convertIngredientsToArray(extendedIngredients)
+    );
+    htts: return this.http.put<Recipe>(
+      `${backendURL}/recipes/recipe-details/${recipeId}/edit`,
+      {
+        title,
+        preparationMinutes,
+        cookingMinutes,
+        servings,
+        pricePerServing,
+        imageURL,
+        summary,
+        dishTypes,
+        extendedIngredients: convertedIngredients,
+        analyzedInstructions: convertedSteps,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
+  convertRecipeSteps(steps: []) {
+    const convertedSteps: string = steps
+      .map((step: { step: string }) => step.step)
+      .join("\n");
+    return convertedSteps;
+  }
+
+  convertRecipeIngredients(ingredients: []) {
+    const convertedIngredients: string = ingredients
+      .map(
+        (ingredient: {
+          name: string;
+          measures: { metric: { amount: number; unitShort: string } };
+        }) =>
+          `${ingredient.measures.metric.amount} > ${ingredient.measures.metric.unitShort} > ${ingredient.name}`
+      )
+      .join("\n");
+    return convertedIngredients;
   }
 }
