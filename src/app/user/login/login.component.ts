@@ -87,9 +87,12 @@ export class LoginComponent {
         this.loginForm.value.email ?? "",
         this.loginForm.value.password ?? ""
       )
-      .subscribe(() => {
-        this.router.navigate(["/"]);
-        this.snackBar.greetUser();
+      .subscribe({
+        next: () => {
+          this.router.navigate(["/"]);
+          this.snackBar.greetUser();
+        },
+        error: (err) => this.snackBar.notifyError(err.error.message),
       });
   }
 }

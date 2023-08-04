@@ -14,6 +14,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { UserService } from "../user.service";
 import { Router, RouterModule } from "@angular/router";
+import { SnackBarService } from "src/app/shared/snack-bar-notification/snack-bar.service";
 
 @Component({
   selector: "app-register",
@@ -37,7 +38,11 @@ export class RegisterComponent {
   hidePass: boolean = true;
   hideRePass: boolean = true;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private snackBar: SnackBarService
+  ) {}
 
   registerForm = new FormGroup({
     firstName: new FormControl("", [
@@ -132,8 +137,12 @@ export class RegisterComponent {
         this.registerForm.value.password ?? "",
         this.registerForm.value.rePassword ?? ""
       )
-      .subscribe(() => {
-        this.router.navigate(["/"]);
+      .subscribe({
+        next: () => {
+          this.router.navigate(["/"]);
+          this.snackBar.greetUser();
+        },
+        error: (err) => this.snackBar.notifyError(err.error.message),
       });
   }
 }
