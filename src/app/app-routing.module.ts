@@ -10,33 +10,40 @@ import { RecipeCatalogComponent } from "./recipe/recipe-catalog/recipe-catalog.c
 const routes: Routes = [
   {
     path: "",
+    title: "Home",
     pathMatch: "full",
     redirectTo: "/",
   },
   {
     path: "",
+    title: "Home",
     component: HomeComponent,
   },
   {
     path: "auth",
+    title: "Auth",
     loadChildren: () =>
       import("./user/user.module").then((model) => model.UserModule),
   },
-  { path: "recipes", component: RecipeCatalogComponent },
+  { path: "recipes", title: "Recipes", component: RecipeCatalogComponent },
   {
     path: "recipe-details/:recipeId/edit",
+    title: "Edit Recipe",
     component: CreateRecipeComponent,
   },
   {
     path: "recipe-details/:recipeId",
+    title: "Recipe Details",
     component: RecipeDetailsComponent,
   },
   {
     path: "create-recipe",
+    title: "Create Recipe",
     component: CreateRecipeComponent,
   },
   {
     path: "**",
+    title: "Page Not Found",
     component: PageNotFoundComponent,
   },
 ];
