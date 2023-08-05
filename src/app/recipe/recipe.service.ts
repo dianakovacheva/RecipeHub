@@ -2,6 +2,14 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { Recipe } from "../models/Recipe";
+import { UserService } from "../user/user.service";
+import {
+  BehaviorSubject,
+  Subscription,
+  catchError,
+  tap,
+  throwError,
+} from "rxjs";
 
 const backendURL = environment.backendURL;
 
@@ -34,7 +42,24 @@ type ExtendedIngredient = {
   providedIn: "root",
 })
 export class RecipeService {
-  constructor(private http: HttpClient) {}
+  // isRecipeOwner(recipeId: string): boolean {
+  //   this.getRecipeById(recipeId).pipe(
+  //     tap((recipe: Recipe) => {
+  //       return recipe?.author?._id === this.userService.user?._id;
+  //     })
+  //   );
+  // }
+
+  constructor(private http: HttpClient, private userService: UserService) {
+    this.userIsOwner$.subscribe((isOwner) => {
+      this.userIsOwner = isOwner;
+    });
+  }
+
+  public userIsOwner: boolean | undefined;
+
+  private userIsOwner$$ = new BehaviorSubject<boolean | undefined>(undefined);
+  public userIsOwner$ = this.userIsOwner$$.asObservable();
 
   // Convert Ingredients to Array
   convertIngredientsToArray(ingredients: string): ExtendedIngredient[] {
@@ -115,13 +140,50 @@ export class RecipeService {
     https: return this.http.get<Recipe[]>(`${backendURL}/recipes`);
   }
 
+  // .subscribe((recipe: Recipe) => {
+  //   this.userIsOwner = recipe?.author?._id === this.userService.user?._id;
+  // });
+
   // Get Recipe by Id
   getRecipeById(recipeId: string) {
-    https: return this.http.get<Recipe>(
-      `${backendURL}/recipes/recipe-details/${recipeId}`
-    );
+    https: return this.http
+      .get<Recipe>(`${backendURL}/recipes/recipe-details/${recipeId}`)
+      .pipe(
+        tap((recipe) =>
+          this.userIsOwner$$.next(
+            recipe?.author?._id === this.userService.user?._id
+          )
+        ),
+        catchError((err) => {
+          this.userIsOwner$$.next(false);
+          return throwError(() => err);
+        })
+      );
   }
 
+  // Convert the recipe steps to the correct format required by the API
+  convertRecipeSteps(steps: []) {
+    const convertedSteps: string = steps
+      .map((step: { step: string }) => step.step)
+      .join("\n");
+    return convertedSteps;
+  }
+
+  // Convert the recipe ingredients to the correct format required by the API
+  convertRecipeIngredients(ingredients: []) {
+    const convertedIngredients: string = ingredients
+      .map(
+        (ingredient: {
+          name: string;
+          measures: { metric: { amount: number; unitShort: string } };
+        }) =>
+          `${ingredient.measures.metric.amount} > ${ingredient.measures.metric.unitShort} > ${ingredient.name}`
+      )
+      .join("\n");
+    return convertedIngredients;
+  }
+
+  // Edit Recipe
   editRecipe(
     recipeId: string,
     title: string,
@@ -157,25 +219,5 @@ export class RecipeService {
         withCredentials: true,
       }
     );
-  }
-
-  convertRecipeSteps(steps: []) {
-    const convertedSteps: string = steps
-      .map((step: { step: string }) => step.step)
-      .join("\n");
-    return convertedSteps;
-  }
-
-  convertRecipeIngredients(ingredients: []) {
-    const convertedIngredients: string = ingredients
-      .map(
-        (ingredient: {
-          name: string;
-          measures: { metric: { amount: number; unitShort: string } };
-        }) =>
-          `${ingredient.measures.metric.amount} > ${ingredient.measures.metric.unitShort} > ${ingredient.name}`
-      )
-      .join("\n");
-    return convertedIngredients;
   }
 }
