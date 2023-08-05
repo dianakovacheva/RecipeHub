@@ -5,10 +5,7 @@
         <span class="nav-spacer"></span>
         <!-- Desktop Menu -->
         <section class="nav-button-row">
-            <div *ngIf="!isLoggedIn">
-                <a mat-button routerLink="/recipes">Recipes</a>
-            </div>
-            <div *ngIf="isLoggedIn">
+            <div>
                 <a mat-button routerLink="/recipes">Recipes</a>
                 <a mat-button routerLink="/create-recipe">Create Recipe</a>
                 <!-- <a mat-button routerLink="/meal-planner">Meal Planner</a> -->
