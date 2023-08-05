@@ -13,7 +13,7 @@ import {
 } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { Router, RouterModule } from "@angular/router";
+import { Router, RouterModule, ActivatedRoute } from "@angular/router";
 
 import { UserService } from "../user.service";
 import { SnackBarService } from "src/app/shared/snack-bar-notification/snack-bar.service";
@@ -42,7 +42,8 @@ export class LoginComponent {
   constructor(
     private userService: UserService,
     private router: Router,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   loginForm = new FormGroup({
@@ -89,7 +90,9 @@ export class LoginComponent {
       )
       .subscribe({
         next: () => {
-          this.router.navigate(["/"]);
+          const redirectUrl =
+            this.activatedRoute.snapshot.queryParams["redirectUrl"] || "/";
+          this.router.navigateByUrl(redirectUrl);
           this.snackBar.greetUser();
         },
         error: (err) => this.snackBar.notifyError(err.error.message),
