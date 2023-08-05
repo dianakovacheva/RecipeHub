@@ -245,6 +245,7 @@ export class CreateRecipeComponent implements OnInit {
       ? "You must enter a value."
       : "";
   }
+  // End of error message functions
 
   // Create recipe function that will be called on form submit event
   createRecipe(): void {

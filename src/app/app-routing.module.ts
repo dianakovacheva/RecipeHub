@@ -8,6 +8,7 @@ import { RecipeDetailsComponent } from "./recipe/recipe-details/recipe-details.c
 import { RecipeCatalogComponent } from "./recipe/recipe-catalog/recipe-catalog.component";
 import { LoggedInGuard } from "./shared/guards/logged-in.guard";
 import { RecipeOwnerGuard } from "./shared/guards/recipe-owner.guard";
+import { DeleteRecipeComponent } from "./recipe/delete-recipe/delete-recipe.component";
 const routes: Routes = [
   {
     path: "",
@@ -30,6 +31,12 @@ const routes: Routes = [
     path: "recipe-details/:recipeId/edit",
     title: "Edit Recipe",
     component: CreateRecipeComponent,
+    canActivate: [RecipeOwnerGuard],
+  },
+  {
+    path: "recipe-details/:recipeId/delete",
+    title: "Delete Recipe",
+    component: DeleteRecipeComponent,
     canActivate: [RecipeOwnerGuard],
   },
   {

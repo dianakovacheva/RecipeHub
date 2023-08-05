@@ -200,4 +200,12 @@ export class RecipeService {
       }
     );
   }
+
+  // Delete Recipe
+  deleteRecipe(recipeId: string) {
+    https: return this.http.delete<Recipe>(
+      `${backendURL}/recipes/recipe-details/${recipeId}/delete`,
+      { withCredentials: true }
+    );
+  }
 }
