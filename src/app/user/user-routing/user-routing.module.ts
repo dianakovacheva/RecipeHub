@@ -3,22 +3,23 @@ import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "../login/login.component";
 import { RegisterComponent } from "../register/register.component";
 import { ProfileComponent } from "../profile/profile.component";
-
+import { LoggedInGuard } from "../../shared/guards/logged-in.guard";
+import { GuestOnlyGuard } from "../../shared/guards/guest-only.guard";
 const routes: Routes = [
   {
     path: "login",
     component: LoginComponent,
-    // canActivate: [AuthActivate],
+    canActivate: [GuestOnlyGuard],
   },
   {
     path: "register",
     component: RegisterComponent,
-    // canActivate: [AuthActivate],
+    canActivate: [GuestOnlyGuard],
   },
   {
     path: "profile",
     component: ProfileComponent,
-    // canActivate: [AuthActivate],
+    canActivate: [LoggedInGuard],
   },
 ];
 
