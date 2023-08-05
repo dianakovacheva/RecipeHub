@@ -31,11 +31,11 @@ export class SnackBarService {
 
   // Different snack bar notifications
   greetUser() {
-    this.notifyInfo(`Welcome, ${this.userFullName}`);
+    this.notifySuccess(`Welcome, ${this.userFullName}`);
   }
 
   goodbyeUser() {
-    this.notifyInfo("Logged out successfully");
+    this.notifySuccess("Logged out successfully");
   }
 
   notifySuccess(message: string) {
