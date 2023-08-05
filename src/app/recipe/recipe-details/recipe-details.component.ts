@@ -13,7 +13,6 @@ import { RouterModule } from "@angular/router";
 
 import { Recipe } from "../../models/Recipe";
 import { RecipeService } from "../recipe.service";
-import { UserService } from "../../user/user.service";
 import { UserId } from "../../models/UserId";
 
 @Component({
@@ -39,30 +38,23 @@ export class RecipeDetailsComponent implements OnInit {
   user: UserId | undefined;
   userId: UserId["_id"] | undefined;
 
+  recipeId = this.activatedRoute.snapshot.params["recipeId"];
+
   constructor(
     private recipeService: RecipeService,
-    private activatedRoute: ActivatedRoute,
-    private userService: UserService
+    private activatedRoute: ActivatedRoute
   ) {}
 
-  get isLoggedIn(): boolean {
-    return this.userService.isLoggedIn;
-  }
-
-  get isRecipeOwner(): boolean {
-    return (
-      this.isLoggedIn && this.recipe?.author._id === this.userService.userId
-    );
-  }
-
+  userIsOwner = this.recipeService.userIsOwner;
   ngOnInit(): void {
     this.getRecipeById();
+    // this.recipeService.userIsOwner$.subscribe((isOwner) => {
+    //   this.userIsOwner = isOwner;
+    // });
   }
 
   getRecipeById(): void {
-    const recipeId = this.activatedRoute.snapshot.params["recipeId"];
-
-    this.recipeService.getRecipeById(recipeId).subscribe((foundRecipe) => {
+    this.recipeService.getRecipeById(this.recipeId).subscribe((foundRecipe) => {
       this.recipe = foundRecipe;
     });
   }

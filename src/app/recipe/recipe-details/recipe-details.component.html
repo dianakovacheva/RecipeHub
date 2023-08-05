@@ -9,7 +9,7 @@
                     alt="Photo of {{recipe.title}}" />
                 <!--Action buttons under recipe image-->
                 <div class="recipe-action-buttons">
-                    <div *ngIf="!isLoggedIn">
+                    <div *ngIf="!userIsOwner">
                         <button mat-raised-button color="primary">
                             <mat-icon>favorite</mat-icon>
                             <span>Save</span>
@@ -19,7 +19,7 @@
                             <span>Comment</span>
                         </button>
                     </div>
-                    <div *ngIf="isLoggedIn">
+                    <div *ngIf="userIsOwner">
                         <button mat-raised-button color="primary" [routerLink]="['./edit']"
                             routerLinkActive="router-link-active">
                             <mat-icon>edit</mat-icon>
