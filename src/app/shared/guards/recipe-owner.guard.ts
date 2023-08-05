@@ -5,7 +5,7 @@ import {
   UrlTree,
   Router,
 } from "@angular/router";
-import { Observable } from "rxjs";
+import { Observable, take, map } from "rxjs";
 import { RecipeService } from "../../recipe/recipe.service";
 import { SnackBarService } from "../snack-bar-notification/snack-bar.service";
 
@@ -22,12 +22,17 @@ export class RecipeOwnerGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean {
-    if (!this.recipeService.userIsOwner) {
-      const { recipeId } = route.params;
-      this.router.navigate([`/recipe-details/${recipeId}`]);
-      this.snackBar.notifyInfo("You are not the owner of this recipe.");
-      return false;
-    }
-    return true;
+    return this.recipeService.userIsOwner$.pipe(
+      take(1),
+      map((isOwner) => {
+        if (!isOwner) {
+          const { recipeId } = route.params;
+          this.router.navigate([`/recipe-details/${recipeId}`]);
+          this.snackBar.notifyInfo("You are not the owner of this recipe.");
+          return false;
+        }
+        return true;
+      })
+    );
   }
 }

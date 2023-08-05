@@ -3,13 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { Recipe } from "../models/Recipe";
 import { UserService } from "../user/user.service";
-import {
-  BehaviorSubject,
-  Subscription,
-  catchError,
-  tap,
-  throwError,
-} from "rxjs";
+import { BehaviorSubject, catchError, tap, throwError } from "rxjs";
 
 const backendURL = environment.backendURL;
 
@@ -42,21 +36,7 @@ type ExtendedIngredient = {
   providedIn: "root",
 })
 export class RecipeService {
-  // isRecipeOwner(recipeId: string): boolean {
-  //   this.getRecipeById(recipeId).pipe(
-  //     tap((recipe: Recipe) => {
-  //       return recipe?.author?._id === this.userService.user?._id;
-  //     })
-  //   );
-  // }
-
-  constructor(private http: HttpClient, private userService: UserService) {
-    this.userIsOwner$.subscribe((isOwner) => {
-      this.userIsOwner = isOwner;
-    });
-  }
-
-  public userIsOwner: boolean | undefined;
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   private userIsOwner$$ = new BehaviorSubject<boolean | undefined>(undefined);
   public userIsOwner$ = this.userIsOwner$$.asObservable();

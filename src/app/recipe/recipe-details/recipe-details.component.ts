@@ -37,6 +37,7 @@ export class RecipeDetailsComponent implements OnInit {
   recipe: Recipe | undefined;
   user: UserId | undefined;
   userId: UserId["_id"] | undefined;
+  userIsOwner: boolean | undefined;
 
   recipeId = this.activatedRoute.snapshot.params["recipeId"];
 
@@ -45,12 +46,13 @@ export class RecipeDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {}
 
-  userIsOwner = this.recipeService.userIsOwner;
+  //isLoggedIn = this.recipeService.isLoggedIn;
+
   ngOnInit(): void {
     this.getRecipeById();
-    // this.recipeService.userIsOwner$.subscribe((isOwner) => {
-    //   this.userIsOwner = isOwner;
-    // });
+    this.recipeService.userIsOwner$.subscribe((isOwner) => {
+      this.userIsOwner = isOwner;
+    });
   }
 
   getRecipeById(): void {
