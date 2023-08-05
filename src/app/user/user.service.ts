@@ -1,8 +1,16 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { User } from "src/app/models/User";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Subscription, tap } from "rxjs";
+import {
+  BehaviorSubject,
+  Subscription,
+  catchError,
+  tap,
+  throwError,
+} from "rxjs";
 import { environment } from "../../environments/environment";
+import { UserId } from "../models/UserId";
+import { Recipe } from "../models/Recipe";
 
 const backendURL = environment.backendURL;
 
@@ -10,14 +18,18 @@ const backendURL = environment.backendURL;
   providedIn: "root",
 })
 export class UserService implements OnDestroy {
-  private user$$ = new BehaviorSubject<User | undefined>(undefined);
+  private user$$ = new BehaviorSubject<UserId | undefined>(undefined);
   public user$ = this.user$$.asObservable();
 
-  user: User | undefined;
+  user: UserId | undefined;
   USER_KEY = "user";
 
   get isLoggedIn(): boolean {
     return !!this.user;
+  }
+
+  isAuthenticated() {
+    return this.isLoggedIn;
   }
 
   subscription: Subscription;
@@ -35,21 +47,9 @@ export class UserService implements OnDestroy {
       if (user) {
         localStorage.setItem(this.USER_KEY, JSON.stringify(user));
       } else {
-        localStorage.removeItem(this.USER_KEY); // Remove the user data from local storage when the user is null (logged out)
+        localStorage.removeItem(this.USER_KEY);
       }
     });
-  }
-
-  login(email: string, password: string) {
-    return this.http
-      .post<User>(
-        `${backendURL}/auth/login`,
-        { email, password },
-        {
-          withCredentials: true,
-        }
-      )
-      .pipe(tap((user) => this.user$$.next(user)));
   }
 
   register(
@@ -60,7 +60,7 @@ export class UserService implements OnDestroy {
     rePassword: string
   ) {
     return this.http
-      .post<User>(
+      .post<UserId>(
         `${backendURL}/auth/register`,
         {
           firstName,
@@ -76,17 +76,31 @@ export class UserService implements OnDestroy {
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
-  getProfile() {
+  login(email: string, password: string) {
     return this.http
-      .get<User>(`${backendURL}/users/profile`, {
-        withCredentials: true,
-      })
+      .post<UserId>(
+        `${backendURL}/auth/login`,
+        { email, password },
+        {
+          withCredentials: true,
+        }
+      )
       .pipe(tap((user) => this.user$$.next(user)));
+  }
+
+  getProfile() {
+    return this.http.get<UserId>(`${backendURL}/users/profile`).pipe(
+      tap((user) => this.user$$.next(user)),
+      catchError((err) => {
+        this.user$$.next(undefined);
+        return throwError(() => err);
+      })
+    );
   }
 
   updateProfile(firstName: string, lastName: string, email: string) {
     return this.http
-      .put<User>(
+      .put<UserId>(
         `${backendURL}/users/profile`,
         { firstName, lastName, email },
         {
@@ -98,7 +112,7 @@ export class UserService implements OnDestroy {
 
   logout() {
     return this.http
-      .post<User>(
+      .post<void>(
         `${backendURL}/auth/logout`,
         {},
         {

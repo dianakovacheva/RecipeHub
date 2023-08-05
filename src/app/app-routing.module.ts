@@ -6,7 +6,8 @@ import { HomeComponent } from "./home/home.component";
 import { CreateRecipeComponent } from "./recipe/create-recipe/create-recipe.component";
 import { RecipeDetailsComponent } from "./recipe/recipe-details/recipe-details.component";
 import { RecipeCatalogComponent } from "./recipe/recipe-catalog/recipe-catalog.component";
-
+import { LoggedInGuard } from "./shared/guards/logged-in.guard";
+import { RecipeOwnerGuard } from "./shared/guards/recipe-owner.guard";
 const routes: Routes = [
   {
     path: "",
@@ -21,7 +22,6 @@ const routes: Routes = [
   },
   {
     path: "auth",
-    title: "Auth",
     loadChildren: () =>
       import("./user/user.module").then((model) => model.UserModule),
   },
@@ -30,6 +30,7 @@ const routes: Routes = [
     path: "recipe-details/:recipeId/edit",
     title: "Edit Recipe",
     component: CreateRecipeComponent,
+    canActivate: [RecipeOwnerGuard],
   },
   {
     path: "recipe-details/:recipeId",
@@ -40,6 +41,7 @@ const routes: Routes = [
     path: "create-recipe",
     title: "Create Recipe",
     component: CreateRecipeComponent,
+    canActivate: [LoggedInGuard],
   },
   {
     path: "**",
