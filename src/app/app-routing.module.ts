@@ -28,19 +28,19 @@ const routes: Routes = [
   },
   { path: "recipes", title: "Recipes", component: RecipeCatalogComponent },
   {
-    path: "recipe-details/:recipeId/edit",
+    path: "details/:recipeId/edit",
     title: "Edit Recipe",
     component: CreateRecipeComponent,
     canActivate: [RecipeOwnerGuard],
   },
   {
-    path: "recipe-details/:recipeId/delete",
+    path: "details/:recipeId/delete",
     title: "Delete Recipe",
     component: DeleteRecipeComponent,
     canActivate: [RecipeOwnerGuard],
   },
   {
-    path: "recipe-details/:recipeId",
+    path: "details/:recipeId",
     title: "Recipe Details",
     component: RecipeDetailsComponent,
   },

@@ -127,7 +127,7 @@ export class RecipeService {
   // Get Recipe by Id
   getRecipeById(recipeId: string) {
     https: return this.http
-      .get<Recipe>(`${backendURL}/recipes/recipe-details/${recipeId}`)
+      .get<Recipe>(`${backendURL}/recipes/details/${recipeId}`)
       .pipe(
         tap((recipe) =>
           this.userIsOwner$$.next(
@@ -182,7 +182,7 @@ export class RecipeService {
       this.convertIngredientsToArray(extendedIngredients)
     );
     htts: return this.http.put<Recipe>(
-      `${backendURL}/recipes/recipe-details/${recipeId}/edit`,
+      `${backendURL}/recipes/details/${recipeId}/edit`,
       {
         title,
         preparationMinutes,
@@ -204,7 +204,7 @@ export class RecipeService {
   // Delete Recipe
   deleteRecipe(recipeId: string) {
     https: return this.http.delete<Recipe>(
-      `${backendURL}/recipes/recipe-details/${recipeId}/delete`,
+      `${backendURL}/recipes/details/${recipeId}/delete`,
       { withCredentials: true }
     );
   }

@@ -27,7 +27,7 @@ export class RecipeOwnerGuard implements CanActivate {
       map((isOwner) => {
         if (!isOwner) {
           const { recipeId } = route.params;
-          this.router.navigate([`/recipe-details/${recipeId}`]);
+          this.router.navigate([`/details/${recipeId}`]);
           this.snackBar.notifyInfo("You are not the owner of this recipe.");
           return false;
         }
