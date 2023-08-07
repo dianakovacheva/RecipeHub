@@ -141,6 +141,17 @@ export class RecipeService {
       );
   }
 
+  // change UserIsOwner
+  updateUserIsOwner(recipeId: string): void {
+    let isOwner = false;
+    this.userService.user?.userRecipesList.forEach((recipe) => {
+      if (recipe === recipeId) {
+        isOwner = true;
+      }
+    });
+    this.userIsOwner$$.next(isOwner);
+  }
+
   // Convert the recipe steps to the correct format required by the API
   convertRecipeSteps(steps: []) {
     const convertedSteps: string = steps

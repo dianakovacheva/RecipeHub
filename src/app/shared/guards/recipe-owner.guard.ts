@@ -22,12 +22,13 @@ export class RecipeOwnerGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean {
+    const { recipeId } = route.params;
+    this.recipeService.updateUserIsOwner(recipeId);
     return this.recipeService.userIsOwner$.pipe(
       take(1),
       map((isOwner) => {
         if (!isOwner) {
-          const { recipeId } = route.params;
-          this.router.navigate([`/details/${recipeId}`]);
+          this.router.navigate([`recipes/details/${recipeId}`]);
           this.snackBar.notifyInfo("You are not the owner of this recipe.");
           return false;
         }
