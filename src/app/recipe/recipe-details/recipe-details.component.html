@@ -8,30 +8,30 @@
                 <img *ngIf="recipe.imageURL" src="{{recipe.imageURL}}" class="img recipe-hero-img"
                     alt="Photo of {{recipe.title}}" />
                 <!--Action buttons under recipe image-->
-                <div class="recipe-action-buttons">
-                    <div *ngIf="!userIsOwner">
-                        <button mat-raised-button color="primary">
-                            <mat-icon>favorite</mat-icon>
-                            <span>Save</span>
-                        </button>
-                        <button mat-raised-button color="primary">
-                            <mat-icon>comment</mat-icon>
-                            <span>Comment</span>
-                        </button>
-                    </div>
-                    <div *ngIf="userIsOwner">
-                        <button mat-raised-button color="primary" [routerLink]="['./edit']"
-                            routerLinkActive="router-link-active">
-                            <mat-icon>edit</mat-icon>
-                            <span>Edit
-                                recipe</span>
-                        </button>
-                        <button mat-raised-button (click)="openDialog()" color="primary">
-                            <mat-icon>delete</mat-icon>
-                            <span>Delete recipe</span>
-                        </button>
-                    </div>
+
+                <div class="recipe-action-buttons" *ngIf="!userIsOwner">
+                    <button mat-stroked-button color="primary">
+                        <mat-icon>favorite</mat-icon>
+                        <span>Save</span>
+                    </button>
+                    <button mat-stroked-button color="primary">
+                        <mat-icon>comment</mat-icon>
+                        <span>Comment</span>
+                    </button>
                 </div>
+                <div class="recipe-action-buttons" *ngIf="userIsOwner">
+                    <button mat-stroked-button color="primary" [routerLink]="['./edit']"
+                        routerLinkActive="router-link-active">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit
+                            recipe</span>
+                    </button>
+                    <button mat-stroked-button (click)="openDeleteDialog()" color="primary">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete recipe</span>
+                    </button>
+                </div>
+
             </div>
             <article class="recipe-info">
                 <!-- Recipe Title -->
