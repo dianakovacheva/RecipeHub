@@ -7,7 +7,7 @@ import { UserRoutingModule } from "./user-routing/user-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
 @NgModule({
-  declarations: [ProfileComponent],
+  declarations: [],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -16,6 +16,7 @@ import { SharedModule } from "../shared/shared.module";
     RegisterComponent,
     LoginComponent,
     SharedModule,
+    ProfileComponent,
   ],
 })
 export class UserModule {}

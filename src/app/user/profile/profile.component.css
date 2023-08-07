@@ -1,0 +1,127 @@
+.mat-tab-group {
+  margin-bottom: 48px;
+}
+
+.recipe-list-holder {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+  padding-bottom: 10px;
+}
+
+.summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Big screens */
+@media screen and (min-width: 600px) {
+  .recipe-list-item {
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+  .recipe-image {
+    width: 150px;
+    flex: 0 0 auto;
+    margin-right: 15px;
+  }
+  .recipe-image > img {
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+  }
+  .recipe-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex: 1;
+    min-width: 150px;
+  }
+  .recipe-actions {
+    height: calc(100% - 40px);
+  }
+}
+
+/* Mobile screens */
+@media screen and (max-width: 600px) {
+  .recipe-list-item {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .recipe-image {
+    width: 100%;
+    flex: 0 0 auto;
+    margin-right: 15px;
+  }
+  .recipe-image > img {
+    object-fit: cover;
+    width: 100%;
+    height: 150px;
+  }
+  .recipe-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: calc(100% - 30px);
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .recipe-actions {
+    width: calc(100% - 40px);
+  }
+}
+
+.recipe-list-item:hover {
+  cursor: pointer;
+  background-color: #f5f5f5;
+}
+
+.recipe-dish-type {
+  text-transform: uppercase;
+}
+
+mat-card-header,
+mat-card-subtitle,
+mat-card-title {
+  line-height: 26px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+.recipe-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+  flex: 0 0 auto;
+}
+
+.recipe-summary {
+  margin: 0 0;
+  display: -webkit-box;
+  max-width: calc(100%);
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

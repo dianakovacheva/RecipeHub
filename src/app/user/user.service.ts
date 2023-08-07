@@ -120,6 +120,24 @@ export class UserService implements OnDestroy {
       .pipe(tap(() => this.user$$.next(undefined)));
   }
 
+  getUserRecipesList() {
+    return this.http.get<UserId>(`${backendURL}/user/recipes`, {
+      withCredentials: true,
+    });
+  }
+
+  getUserSavedRecipesList() {
+    return this.http.get<UserId>(`${backendURL}/user/saved-recipes`, {
+      withCredentials: true,
+    });
+  }
+
+  getUserCommentsList() {
+    return this.http.get<UserId>(`${backendURL}/user/comments`, {
+      withCredentials: true,
+    });
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
