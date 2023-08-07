@@ -269,7 +269,7 @@ export class CreateRecipeComponent implements OnInit {
           this.createRecipeForm.value.analyzedInstructions ?? ""
         )
         .subscribe((createdRecipe) => {
-          this.router.navigate([`/details/${createdRecipe._id}`]);
+          this.router.navigate([`/recipes/details/${createdRecipe._id}`]);
           this.snackBar.notifySuccess("Recipe created!");
         });
     } else {
@@ -288,7 +288,7 @@ export class CreateRecipeComponent implements OnInit {
           this.createRecipeForm.value.analyzedInstructions ?? ""
         )
         .subscribe((editedRecipe) => {
-          this.router.navigate([`/details/${editedRecipe._id}`]);
+          this.router.navigate([`/recipes/details/${editedRecipe._id}`]);
           this.snackBar.notifySuccess("Recipe updated!");
         });
     }

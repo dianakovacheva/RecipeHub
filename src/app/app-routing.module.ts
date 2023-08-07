@@ -28,25 +28,40 @@ const routes: Routes = [
       import("./user/user.module").then((model) => model.UserModule),
   },
   {
+    path: "user/comments",
+    component: ProfileComponent,
+    canActivate: [LoggedInGuard],
+  },
+  {
+    path: "user/profile/saved-recipes",
+    component: ProfileComponent,
+    canActivate: [LoggedInGuard],
+  },
+  {
+    path: "user/profile/recipes",
+    component: ProfileComponent,
+    canActivate: [LoggedInGuard],
+  },
+  {
     path: "user/profile",
     component: ProfileComponent,
     canActivate: [LoggedInGuard],
   },
   { path: "recipes", title: "Recipes", component: RecipeCatalogComponent },
   {
-    path: "details/:recipeId/edit",
+    path: "recipes/details/:recipeId/edit",
     title: "Edit Recipe",
     component: CreateRecipeComponent,
     canActivate: [RecipeOwnerGuard],
   },
   {
-    path: "details/:recipeId/delete",
+    path: "recipes/details/:recipeId/delete",
     title: "Delete Recipe",
     component: DeleteRecipeComponent,
     canActivate: [RecipeOwnerGuard],
   },
   {
-    path: "details/:recipeId",
+    path: "recipes/details/:recipeId",
     title: "Recipe Details",
     component: RecipeDetailsComponent,
   },
