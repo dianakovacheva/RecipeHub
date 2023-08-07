@@ -10,20 +10,14 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
 import { RouterModule } from "@angular/router";
-import {
-  MatDialog,
-  MatDialogRef,
-  MatDialogModule,
-} from "@angular/material/dialog";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 
 import { Recipe } from "../../models/Recipe";
 import { RecipeService } from "../recipe.service";
 import { UserId } from "../../models/UserId";
 import { DeleteRecipeComponent } from "../delete-recipe/delete-recipe.component";
 
-export interface DialogData {
-  recipe: Recipe;
-}
+
 
 @Component({
   selector: "app-recipe-details",
@@ -73,9 +67,9 @@ export class RecipeDetailsComponent implements OnInit {
     });
   }
 
-  openDialog(): void {
+  openDeleteDialog(): void {
     this.dialog.open(DeleteRecipeComponent, {
-      data: { recipe: this.recipe },
+      data: { recipe: this.recipe, redirectToRecipes: true },
     });
   }
 }
