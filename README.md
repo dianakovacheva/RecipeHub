@@ -60,10 +60,19 @@ The application have:
 
 To run RecipeHub locally on your machine, follow these steps:
 
-- **Clone the Repository**: git clone https://github.com/dianakovacheva/RecipeHub
+### Start Backend Server
+
 - **Clone the Backend Repository**: git clone https://github.com/dianakovacheva/RecipeHub-Backend
+- **Navigate to the project directory**: cd RecipeHub-Backend
+- **Install the required dependencies**: npm install
+- **Start the server**: npm start
+
+### Start Frontend Server
+
+- **Clone the Repository**: git clone https://github.com/dianakovacheva/RecipeHub
 - **Navigate to the project directory**: cd RecipeHub
 - **Install the required dependencies**: npm install
+- **Start the server**: ng serve
 
 ## Access the Application
 
@@ -80,4 +89,4 @@ After completing the installation you can start the development server using: ng
 
 #### Recipe Details Page
 
-![Home Page](./src//assets//recipeHub-Screenshots/recipeHub-recipe-details-page.png)
+![Recipe Details Page](./src//assets//recipeHub-Screenshots/recipeHub-recipe-details-page.png)
