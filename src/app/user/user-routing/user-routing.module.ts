@@ -16,11 +16,6 @@ const routes: Routes = [
     component: RegisterComponent,
     canActivate: [GuestOnlyGuard],
   },
-  {
-    path: "profile",
-    component: ProfileComponent,
-    canActivate: [LoggedInGuard],
-  },
 ];
 
 @NgModule({

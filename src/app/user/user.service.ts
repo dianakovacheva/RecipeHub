@@ -1,5 +1,4 @@
 import { Injectable, OnDestroy } from "@angular/core";
-import { User } from "src/app/models/User";
 import { HttpClient } from "@angular/common/http";
 import {
   BehaviorSubject,
@@ -10,7 +9,6 @@ import {
 } from "rxjs";
 import { environment } from "../../environments/environment";
 import { UserId } from "../models/UserId";
-import { Recipe } from "../models/Recipe";
 
 const backendURL = environment.backendURL;
 
@@ -89,7 +87,7 @@ export class UserService implements OnDestroy {
   }
 
   getProfile() {
-    return this.http.get<UserId>(`${backendURL}/users/profile`).pipe(
+    return this.http.get<UserId>(`${backendURL}/user/profile`).pipe(
       tap((user) => this.user$$.next(user)),
       catchError((err) => {
         this.user$$.next(undefined);
@@ -101,7 +99,7 @@ export class UserService implements OnDestroy {
   updateProfile(firstName: string, lastName: string, email: string) {
     return this.http
       .put<UserId>(
-        `${backendURL}/users/profile`,
+        `${backendURL}/user/profile`,
         { firstName, lastName, email },
         {
           withCredentials: true,

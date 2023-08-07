@@ -9,6 +9,7 @@ import { RecipeCatalogComponent } from "./recipe/recipe-catalog/recipe-catalog.c
 import { LoggedInGuard } from "./shared/guards/logged-in.guard";
 import { RecipeOwnerGuard } from "./shared/guards/recipe-owner.guard";
 import { DeleteRecipeComponent } from "./recipe/delete-recipe/delete-recipe.component";
+import { ProfileComponent } from "./user/profile/profile.component";
 const routes: Routes = [
   {
     path: "",
@@ -25,6 +26,11 @@ const routes: Routes = [
     path: "auth",
     loadChildren: () =>
       import("./user/user.module").then((model) => model.UserModule),
+  },
+  {
+    path: "user/profile",
+    component: ProfileComponent,
+    canActivate: [LoggedInGuard],
   },
   { path: "recipes", title: "Recipes", component: RecipeCatalogComponent },
   {
