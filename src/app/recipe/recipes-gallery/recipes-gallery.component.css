@@ -21,15 +21,6 @@ mat-card-title {
   padding-bottom: 8px;
 }
 
-mat-card-subtitle {
-  text-transform: uppercase;
-}
-
-/* .recipes-catalog {
-    display: flex;
-    flex-direction: column;
-  } */
-
 .card-image-holder > img {
   object-fit: cover;
   width: 100%;
