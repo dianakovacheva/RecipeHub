@@ -20,9 +20,9 @@ export class SnackBarService {
 
   // Get user's first and last name
   get userFullName(): string {
-    const userFistName = this.userService.user?.firstName;
+    const userFirstName = this.userService.user?.firstName;
     const userLastName = this.userService.user?.lastName;
-    return `${userFistName} ${userLastName}` || "";
+    return `${userFirstName} ${userLastName}` || "";
   }
 
   // Specify the position of the snack bar
