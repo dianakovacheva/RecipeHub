@@ -17,8 +17,6 @@ import { RecipeService } from "../recipe.service";
 import { UserId } from "../../models/UserId";
 import { DeleteRecipeComponent } from "../delete-recipe/delete-recipe.component";
 
-
-
 @Component({
   selector: "app-recipe-details",
   templateUrl: "./recipe-details.component.html",
@@ -51,8 +49,6 @@ export class RecipeDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog
   ) {}
-
-  //isLoggedIn = this.recipeService.isLoggedIn;
 
   ngOnInit(): void {
     this.getRecipeById();
