@@ -28,12 +28,6 @@ import { Recipe } from "../../models/Recipe";
   styleUrls: ["./recipes-gallery.component.css"],
 })
 export class RecipesGalleryComponent implements OnInit {
-  hidden = false;
-
-  toggleBadgeVisibility() {
-    this.hidden = !this.hidden;
-  }
-
   recipesList: Recipe[] = [];
   isLoggedIn: boolean = true;
 
