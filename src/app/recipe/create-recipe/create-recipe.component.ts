@@ -1,4 +1,3 @@
-import { Recipe } from "../../models/Recipe";
 import { Component, OnInit } from "@angular/core";
 import { NgFor, NgIf } from "@angular/common";
 
@@ -90,7 +89,7 @@ export class CreateRecipeComponent implements OnInit {
     summary: new FormControl("", [
       Validators.required,
       Validators.minLength(5),
-      Validators.maxLength(300),
+      // Validators.maxLength(500),
     ]),
     imageURL: new FormControl("", [Validators.pattern(this.IMAGE_URL_PATTERN)]),
     preparationMinutes: new FormControl("", [
