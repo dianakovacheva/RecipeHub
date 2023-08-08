@@ -13,7 +13,7 @@ p {
 
 .recipe-hero {
   display: grid;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .img {
@@ -111,19 +111,16 @@ p {
 @media screen and (min-width: 600px) {
   .recipe-hero {
     grid-template-columns: 4fr 5fr;
-    align-items: center;
   }
   .recipe-hero-img {
     object-fit: cover;
-    height: 400px;
-    width: 400px;
+    height: 500px;
+    width: 500px;
   }
 }
 
 /* Recipe Content */
-
 .recipe-content {
-  padding: 3rem 0;
   display: grid;
   gap: 2rem 5rem;
 }
@@ -135,7 +132,6 @@ p {
 }
 
 /* Recipe Ingredients List */
-
 .recipe-ingredients-list {
   display: grid;
   row-gap: 2rem;
@@ -152,9 +148,9 @@ p {
   border-top: 1px solid #ccc;
 }
 
-.ingredients-list {
+.mdc-list-item {
+  padding: 0;
   list-style: none;
-  padding-left: 0;
 }
 
 .single-instruction header {
@@ -183,7 +179,6 @@ p {
 }
 
 /* Comments Section */
-
 .comments-section {
   display: grid;
   grid-auto-rows: auto;
@@ -218,7 +213,6 @@ p {
 }
 
 /* Similar Recipes */
-
 .recipes-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
