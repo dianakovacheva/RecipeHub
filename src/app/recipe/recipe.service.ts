@@ -95,24 +95,26 @@ export class RecipeService {
     let convertedIngredients = JSON.stringify(
       this.convertIngredientsToArray(extendedIngredients)
     );
-    return this.http.post<Recipe>(
-      `${backendURL}/recipes/create-recipe`,
-      {
-        title,
-        preparationMinutes,
-        cookingMinutes,
-        servings,
-        pricePerServing,
-        imageURL,
-        summary,
-        dishTypes,
-        extendedIngredients: convertedIngredients,
-        analyzedInstructions: convertedSteps,
-      },
-      {
-        withCredentials: true,
-      }
-    );
+    return this.http
+      .post<Recipe>(
+        `${backendURL}/recipes/create-recipe`,
+        {
+          title,
+          preparationMinutes,
+          cookingMinutes,
+          servings,
+          pricePerServing,
+          imageURL,
+          summary,
+          dishTypes,
+          extendedIngredients: convertedIngredients,
+          analyzedInstructions: convertedSteps,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .pipe(tap(() => this.userService.getProfile()));
   }
 
   // Get All Recipes
@@ -144,6 +146,7 @@ export class RecipeService {
   // change UserIsOwner
   updateUserIsOwner(recipeId: string): void {
     let isOwner = false;
+    this.userService.getProfile();
     this.userService.user?.userRecipesList.forEach((recipe) => {
       if (recipe === recipeId) {
         isOwner = true;
@@ -192,31 +195,34 @@ export class RecipeService {
     let convertedIngredients = JSON.stringify(
       this.convertIngredientsToArray(extendedIngredients)
     );
-    htts: return this.http.put<Recipe>(
-      `${backendURL}/recipes/details/${recipeId}/edit`,
-      {
-        title,
-        preparationMinutes,
-        cookingMinutes,
-        servings,
-        pricePerServing,
-        imageURL,
-        summary,
-        dishTypes,
-        extendedIngredients: convertedIngredients,
-        analyzedInstructions: convertedSteps,
-      },
-      {
-        withCredentials: true,
-      }
-    );
+    htts: return this.http
+      .put<Recipe>(
+        `${backendURL}/recipes/details/${recipeId}/edit`,
+        {
+          title,
+          preparationMinutes,
+          cookingMinutes,
+          servings,
+          pricePerServing,
+          imageURL,
+          summary,
+          dishTypes,
+          extendedIngredients: convertedIngredients,
+          analyzedInstructions: convertedSteps,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .pipe(tap(() => this.userService.getProfile()));
   }
 
   // Delete Recipe
   deleteRecipe(recipeId: string) {
-    https: return this.http.delete<Recipe>(
-      `${backendURL}/recipes/details/${recipeId}/delete`,
-      { withCredentials: true }
-    );
+    https: return this.http
+      .delete<Recipe>(`${backendURL}/recipes/details/${recipeId}/delete`, {
+        withCredentials: true,
+      })
+      .pipe(tap(() => this.userService.getProfile()));
   }
 }
