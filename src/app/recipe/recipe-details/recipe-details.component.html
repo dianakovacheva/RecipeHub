@@ -10,9 +10,17 @@
                 <!-- Recipe Action Buttons -->
                 <div *ngIf="isLoggedIn">
                     <div class="recipe-action-buttons" *ngIf="!userIsOwner">
-                        <button mat-stroked-button color="primary" (click)="saveRecipe()">
+                        <button mat-stroked-button color="primary" *ngIf="!recipe.savesList.includes(userId ?? 'abc')"
+                            (click)="saveRecipe()">
                             <mat-icon>favorite</mat-icon>
                             <span>Save</span>
+                        </button>
+                        <button mat-stroked-button color="primary" *ngIf="recipe.savesList.includes(userId ?? '')"
+                            (click)="handelRemoveSavedRecipe(recipe._id)">
+                            <mat-icon class="material-symbols-outlined">
+                                heart_minus
+                            </mat-icon>
+                            <span>Remove</span>
                         </button>
                         <button mat-stroked-button color="primary">
                             <mat-icon>comment</mat-icon>
