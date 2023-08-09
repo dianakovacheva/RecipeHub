@@ -23,8 +23,7 @@
             </button>
         </div>
         <div class="recipe-actions" *ngIf="listType == 'userSavedRecipes'">
-            <button mat-stroked-button color="primary" [routerLink]="['/recipes/details',recipe._id, 'edit']"
-                routerLinkActive="router-link-active">
+            <button mat-stroked-button color="primary" (click)="handelRemoveSavedRecipe(recipe._id, $event)">
                 <mat-icon class="material-symbols-outlined">
                     heart_minus
                 </mat-icon>
