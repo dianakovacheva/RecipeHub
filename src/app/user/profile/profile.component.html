@@ -18,8 +18,10 @@
                 <app-profile-recipe-list [recipesArray]="userRecipesList"
                     [listType]="'userRecipes'"></app-profile-recipe-list>
             </mat-tab>
-            <mat-tab label="Saved Recipes">Content 2</mat-tab>
-            <mat-tab label="Comments">Content 3</mat-tab>
+            <mat-tab label="Saved Recipes ({{userSavedRecipesList?.length}})"><app-profile-recipe-list
+                    [recipesArray]="userSavedRecipesList"
+                    [listType]="'userSavedRecipes'"></app-profile-recipe-list></mat-tab>
+            <mat-tab label="Comments ({{userCommentsList?.length}})">Content 3</mat-tab>
         </mat-tab-group>
     </div>
 </div>
