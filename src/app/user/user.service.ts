@@ -42,7 +42,7 @@ export class UserService implements OnDestroy {
       this.user$$.next(undefined);
     }
 
-    this.subscription = this.user$.subscribe((user) => {
+    this.subscription = this.user$$.subscribe((user) => {
       this.user = user;
       if (user) {
         localStorage.setItem(this.USER_KEY, JSON.stringify(user));
@@ -89,13 +89,19 @@ export class UserService implements OnDestroy {
   }
 
   getProfile() {
-    return this.http.get<UserId>(`${backendURL}/user/profile`).pipe(
-      tap((user) => this.user$$.next(user)),
-      catchError((err) => {
-        this.user$$.next(undefined);
-        return throwError(() => err);
+    this.http
+      .get<UserId>(`${backendURL}/user/profile`, {
+        withCredentials: true,
       })
-    );
+      .subscribe({
+        next: (user) => {
+          this.user$$.next(user);
+        },
+        error: (err) => {
+          console.log(err);
+          this.user$$.next(undefined);
+        },
+      });
   }
 
   updateProfile(firstName: string, lastName: string, email: string) {
@@ -123,21 +129,18 @@ export class UserService implements OnDestroy {
   }
 
   getUserRecipesList() {
-    return this.http.get<UserId>(`${backendURL}/user/recipes`, {
     return this.http.get<Recipe[]>(`${backendURL}/user/recipes`, {
       withCredentials: true,
     });
   }
 
   getUserSavedRecipesList() {
-    return this.http.get<UserId>(`${backendURL}/user/saved-recipes`, {
     return this.http.get<Recipe[]>(`${backendURL}/user/saved-recipes`, {
       withCredentials: true,
     });
   }
 
   getUserCommentsList() {
-    return this.http.get<UserId>(`${backendURL}/user/comments`, {
     return this.http.get<Comment[]>(`${backendURL}/user/comments`, {
       withCredentials: true,
     });
