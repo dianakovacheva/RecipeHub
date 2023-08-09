@@ -77,9 +77,6 @@ export class CreateRecipeComponent implements OnInit {
     }
   }
 
-  // private URL_PATTERN =
-  //   /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/i;
-
   private IMAGE_URL_PATTERN =
     /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|bmp|svg)/;
 
@@ -133,7 +130,7 @@ export class CreateRecipeComponent implements OnInit {
     dishTypeOption: this.dishTypeOptionControl,
   });
 
-  // Functions that check if there is an error and return appropriate error message
+  // Check Error Functions
   getErrorMessageTitle() {
     const recipeTitleInput = this.createRecipeForm.get("title");
 
@@ -244,7 +241,7 @@ export class CreateRecipeComponent implements OnInit {
       ? "You must enter a value."
       : "";
   }
-  // End of error message functions
+  // End of Check Error Functions
 
   // Create recipe function that will be called on form submit event
   createRecipe(): void {
@@ -253,7 +250,7 @@ export class CreateRecipeComponent implements OnInit {
     }
 
     if (!this.isEditMode) {
-      // Pass recipe data from form input value
+      // Pass Recipe Data from Form Input Values
       this.recipeService
         .createRecipe(
           this.createRecipeForm.value.title ?? "",
@@ -269,7 +266,7 @@ export class CreateRecipeComponent implements OnInit {
         )
         .subscribe((createdRecipe) => {
           this.router.navigate([`/recipes/details/${createdRecipe._id}`]);
-          this.snackBar.notifySuccess("Recipe created!");
+          this.snackBar.notifySuccess("Recipe created successfully!");
         });
     } else {
       this.recipeService
@@ -288,7 +285,7 @@ export class CreateRecipeComponent implements OnInit {
         )
         .subscribe((editedRecipe) => {
           this.router.navigate([`/recipes/details/${editedRecipe._id}`]);
-          this.snackBar.notifySuccess("Recipe updated!");
+          this.snackBar.notifySuccess("Recipe updated successfully!");
         });
     }
   }
