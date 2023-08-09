@@ -48,24 +48,24 @@ const routes: Routes = [
     canActivate: [LoggedInGuard],
   },
   { path: "recipes", title: "Recipes", component: RecipeCatalogComponent },
-  {
-    path: "recipes/details/:recipeId/save",
-    title: "Save Recipe",
-    component: RecipeDetailsComponent,
-    canActivate: [LoggedInGuard],
-  },
+  // {
+  //   path: "recipes/details/:recipeId/save",
+  //   title: "Save Recipe",
+  //   component: RecipeDetailsComponent,
+  //   canActivate: [LoggedInGuard],
+  // },
   {
     path: "recipes/details/:recipeId/edit",
     title: "Edit Recipe",
     component: CreateRecipeComponent,
     canActivate: [RecipeOwnerGuard],
   },
-  {
-    path: "recipes/details/:recipeId/delete",
-    title: "Delete Recipe",
-    component: DeleteRecipeComponent,
-    canActivate: [RecipeOwnerGuard],
-  },
+  // {
+  //   path: "recipes/details/:recipeId/delete",
+  //   title: "Delete Recipe",
+  //   component: DeleteRecipeComponent,
+  //   canActivate: [RecipeOwnerGuard],
+  // },
   {
     path: "recipes/details/:recipeId",
     title: "Recipe Details",
