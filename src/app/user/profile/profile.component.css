@@ -1,3 +1,20 @@
+/* User profile data */
+.user-personal-information {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.user-information-card {
+  align-items: center;
+  padding: 20px 20px;
+  text-align: center;
+}
+
+p {
+  font-size: 16px;
+}
+
+/* User recipes data */
 .mat-tab-group {
   margin-bottom: 48px;
 }
@@ -93,7 +110,7 @@
 
 .recipe-list-item:hover {
   cursor: pointer;
-  /* background-color: #f5f5f5; */
+  background-color: #f5f5f5;
 }
 
 .recipe-dish-type {
