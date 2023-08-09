@@ -52,6 +52,7 @@ export class UserService implements OnDestroy {
     });
   }
 
+  // Register User
   register(
     firstName: string,
     lastName: string,
@@ -76,6 +77,7 @@ export class UserService implements OnDestroy {
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
+  // Login User
   login(email: string, password: string) {
     return this.http
       .post<UserId>(
@@ -88,6 +90,7 @@ export class UserService implements OnDestroy {
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
+  // Get User Profile
   getProfile() {
     this.http
       .get<UserId>(`${backendURL}/user/profile`, {
@@ -104,6 +107,7 @@ export class UserService implements OnDestroy {
       });
   }
 
+  // Update User Profile
   updateProfile(firstName: string, lastName: string, email: string) {
     return this.http
       .put<UserId>(
@@ -116,6 +120,7 @@ export class UserService implements OnDestroy {
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
+  // Logout User
   logout() {
     return this.http
       .post<void>(
@@ -128,18 +133,21 @@ export class UserService implements OnDestroy {
       .pipe(tap(() => this.user$$.next(undefined)));
   }
 
+  // Get User Recipes List
   getUserRecipesList() {
     return this.http.get<Recipe[]>(`${backendURL}/user/recipes`, {
       withCredentials: true,
     });
   }
 
+  // Get User Saved Recipes List
   getUserSavedRecipesList() {
     return this.http.get<Recipe[]>(`${backendURL}/user/saved-recipes`, {
       withCredentials: true,
     });
   }
 
+  // Get User Comments List
   getUserCommentsList() {
     return this.http.get<Comment[]>(`${backendURL}/user/comments`, {
       withCredentials: true,
