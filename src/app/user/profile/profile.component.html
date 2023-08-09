@@ -1,6 +1,11 @@
 <div class="container">
     <div class="user-personal-information">
         <mat-card class="user-information-card">
+            <div mat-card-avatar class="avatar">
+                <div>
+                    <h2>{{userInformation.firstName[0]}}{{userInformation.lastName[0]}}</h2>
+                </div>
+            </div>
             <div>
                 <h2>Hello, {{userInformation.firstName}} {{userInformation.lastName}}</h2>
                 <p>Here, you will find a collection of your personal recipes alongside a compilation of saved and
