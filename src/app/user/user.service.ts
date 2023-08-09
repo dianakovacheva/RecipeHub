@@ -9,6 +9,8 @@ import {
 } from "rxjs";
 import { environment } from "../../environments/environment";
 import { UserId } from "../models/UserId";
+import { Recipe } from "../models/Recipe";
+import { Comment } from "./../models/Comment";
 
 const backendURL = environment.backendURL;
 
@@ -122,18 +124,21 @@ export class UserService implements OnDestroy {
 
   getUserRecipesList() {
     return this.http.get<UserId>(`${backendURL}/user/recipes`, {
+    return this.http.get<Recipe[]>(`${backendURL}/user/recipes`, {
       withCredentials: true,
     });
   }
 
   getUserSavedRecipesList() {
     return this.http.get<UserId>(`${backendURL}/user/saved-recipes`, {
+    return this.http.get<Recipe[]>(`${backendURL}/user/saved-recipes`, {
       withCredentials: true,
     });
   }
 
   getUserCommentsList() {
     return this.http.get<UserId>(`${backendURL}/user/comments`, {
+    return this.http.get<Comment[]>(`${backendURL}/user/comments`, {
       withCredentials: true,
     });
   }
