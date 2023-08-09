@@ -63,6 +63,10 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipeService.userIsOwner$.subscribe((isOwner) => {
       this.userIsOwner = isOwner;
     });
+    this.userService.user$.subscribe((user) => {
+      this.user = user;
+      this.userId = user?._id;
+    });
   }
 
   // Get Recipe by Id
@@ -75,7 +79,18 @@ export class RecipeDetailsComponent implements OnInit {
   // Save Recipe
   saveRecipe(): void {
     this.recipeService.saveRecipe(this.recipeId).subscribe(() => {
+      this.getRecipeById();
+      this.userService.getProfile();
       this.snackBar.notifySuccess("Recipe saved successfully!");
+    });
+  }
+
+  // Remove Saved Recipe
+  handelRemoveSavedRecipe(recipeId: string): void {
+    this.recipeService.removeSavedRecipe(recipeId).subscribe(() => {
+      this.getRecipeById();
+      this.userService.getProfile();
+      this.snackBar.notifySuccess("Recipe removed successfully!");
     });
   }
 
