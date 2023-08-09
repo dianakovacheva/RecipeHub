@@ -63,8 +63,8 @@ p {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   padding: 15px 0;
-  font-size: 17px;
-  line-height: 26px;
+  font-size: 16px;
+  line-height: 1.75;
 }
 
 .recipe-icons {
@@ -138,10 +138,7 @@ p {
 }
 
 .single-ingredient {
-  font-size: 17px;
-  line-height: 1.75;
   border-bottom: 1px solid #ccc;
-  padding: 0.3rem 0;
 }
 
 .single-ingredient:first-child {
@@ -150,7 +147,6 @@ p {
 
 .mdc-list-item {
   padding: 0;
-  list-style: none;
 }
 
 .single-instruction header {
@@ -169,7 +165,7 @@ p {
 }
 
 .single-instruction > p {
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.75;
 }
 
