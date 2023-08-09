@@ -15,6 +15,6 @@ export interface Recipe {
   extendedIngredients: any;
   analyzedInstructions: any;
   commentsList: string[];
-  saves: string[];
+  savesList: string[];
   createdAt: string;
 }
