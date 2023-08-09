@@ -208,7 +208,6 @@ export class RecipeService {
 
   // Save Recipe
   saveRecipe(recipeId: string) {
-    console.log(this.userService.user);
     https: return this.http
       .put<Recipe>(
         `${backendURL}/recipes/details/${recipeId}/save`,
@@ -216,6 +215,16 @@ export class RecipeService {
         {
           withCredentials: true,
         }
+      )
+      .pipe(tap(() => this.userService.getProfile()));
+  }
+
+  // Remove Saved Recipe
+  removeSavedRecipe(recipeId: string) {
+    https: return this.http
+      .delete<Recipe>(
+        `${backendURL}/recipes/details/${recipeId}/remove-saved`,
+        { withCredentials: true }
       )
       .pipe(tap(() => this.userService.getProfile()));
   }
