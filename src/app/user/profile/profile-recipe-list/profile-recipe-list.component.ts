@@ -10,6 +10,8 @@ import { DeleteRecipeComponent } from "src/app/recipe/delete-recipe/delete-recip
 import { MatButtonModule } from "@angular/material/button";
 import { NgIf, NgFor } from "@angular/common";
 import { ProfileComponent } from "../profile.component";
+import { RecipeService } from "src/app/recipe/recipe.service";
+import { SnackBarService } from "src/app/shared/snack-bar-notification/snack-bar.service";
 
 @Component({
   selector: "app-profile-recipe-list",
@@ -33,8 +35,10 @@ export class ProfileRecipeListComponent {
 
   constructor(
     private userService: UserService,
+    private recipeService: RecipeService,
     private dialog: MatDialog,
-    private profileComponent: ProfileComponent
+    private profileComponent: ProfileComponent,
+    private snackBar: SnackBarService
   ) {}
 
   openDeleteDialog(recipe: Recipe, $event: any): void {
@@ -45,11 +49,15 @@ export class ProfileRecipeListComponent {
       })
       .afterClosed()
       .subscribe(() => {
-        if (this.listType === "userRecipes") {
-          this.profileComponent.getUserRecipes();
-        } else if (this.listType === "userSavedRecipes") {
-          this.profileComponent.getUserSavedRecipes();
-        }
+        this.profileComponent.getUserRecipes();
       });
+  }
+
+  handelRemoveSavedRecipe(recipeId: string, $event: any): void {
+    $event.stopPropagation();
+    this.recipeService.removeSavedRecipe(recipeId).subscribe(() => {
+      this.profileComponent.getUserSavedRecipes();
+      this.snackBar.notifySuccess("Recipe removed successfully!");
+    });
   }
 }
