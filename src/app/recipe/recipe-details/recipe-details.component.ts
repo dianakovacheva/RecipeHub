@@ -9,13 +9,15 @@ import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
-import { RouterModule } from "@angular/router";
+import { RouterModule, Router } from "@angular/router";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 
 import { Recipe } from "../../models/Recipe";
 import { RecipeService } from "../recipe.service";
 import { UserId } from "../../models/UserId";
 import { DeleteRecipeComponent } from "../delete-recipe/delete-recipe.component";
+import { SnackBarService } from "src/app/shared/snack-bar-notification/snack-bar.service";
+import { UserService } from "src/app/user/user.service";
 
 @Component({
   selector: "app-recipe-details",
@@ -42,12 +44,18 @@ export class RecipeDetailsComponent implements OnInit {
   userId: UserId["_id"] | undefined;
   userIsOwner: boolean | undefined;
 
+  get isLoggedIn(): boolean {
+    return this.userService.isLoggedIn;
+  }
   recipeId = this.activatedRoute.snapshot.params["recipeId"];
 
   constructor(
     private recipeService: RecipeService,
+    private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    public dialog: MatDialog
+    private snackBar: SnackBarService,
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +65,7 @@ export class RecipeDetailsComponent implements OnInit {
     });
   }
 
+  // Get Recipe by Id
   getRecipeById(): void {
     this.recipeService.getRecipeById(this.recipeId).subscribe((foundRecipe) => {
       this.recipe = foundRecipe;
