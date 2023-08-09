@@ -6,6 +6,7 @@
         <!-- Desktop Menu -->
         <section class="nav-button-row">
             <div>
+                <a mat-button routerLink="/">Home</a>
                 <a mat-button routerLink="/recipes">Recipes</a>
                 <a mat-button routerLink="/create-recipe">Create Recipe</a>
             </div>
@@ -37,6 +38,7 @@
             </button>
             <mat-menu #mobileMenu="matMenu" xPosition="before">
                 <div>
+                    <a mat-menu-item routerLink="/">Home</a>
                     <a mat-menu-item routerLink="/recipes">Recipes</a>
                 </div>
                 <div class="guest-navigation" *ngIf="!isLoggedIn">
