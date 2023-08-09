@@ -7,30 +7,30 @@
                     class="img recipe-hero-img" alt="recipe-placeholder-image">
                 <img *ngIf="recipe.imageURL" src="{{recipe.imageURL}}" class="img recipe-hero-img"
                     alt="Photo of {{recipe.title}}" />
-                <!--Action buttons under recipe image-->
-                <div class="recipe-action-buttons" *ngIf="!userIsOwner">
-                    <button mat-stroked-button color="primary">
-                        <mat-icon>favorite</mat-icon>
-                        <span>Save</span>
-                    </button>
-                    <button mat-stroked-button color="primary">
-                        <mat-icon>comment</mat-icon>
-                        <span>Comment</span>
-                    </button>
+                <!-- Recipe Action Buttons -->
+                <div *ngIf="isLoggedIn">
+                    <div class="recipe-action-buttons" *ngIf="!userIsOwner">
+                        <button mat-stroked-button color="primary" (click)="saveRecipe()">
+                            <mat-icon>favorite</mat-icon>
+                            <span>Save</span>
+                        </button>
+                        <button mat-stroked-button color="primary">
+                            <mat-icon>comment</mat-icon>
+                            <span>Comment</span>
+                        </button>
+                    </div>
+                    <div class="recipe-action-buttons" *ngIf="userIsOwner">
+                        <button mat-stroked-button color="primary" [routerLink]="['./edit']"
+                            routerLinkActive="router-link-active">
+                            <mat-icon>edit</mat-icon>
+                            <span>Edit</span>
+                        </button>
+                        <button mat-stroked-button (click)="openDeleteDialog()" color="primary">
+                            <mat-icon>delete</mat-icon>
+                            <span>Delete</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="recipe-action-buttons" *ngIf="userIsOwner">
-                    <button mat-stroked-button color="primary" [routerLink]="['./edit']"
-                        routerLinkActive="router-link-active">
-                        <mat-icon>edit</mat-icon>
-                        <span>Edit
-                            recipe</span>
-                    </button>
-                    <button mat-stroked-button (click)="openDeleteDialog()" color="primary">
-                        <mat-icon>delete</mat-icon>
-                        <span>Delete recipe</span>
-                    </button>
-                </div>
-
             </div>
             <article class="recipe-info">
                 <!-- Recipe Title -->
@@ -41,7 +41,7 @@
                     <!-- Recipe Comments Count -->
                     <span>{{recipe.commentsList.length}} Comments</span>
                     <!-- Recipe Saves Count -->
-                    <span>{{recipe.saves.length}} Saves</span>
+                    <span>{{recipe.savesList.length}} Saves</span>
                 </div>
                 <!-- Recipe Summary -->
                 <p>{{recipe.summary}}</p>
@@ -96,6 +96,11 @@
                 </div>
             </article>
         </section>
+
+        <div *ngIf="!isLoggedIn">
+            <mat-divider class="when-no-user"></mat-divider>
+        </div>
+
         <!-- Recipe Ingredients List -->
         <section class=" recipe-content">
             <article class="recipe-ingredients-list">
@@ -125,7 +130,7 @@
                 <!-- end of single instruction -->
             </article>
         </section>
-        <!--Comments Section-->
+        <!-- Comments Section -->
         <!-- <section class="comments-section">
             <div>
                 <h2>Comments</h2>
@@ -147,8 +152,8 @@
                 </mat-card>
             </div>
         </section> -->
-        <!--Similar Recipes-->
-        <!--Add dynamic template-->
+        <!-- Similar Recipes Section -->
+        <!-- Add dynamic template -->
         <!-- <h2 class="similar-recipes-header">Similar Recipes</h2>
         <section class="recipes-container">
             <mat-card class="recipe-card">

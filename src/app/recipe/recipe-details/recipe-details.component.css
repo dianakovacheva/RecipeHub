@@ -131,6 +131,10 @@ p {
   }
 }
 
+.when-no-user {
+  margin-top: 3rem;
+}
+
 /* Recipe Ingredients List */
 .recipe-ingredients-list {
   display: grid;
