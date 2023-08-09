@@ -72,6 +72,14 @@ export class RecipeDetailsComponent implements OnInit {
     });
   }
 
+  // Save Recipe
+  saveRecipe(): void {
+    this.recipeService.saveRecipe(this.recipeId).subscribe(() => {
+      this.snackBar.notifySuccess("Recipe saved successfully!");
+    });
+  }
+
+  // Delete Recipe
   openDeleteDialog(): void {
     this.dialog.open(DeleteRecipeComponent, {
       data: { recipe: this.recipe, redirectToRecipes: true },
