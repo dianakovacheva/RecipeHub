@@ -1,40 +1,24 @@
 import { Component, OnInit } from "@angular/core";
 import { MatTabsModule } from "@angular/material/tabs";
 import { UserService } from "../user.service";
-import { NgIf, NgFor } from "@angular/common";
-import { MatListModule } from "@angular/material/list";
-import { MatDividerModule } from "@angular/material/divider";
+
 import { User } from "src/app/models/User";
 import { MatCardModule } from "@angular/material/card";
-import { RouterModule } from "@angular/router";
-import { MatIconModule } from "@angular/material/icon";
-import { MatButtonModule } from "@angular/material/button";
-import { DeleteRecipeComponent } from "src/app/recipe/delete-recipe/delete-recipe.component";
-import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { Recipe } from "src/app/models/Recipe";
+import { ProfileRecipeListComponent } from "./profile-recipe-list/profile-recipe-list.component";
+import { Comment } from "src/app/models/Comment";
 
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.css"],
   standalone: true,
-  imports: [
-    MatTabsModule,
-    NgIf,
-    NgFor,
-    MatListModule,
-    MatDividerModule,
-    MatCardModule,
-    RouterModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-  ],
+  imports: [MatTabsModule, MatCardModule, ProfileRecipeListComponent],
 })
 export class ProfileComponent implements OnInit {
   userRecipesList: Recipe[] | undefined;
-  userSavedRecipesList: any;
-  userCommentsList: any;
+  userSavedRecipesList: Recipe[] | undefined;
+  userCommentsList: Comment[] | undefined;
   user: User | undefined;
 
   userInformation: User = {
@@ -43,7 +27,7 @@ export class ProfileComponent implements OnInit {
     email: "",
   };
 
-  constructor(private userService: UserService, private dialog: MatDialog) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     const { firstName, lastName, email } = this.userService.user!;
@@ -58,9 +42,19 @@ export class ProfileComponent implements OnInit {
     });
     if (this.user) {
       this.getUserRecipes();
+      this.getUserSavedRecipes();
+      this.getUserComments();
     }
   }
 
+  getUserInitials() {
+    if (this.user) {
+      return this.user.firstName[0] + this.user.lastName[0];
+    }
+    return "";
+  }
+
+  // User Recipes
   getUserRecipes() {
     this.userService.getUserRecipesList().subscribe({
       next: (recipes) => {
@@ -72,44 +66,27 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  // getUserInformation(user._id) {
-  //   this.userService.getProfile(userId).subscribe(
-  //     (user) => {
-  //       this.userFirstName = user.firstName;
-  //       this.userLastName = user.lastName;
-  //       this.userEmail = user.email;
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
-
-  openDeleteDialog(recipe: Recipe, $event: any): void {
-    $event.stopPropagation();
-    this.dialog
-      .open(DeleteRecipeComponent, {
-        data: { recipe: recipe, redirectToRecipes: false },
-      })
-      .afterClosed()
-      .subscribe(() => {
-        this.getUserRecipes();
-      });
+  // User Saved Recipes
+  getUserSavedRecipes() {
+    this.userService.getUserSavedRecipesList().subscribe({
+      next: (savedRecipes) => {
+        this.userSavedRecipesList = savedRecipes;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
-  // get userComments() {
-  //   return this.user?.comments;
-  // }
-
-  // get userSavedRecipes() {
-  //   return this.user?.savedRecipes;
-  // }
-
-  // get userLastName() {
-  //   return this.user?.lastName;
-  // }
-
-  // get userEmail() {
-  //   return this.user?.email;
-  // }
+  // User Comments
+  getUserComments() {
+    this.userService.getUserCommentsList().subscribe({
+      next: (comments) => {
+        this.userCommentsList = comments;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 }
