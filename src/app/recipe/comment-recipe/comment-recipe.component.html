@@ -1,0 +1,22 @@
+<div class="comment-form">
+    <div mat-dialog-content>
+        <div class="form-container">
+            <form [formGroup]="commentForm" (submit)="onConfirm()">
+                <h1 mat-dialog-title class="comment-form-title">Write comment</h1>
+                <div class="form-field-container">
+                    <!-- Comment Content -->
+                    <mat-form-field>
+                        <mat-label>Type your comment</mat-label>
+                        <textarea matInput placeholder="Amazing recipe..." formControlName="commentContent" rows="3"
+                            required></textarea>
+                        <mat-error
+                            *ngIf="commentForm.get('commentContent')?.invalid">{{getErrorMessageCommentContent()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button mat-flat-button cdkFocusInitial color="primary">Comment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
