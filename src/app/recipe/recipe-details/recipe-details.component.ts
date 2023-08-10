@@ -9,7 +9,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
-import { RouterModule, Router } from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 
 import { Recipe } from "../../models/Recipe";
@@ -18,7 +18,9 @@ import { UserId } from "../../models/UserId";
 import { DeleteRecipeComponent } from "../delete-recipe/delete-recipe.component";
 import { SnackBarService } from "src/app/shared/snack-bar-notification/snack-bar.service";
 import { UserService } from "src/app/user/user.service";
-
+import { CommentRecipeComponent } from "../comment-recipe/comment-recipe.component";
+import { CommentCardComponent } from "../comment-card/comment-card.component";
+import { Comment } from "src/app/models/Comment";
 @Component({
   selector: "app-recipe-details",
   templateUrl: "./recipe-details.component.html",
@@ -36,6 +38,8 @@ import { UserService } from "src/app/user/user.service";
     MatDividerModule,
     RouterModule,
     MatDialogModule,
+    CommentRecipeComponent,
+    CommentCardComponent,
   ],
 })
 export class RecipeDetailsComponent implements OnInit {
@@ -43,10 +47,12 @@ export class RecipeDetailsComponent implements OnInit {
   user: UserId | undefined;
   userId: UserId["_id"] | undefined;
   userIsOwner: boolean | undefined;
+  commentsList: Comment[] | undefined;
 
   get isLoggedIn(): boolean {
     return this.userService.isLoggedIn;
   }
+
   recipeId = this.activatedRoute.snapshot.params["recipeId"];
 
   constructor(
@@ -54,8 +60,7 @@ export class RecipeDetailsComponent implements OnInit {
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private snackBar: SnackBarService,
-    public dialog: MatDialog,
-    private router: Router
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +72,7 @@ export class RecipeDetailsComponent implements OnInit {
       this.user = user;
       this.userId = user?._id;
     });
+    this.getRecipeComments();
   }
 
   // Get Recipe by Id
@@ -99,5 +105,16 @@ export class RecipeDetailsComponent implements OnInit {
     this.dialog.open(DeleteRecipeComponent, {
       data: { recipe: this.recipe, redirectToRecipes: true },
     });
+  }
+
+  // Get Recipe Comments
+  getRecipeComments(): void {
+    this.recipeService
+      .getRecipeComments(this.recipeId)
+      .subscribe((comments) => {
+        console.log(comments);
+
+        this.commentsList = comments;
+      });
   }
 }

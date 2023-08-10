@@ -139,27 +139,22 @@
             </article>
         </section>
         <!-- Comments Section -->
-        <!-- <section class="comments-section">
-            <div>
-                <h2>Comments</h2>
-                <mat-card class=" comment-card" *ngFor="let comment of recipe.commentsList">
-                    <mat-card-header>
-                        <div mat-card-avatar class="comment-header-image"></div>
-                        <mat-card-title>Diana Kovacheva</mat-card-title>
-                        <mat-card-subtitle>4 weeks ago</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p>
-                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                            Japan.
-                            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
-                            originally
-                            bred for hunting.
-                        </p>
-                    </mat-card-content>
+        <section class="comments-section">
+            <div class="write-comment-section">
+                <mat-card>
+                    <app-comment-recipe [recipeId]="recipe._id"></app-comment-recipe>
                 </mat-card>
             </div>
-        </section> -->
+
+            <div>
+                <h2>Comments</h2>
+
+                <div *ngFor="let comment of commentsList">
+                    <app-comment-card [comment]="comment"></app-comment-card>
+                </div>
+
+            </div>
+        </section>
         <!-- Similar Recipes Section -->
         <!-- Add dynamic template -->
         <!-- <h2 class="similar-recipes-header">Similar Recipes</h2>
