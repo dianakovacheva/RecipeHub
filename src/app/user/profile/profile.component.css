@@ -24,7 +24,8 @@
   padding-top: 23%;
 }
 
-p {
+.user-email {
+  color: #6a6b6e;
   font-size: 16px;
 }
 
