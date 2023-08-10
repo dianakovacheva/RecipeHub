@@ -241,10 +241,16 @@ export class RecipeService {
 
   // Delete Recipe
   deleteRecipe(recipeId: string) {
+  // Comment Recipe
+  commentRecipe(recipeId: string, comment: string | undefined) {
     https: return this.http
-      .delete<Recipe>(`${backendURL}/recipes/details/${recipeId}/delete`, {
-        withCredentials: true,
-      })
+      .post<Comment>(
+        `${backendURL}/recipes/details/${recipeId}/comment`,
+        { comment },
+        {
+          withCredentials: true,
+        }
+      )
       .pipe(tap(() => this.userService.getProfile()));
   }
 }
