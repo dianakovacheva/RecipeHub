@@ -14,7 +14,7 @@ export interface Recipe {
   dishTypes: string[];
   extendedIngredients: any;
   analyzedInstructions: any;
-  commentsList: string[];
+  commentsList: Comment[];
   savesList: string[];
   createdAt: string;
 }
