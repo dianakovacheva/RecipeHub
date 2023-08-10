@@ -1,0 +1,12 @@
+<mat-card class="comment-card">
+    <mat-card-header>
+        <div mat-card-avatar class="comment-header-image"></div>
+        <mat-card-title>{{comment?.commentAuthor?.firstName}} {{comment?.commentAuthor?.lastName}}</mat-card-title>
+        <mat-card-subtitle>{{getCommentSince(comment?.created_at)}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            {{comment?.comment}}
+        </p>
+    </mat-card-content>
+</mat-card>
