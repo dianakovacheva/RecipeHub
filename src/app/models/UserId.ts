@@ -5,7 +5,7 @@ export interface UserId {
   email: string;
   password: string;
   userRecipesList: string[];
-  userCommentsList: string[];
+  userCommentsList: Comment[];
   userSavedRecipes: string[];
   createdAt: string;
 }
