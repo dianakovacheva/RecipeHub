@@ -180,14 +180,19 @@ p {
 }
 
 /* Comments Section */
+
+.write-comment-section {
+  margin-top: 2rem;
+}
+
 .comments-section {
-  display: grid;
+  /* display: grid;
   grid-auto-rows: auto;
   place-content: start;
   gap: 2rem 5rem;
   overflow-x: none;
   overflow-y: scroll;
-  padding-bottom: 5rem;
+  padding-bottom: 5rem; */
   border-top: 1px solid #ccc;
 }
 
