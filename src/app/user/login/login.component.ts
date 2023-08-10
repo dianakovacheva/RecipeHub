@@ -54,7 +54,7 @@ export class LoginComponent {
     ]),
   });
 
-  // Functions that check if there is an error and return appropriate error message
+  // Check Error Functions
   getErrorMessageEmail() {
     const emailInput = this.loginForm.get("email");
 
@@ -68,11 +68,11 @@ export class LoginComponent {
   getErrorMessagePassword() {
     const passwordInput = this.loginForm.get("password");
     if (passwordInput!.hasError("required")) {
-      return "You must enter a value";
+      return "You must enter a value.";
     }
 
     return passwordInput!.hasError("minlength")
-      ? "Password must be at least 8 characters"
+      ? "Password must be at least 8 characters."
       : "";
   }
 
