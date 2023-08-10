@@ -239,8 +239,6 @@ export class RecipeService {
       .pipe(tap(() => this.userService.getProfile()));
   }
 
-  // Delete Recipe
-  deleteRecipe(recipeId: string) {
   // Comment Recipe
   commentRecipe(recipeId: string, comment: string | undefined) {
     https: return this.http
@@ -252,5 +250,15 @@ export class RecipeService {
         }
       )
       .pipe(tap(() => this.userService.getProfile()));
+  }
+
+  // Get Recipe Comments
+  getRecipeComments(recipeId: string) {
+    return this.http.get<Comment[]>(
+      `${backendURL}/recipes/details/${recipeId}/comments`,
+      {
+        withCredentials: true,
+      }
+    );
   }
 }
