@@ -4,6 +4,7 @@ import { environment } from "../../environments/environment";
 import { Recipe } from "../models/Recipe";
 import { UserService } from "../user/user.service";
 import { BehaviorSubject, catchError, tap, throwError } from "rxjs";
+import { Comment } from "../models/Comment";
 
 const backendURL = environment.backendURL;
 
@@ -203,6 +204,15 @@ export class RecipeService {
           withCredentials: true,
         }
       )
+      .pipe(tap(() => this.userService.getProfile()));
+  }
+
+  // Delete Recipe
+  deleteRecipe(recipeId: string) {
+    https: return this.http
+      .delete<Recipe>(`${backendURL}/recipes/details/${recipeId}/delete`, {
+        withCredentials: true,
+      })
       .pipe(tap(() => this.userService.getProfile()));
   }
 
