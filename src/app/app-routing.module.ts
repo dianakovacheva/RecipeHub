@@ -1,3 +1,4 @@
+import { CommentRecipeComponent } from "./recipe/comment-recipe/comment-recipe.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
