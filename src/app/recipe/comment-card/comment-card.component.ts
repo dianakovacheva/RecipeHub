@@ -21,6 +21,7 @@ import * as moment from "moment";
 export class CommentCardComponent {
   @Input() comment: Comment | undefined;
   @Input() ownComment: boolean | undefined;
+  @Input() commentByOwner: boolean | undefined;
   commentSince: string | undefined;
 
   constructor() {}
