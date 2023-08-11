@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { CommonModule, IMAGE_CONFIG } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
@@ -24,6 +24,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { UserService } from "src/app/user/user.service";
 import { UserId } from "src/app/models/UserId";
 import { RecipeDetailsComponent } from "../recipe-details/recipe-details.component";
+import "../../shared/ng-form.extensions";
 
 export interface DialogData {
   recipe: Recipe;
@@ -97,7 +98,9 @@ export class CommentRecipeComponent {
       )
       .subscribe({
         next: () => {
+          // this.commentForm.resetValidation();
           this.recipeDetailsComponent.getRecipeById();
+          this.recipeDetailsComponent.getRecipeComments();
           this.userService.getProfile();
           this.snackBar.notifySuccess("Comment added successfully!");
         },
