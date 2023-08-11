@@ -138,6 +138,7 @@
                 <!-- end of single instruction -->
             </article>
         </section>
+        <mat-divider></mat-divider>
         <!-- Comments Section -->
         <section class="comments-section">
             <div class="write-comment-section">
@@ -145,14 +146,16 @@
                     <app-comment-recipe [recipeId]="recipe._id"></app-comment-recipe>
                 </mat-card>
             </div>
-
-            <div>
-                <h2>Comments</h2>
-
+            <div class="comments-list" *ngIf="commentsList?.length != 0">
+                <h2 class="comments-list-header">Users Comments</h2>
                 <div *ngFor="let comment of commentsList">
-                    <app-comment-card [comment]="comment"></app-comment-card>
+                    <app-comment-card [comment]="comment"
+                        [ownComment]="comment.commentAuthor._id == user?._id"></app-comment-card>
                 </div>
-
+            </div>
+            <div class="comments-list" *ngIf="commentsList?.length == 0">
+                <h2 class="comments-list-header">Users Comments</h2>
+                <h4 class="comments-list-header">No comments yet</h4>
             </div>
         </section>
         <!-- Similar Recipes Section -->
