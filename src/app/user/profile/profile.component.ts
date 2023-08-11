@@ -7,13 +7,14 @@ import { MatCardModule } from "@angular/material/card";
 import { Recipe } from "src/app/models/Recipe";
 import { ProfileRecipeListComponent } from "./profile-recipe-list/profile-recipe-list.component";
 import { Comment } from "src/app/models/Comment";
+import { NgFor } from "@angular/common";
 
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.css"],
   standalone: true,
-  imports: [MatTabsModule, MatCardModule, ProfileRecipeListComponent],
+  imports: [MatTabsModule, MatCardModule, ProfileRecipeListComponent, NgFor],
 })
 export class ProfileComponent implements OnInit {
   userRecipesList: Recipe[] | undefined;
@@ -47,12 +48,13 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  getUserInitials() {
-    if (this.user) {
-      return this.user.firstName[0] + this.user.lastName[0];
-    }
-    return "";
-  }
+  // Get User Initials for Avatar
+  // getUserInitials() {
+  //   if (this.user) {
+  //     return this.user.firstName[0] + this.user.lastName[0];
+  //   }
+  //   return "";
+  // }
 
   // User Recipes
   getUserRecipes() {
@@ -82,6 +84,8 @@ export class ProfileComponent implements OnInit {
   getUserComments() {
     this.userService.getUserCommentsList().subscribe({
       next: (comments) => {
+        console.log(comments);
+
         this.userCommentsList = comments;
       },
       error: (error) => {

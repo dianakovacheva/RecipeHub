@@ -102,6 +102,6 @@
                 <mat-error *ngIf="createRecipeForm.get('imageURL')?.invalid">{{getErrorMessageImageUrl()}}</mat-error>
             </mat-form-field>
         </div>
-        <button mat-raised-button color="primary"> {{ isEditMode ? 'Update' : 'Create' }}</button>
+        <button mat-flat-button cdkFocusInitial color="primary"> {{ isEditMode ? 'Update' : 'Create' }}</button>
     </form>
 </div>
