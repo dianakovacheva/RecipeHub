@@ -75,6 +75,22 @@ export class RecipeDetailsComponent implements OnInit {
     this.getRecipeComments();
   }
 
+  // Scroll to Comment Section
+  onClickComment() {
+    let target = document.querySelector("#write-comment");
+    if (target) {
+      target.scrollIntoView();
+    }
+  }
+
+  // Scroll to User Comments Section
+  onClickUserComments() {
+    let target = document.querySelector("#user-comments");
+    if (target) {
+      target.scrollIntoView();
+    }
+  }
+
   // Get Recipe by Id
   getRecipeById(): void {
     this.recipeService.getRecipeById(this.recipeId).subscribe((foundRecipe) => {
@@ -112,8 +128,6 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipeService
       .getRecipeComments(this.recipeId)
       .subscribe((comments) => {
-        console.log(comments);
-
         this.commentsList = comments;
       });
   }

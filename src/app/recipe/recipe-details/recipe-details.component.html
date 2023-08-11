@@ -22,7 +22,7 @@
                             </mat-icon>
                             <span>Remove</span>
                         </button>
-                        <button mat-stroked-button color="primary">
+                        <button mat-stroked-button color="primary" (click)="onClickComment()">
                             <mat-icon>comment</mat-icon>
                             <span>Comment</span>
                         </button>
@@ -47,7 +47,8 @@
                     <!-- Recipe Author -->
                     <span>Recipe by: {{ recipe.author.firstName }} {{ recipe.author.lastName }}</span>
                     <!-- Recipe Comments Count -->
-                    <span>{{recipe.commentsList.length}} Comments</span>
+                    <span class="user-comments-count" (click)="onClickUserComments()">{{recipe.commentsList.length}}
+                        {{recipe.commentsList.length == 1 ? 'Comment' : 'Comments'}}</span>
                     <!-- Recipe Saves Count -->
                     <span>{{recipe.savesList.length}} Saves</span>
                 </div>
@@ -140,21 +141,21 @@
         </section>
         <mat-divider></mat-divider>
         <!-- Comments Section -->
-        <section class="comments-section">
+        <section id="write-comment" class="comments-section">
             <div class="write-comment-section">
                 <mat-card>
                     <app-comment-recipe [recipeId]="recipe._id"></app-comment-recipe>
                 </mat-card>
             </div>
             <div class="comments-list" *ngIf="commentsList?.length != 0">
-                <h2 class="comments-list-header">Users Comments</h2>
+                <h2 id="user-comments" class="comments-list-header">Users Comments</h2>
                 <div *ngFor="let comment of commentsList">
-                    <app-comment-card [comment]="comment"
-                        [ownComment]="comment.commentAuthor._id == user?._id"></app-comment-card>
+                    <app-comment-card [comment]="comment" [ownComment]="comment.commentAuthor._id == user?._id"
+                        [commentByOwner]="comment.commentAuthor._id == recipe.author._id"></app-comment-card>
                 </div>
             </div>
             <div class="comments-list" *ngIf="commentsList?.length == 0">
-                <h2 class="comments-list-header">Users Comments</h2>
+                <h2 id="user-comments" class="comments-list-header">Users Comments</h2>
                 <h4 class="comments-list-header">No comments yet</h4>
             </div>
         </section>

@@ -11,6 +11,10 @@ p {
   max-width: 40em;
 }
 
+.user-comments-count {
+  cursor: pointer;
+}
+
 .recipe-hero {
   display: grid;
   gap: 2rem;
