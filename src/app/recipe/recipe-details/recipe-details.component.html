@@ -151,7 +151,8 @@
                 <h2 id="user-comments" class="comments-list-header">Users Comments</h2>
                 <div *ngFor="let comment of commentsList">
                     <app-comment-card [comment]="comment" [ownComment]="comment.commentAuthor._id == user?._id"
-                        [commentByOwner]="comment.commentAuthor._id == recipe.author._id"></app-comment-card>
+                        [commentByOwner]="comment.commentAuthor._id == recipe.author._id"
+                        [recipeId]="recipe._id"></app-comment-card>
                 </div>
             </div>
             <div class="comments-list" *ngIf="commentsList?.length == 0">
