@@ -48,14 +48,6 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  // Get User Initials for Avatar
-  // getUserInitials() {
-  //   if (this.user) {
-  //     return this.user.firstName[0] + this.user.lastName[0];
-  //   }
-  //   return "";
-  // }
-
   // User Recipes
   getUserRecipes() {
     this.userService.getUserRecipesList().subscribe({
