@@ -1,0 +1,46 @@
+.comment-card-container {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+  padding-bottom: 10px;
+}
+
+/* .comment-card {
+  max-width: 600px;
+} */
+
+.comment-card:hover {
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.comment-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f1f2f7;
+  height: 40px;
+  width: 40px;
+}
+
+.avatar > :nth-child(1) {
+  padding-top: 23%;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.comment-content {
+  margin-left: 55px;
+}
+
+.comment-author {
+  display: flex;
+  flex-direction: row;
+}
