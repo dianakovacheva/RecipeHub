@@ -7,6 +7,14 @@
         </mat-form-field>
     </form>
 </div>
-<div>
+<div *ngIf="foundRecipes.length > 0">
+    <div>
+        <h4>Found {{foundRecipes.length}} {{foundRecipes.length==1? 'recipe' : 'recipes'}}</h4>
+    </div>
     <app-profile-recipe-list [recipesArray]="foundRecipes"></app-profile-recipe-list>
+</div>
+<div *ngIf="noResults">
+    <div class="no-recipes-found">
+        <h2>No recipes found</h2>
+    </div>
 </div>

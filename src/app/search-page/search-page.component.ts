@@ -24,6 +24,7 @@ import { ProfileRecipeListComponent } from "../user/profile/profile-recipe-list/
 })
 export class SearchPageComponent {
   foundRecipes: Recipe[] = [];
+  noResults: boolean = false;
   @Input() searchQuery: string | undefined;
 
   constructor(private recipeService: RecipeService) {}
@@ -32,6 +33,11 @@ export class SearchPageComponent {
     this.recipeService.searchRecipes(this.searchQuery).subscribe({
       next: (recipes) => {
         this.foundRecipes = recipes;
+        if (this.foundRecipes.length == 0) {
+          this.noResults = true;
+        } else {
+          this.noResults = false;
+        }
       },
       error: (err) => {
         console.error(`Error: ${err}`);
