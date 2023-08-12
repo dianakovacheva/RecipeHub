@@ -1,1 +1,16 @@
-<p>profile-comments-list works!</p>
+<div class="recipe-list-holder">
+    <mat-card class="recipe-list-item" *ngFor="let comment of commentsArray"
+        [routerLink]="['/recipes/details',comment.commentedRecipe._id]" fragment="user-comments">
+        <div class="recipe-info">
+            <mat-card-title>{{comment.commentedRecipe.title}}</mat-card-title>
+            <mat-card-subtitle class="recipe-dish-type">{{getCommentSince(comment?.created_at)}}</mat-card-subtitle>
+            <p class="recipe-summary">{{comment.comment}}</p>
+        </div>
+        <div class="recipe-actions">
+            <button mat-stroked-button color="warn" (click)="openDeleteCommentDialog(comment, $event)">
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+            </button>
+        </div>
+    </mat-card>
+</div>
