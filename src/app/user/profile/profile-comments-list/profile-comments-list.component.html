@@ -3,7 +3,7 @@
         [routerLink]="['/recipes/details',comment.commentedRecipe._id]" fragment="user-comments">
         <div class="recipe-info">
             <mat-card-title>{{comment.commentedRecipe.title}}</mat-card-title>
-            <mat-card-subtitle class="recipe-dish-type">{{getCommentSince(comment?.created_at)}}</mat-card-subtitle>
+            <mat-card-subtitle>{{getCommentSince(comment?.created_at)}}</mat-card-subtitle>
             <p class="recipe-summary">{{comment.comment}}</p>
         </div>
         <div class="recipe-actions">
