@@ -1,0 +1,15 @@
+.search-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-form {
+}
+
+.full-width-field {
+  width: 100%;
+}
+
+.search-icon {
+  cursor: pointer;
+}

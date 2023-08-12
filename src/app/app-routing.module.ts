@@ -11,6 +11,7 @@ import { LoggedInGuard } from "./shared/guards/logged-in.guard";
 import { RecipeOwnerGuard } from "./shared/guards/recipe-owner.guard";
 import { DeleteRecipeComponent } from "./recipe/delete-recipe/delete-recipe.component";
 import { ProfileComponent } from "./user/profile/profile.component";
+import { SearchPageComponent } from "./search-page/search-page.component";
 const routes: Routes = [
   {
     path: "",
@@ -27,6 +28,11 @@ const routes: Routes = [
     path: "auth",
     loadChildren: () =>
       import("./user/user.module").then((model) => model.UserModule),
+  },
+  {
+    path: "recipes/search",
+    title: "Search Recipes",
+    component: SearchPageComponent,
   },
   {
     path: "user/comments",

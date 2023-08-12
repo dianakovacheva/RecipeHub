@@ -277,4 +277,11 @@ export class RecipeService {
         })
       );
   }
+
+  // Search Recipes
+  searchRecipes(searchTerm: string = "") {
+    https: return this.http.get<Recipe[]>(
+      `${backendURL}/recipes/search/?search=${searchTerm}`
+    );
+  }
 }

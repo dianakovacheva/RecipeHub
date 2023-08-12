@@ -1,0 +1,12 @@
+<div class="search-form-container">
+    <form class="search-form">
+        <mat-form-field class="full-width-field">
+            <mat-label>Search...</mat-label>
+            <input name="searchQuery" [(ngModel)]="searchQuery" (keyup.enter)="search()" type="text" matInput>
+            <mat-icon class="search-icon" (click)="search()" matSuffix>search</mat-icon>
+        </mat-form-field>
+    </form>
+</div>
+<div>
+    <app-profile-recipe-list [recipesArray]="foundRecipes"></app-profile-recipe-list>
+</div>
