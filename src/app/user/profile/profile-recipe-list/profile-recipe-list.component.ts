@@ -1,19 +1,16 @@
-import { Component, Input } from "@angular/core";
+import { Component, Injectable, Input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
-import { UserService } from "../../user.service";
 import { Recipe } from "src/app/models/Recipe";
-import { Comment } from "src/app/models/Comment";
 import { DeleteRecipeComponent } from "src/app/recipe/delete-recipe/delete-recipe.component";
 import { MatButtonModule } from "@angular/material/button";
 import { NgIf, NgFor } from "@angular/common";
 import { ProfileComponent } from "../profile.component";
 import { RecipeService } from "src/app/recipe/recipe.service";
 import { SnackBarService } from "src/app/shared/snack-bar-notification/snack-bar.service";
-// import { CommentRecipeComponent } from "src/app/recipe/comment-recipe/comment-recipe.component";
 
 @Component({
   selector: "app-profile-recipe-list",
