@@ -24,9 +24,6 @@ export interface DialogData {
   styleUrls: ["./delete-recipe.component.css"],
 })
 export class DeleteRecipeComponent {
-  recipe: Recipe | undefined;
-  recipeId: string = "";
-
   constructor(
     public dialogRef: MatDialogRef<DeleteRecipeComponent>,
     private recipeService: RecipeService,
@@ -40,11 +37,16 @@ export class DeleteRecipeComponent {
   }
 
   onConfirm(): void {
-    this.recipeService.deleteRecipe(this.data.recipe._id).subscribe(() => {
-      if (this.data.redirectToRecipes === true) {
-        this.router.navigate(["/recipes"]);
-      }
-      this.snackBar.notifySuccess("Recipe deleted successfully!");
+    this.recipeService.deleteRecipe(this.data.recipe._id).subscribe({
+      next: () => {
+        if (this.data.redirectToRecipes === true) {
+          this.router.navigate(["/recipes"]);
+        }
+        this.snackBar.notifySuccess("Recipe deleted successfully!");
+      },
+      error: (error) => {
+        this.snackBar.notifyError(error.error.message);
+      },
     });
   }
 }
