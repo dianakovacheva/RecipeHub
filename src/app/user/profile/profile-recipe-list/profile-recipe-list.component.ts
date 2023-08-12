@@ -33,12 +33,6 @@ import { SnackBarService } from "src/app/shared/snack-bar-notification/snack-bar
 })
 export class ProfileRecipeListComponent {
   @Input() recipesArray: Recipe[] | undefined;
-  @Input() commentsArray: Comment[] | undefined;
-  @Input() listType:
-    | "userRecipes"
-    | "userSavedRecipes"
-    // | "userCommentsList"
-    | undefined;
 
   constructor(
     private recipeService: RecipeService,
@@ -69,20 +63,4 @@ export class ProfileRecipeListComponent {
       this.snackBar.notifySuccess("Recipe removed successfully!");
     });
   }
-
-  // Comment Recipe Dialog
-  // openCommentDialog(comment: Comment, $event: any): void {
-  //   $event.stopPropagation();
-  //   this.dialog
-  //     .open(CommentRecipeComponent, {
-  //       data: {
-  //         comment: comment,
-  //         redirectToRecipes: false,
-  //       },
-  //     })
-  //     .afterClosed()
-  //     .subscribe(() => {
-  //       this.profileComponent.getUserComments();
-  //     });
-  // }
 }
