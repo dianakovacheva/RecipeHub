@@ -271,5 +271,10 @@ export class RecipeService {
           withCredentials: true,
         }
       )
+      .pipe(
+        tap(() => {
+          this.userService.getProfile();
+        })
+      );
   }
 }
