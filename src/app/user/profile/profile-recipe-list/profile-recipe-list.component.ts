@@ -33,6 +33,7 @@ import { SnackBarService } from "src/app/shared/snack-bar-notification/snack-bar
 })
 export class ProfileRecipeListComponent {
   @Input() recipesArray: Recipe[] | undefined;
+  @Input() listType: "userRecipes" | "userSavedRecipes" | undefined;
 
   constructor(
     private recipeService: RecipeService,
