@@ -146,7 +146,7 @@
         <mat-divider></mat-divider>
         <!-- Comments Section -->
         <section id="write-comment" class="comments-section">
-            <div class="write-comment-section">
+            <div class="write-comment-section" *ngIf="isLoggedIn">
                 <mat-card>
                     <app-comment-recipe [recipeId]="recipe._id"></app-comment-recipe>
                 </mat-card>
