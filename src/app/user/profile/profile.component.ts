@@ -8,6 +8,8 @@ import { Recipe } from "src/app/models/Recipe";
 import { ProfileRecipeListComponent } from "./profile-recipe-list/profile-recipe-list.component";
 import { Comment } from "src/app/models/Comment";
 import { NgFor } from "@angular/common";
+import { CommentCardComponent } from "src/app/recipe/comment-card/comment-card.component";
+import { ProfileCommentsListComponent } from "./profile-comments-list/profile-comments-list.component";
 
 @Component({
   selector: "app-profile",
@@ -15,6 +17,14 @@ import { NgFor } from "@angular/common";
   styleUrls: ["./profile.component.css"],
   standalone: true,
   imports: [MatTabsModule, MatCardModule, ProfileRecipeListComponent, NgFor],
+  imports: [
+    MatTabsModule,
+    MatCardModule,
+    ProfileRecipeListComponent,
+    NgFor,
+    CommentCardComponent,
+    ProfileCommentsListComponent,
+  ],
 })
 export class ProfileComponent implements OnInit {
   userRecipesList: Recipe[] | undefined;
