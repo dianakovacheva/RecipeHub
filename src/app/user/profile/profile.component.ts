@@ -16,7 +16,6 @@ import { ProfileCommentsListComponent } from "./profile-comments-list/profile-co
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.css"],
   standalone: true,
-  imports: [MatTabsModule, MatCardModule, ProfileRecipeListComponent, NgFor],
   imports: [
     MatTabsModule,
     MatCardModule,
@@ -86,8 +85,6 @@ export class ProfileComponent implements OnInit {
   getUserComments() {
     this.userService.getUserCommentsList().subscribe({
       next: (comments) => {
-        console.log(comments);
-
         this.userCommentsList = comments;
       },
       error: (error) => {
