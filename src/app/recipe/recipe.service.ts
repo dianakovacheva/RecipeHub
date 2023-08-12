@@ -252,16 +252,6 @@ export class RecipeService {
       .pipe(tap(() => this.userService.getProfile()));
   }
 
-  // Get Comment By Id
-  // getRecipeCommentById(commentId: string, recipeId: string) {
-  //   https: return this.http.get<Comment>(
-  //     `${backendURL}/recipes/details/${recipeId}/comments/${commentId}`,
-  //     {
-  //       withCredentials: true,
-  //     }
-  //   );
-  // }
-
   // Get Recipe Comments
   getRecipeComments(recipeId: string) {
     return this.http.get<Comment[]>(
@@ -281,6 +271,5 @@ export class RecipeService {
           withCredentials: true,
         }
       )
-      .pipe(tap(() => this.userService.getProfile()));
   }
 }
