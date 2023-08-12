@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { MatChipsModule } from "@angular/material/chips";
 import { CommonModule } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
@@ -9,9 +9,8 @@ import { RecipeDetailsComponent } from "../recipe-details/recipe-details.compone
 import { Comment } from "src/app/models/Comment";
 import * as moment from "moment";
 
-import { RecipeService } from "../recipe.service";
-import { SnackBarService } from "src/app/shared/snack-bar-notification/snack-bar.service";
-import { Recipe } from "src/app/models/Recipe";
+import { DeleteCommentComponent } from "../delete-comment/delete-comment.component";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { UserService } from "src/app/user/user.service";
 
 @Component({
@@ -24,6 +23,7 @@ import { UserService } from "src/app/user/user.service";
     MatChipsModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
   ],
   templateUrl: "./comment-card.component.html",
   styleUrls: ["./comment-card.component.css"],
@@ -36,10 +36,9 @@ export class CommentCardComponent {
   commentSince: string | undefined;
 
   constructor(
-    private recipeService: RecipeService,
-    private userService: UserService,
-    private snackBar: SnackBarService,
-    private recipeDetailsComponent: RecipeDetailsComponent
+    private dialog: MatDialog,
+    private recipeDetailsComponent: RecipeDetailsComponent,
+    private userService: UserService
   ) {}
 
   getCommentSince(createdAt: string | undefined): string {
@@ -49,22 +48,17 @@ export class CommentCardComponent {
     return moment(createdAt).fromNow();
   }
 
-  handleDeleteRecipeComment() {
-    if (!this.comment) {
-      return;
-    }
-    this.recipeService
-      .deleteRecipeComment(this.comment._id, this.recipeId!)
-      .subscribe({
-        next: () => {
-          this.recipeDetailsComponent.getRecipeById();
-          this.recipeDetailsComponent.getRecipeComments();
-          this.userService.getProfile();
-          this.snackBar.notifySuccess("Comment deleted successfully!");
-        },
-        error: (error) => {
-          this.snackBar.notifyError(error.error.message);
-        },
+  // Delete Comment
+  openDeleteCommentDialog(): void {
+    this.dialog
+      .open(DeleteCommentComponent, {
+        data: { commentId: this.comment!._id, recipeId: this.recipeId! },
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this.recipeDetailsComponent.getRecipeById();
+        this.recipeDetailsComponent.getRecipeComments();
+        this.userService.getProfile();
       });
   }
 }

@@ -18,7 +18,7 @@
             </p>
         </mat-card-content>
         <mat-card-actions align="end">
-            <button *ngIf="ownComment" mat-stroked-button (click)="handleDeleteRecipeComment()" color="warn">
+            <button *ngIf="ownComment" mat-stroked-button (click)="openDeleteCommentDialog()" color="warn">
                 <mat-icon>delete</mat-icon>
                 <span>Delete</span>
             </button>
