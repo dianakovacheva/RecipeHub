@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Injectable, OnInit } from "@angular/core";
 import { MatTabsModule } from "@angular/material/tabs";
 import { UserService } from "../user.service";
 
@@ -24,6 +24,9 @@ import { ProfileCommentsListComponent } from "./profile-comments-list/profile-co
     CommentCardComponent,
     ProfileCommentsListComponent,
   ],
+})
+@Injectable({
+  providedIn: "root",
 })
 export class ProfileComponent implements OnInit {
   userRecipesList: Recipe[] | undefined;
