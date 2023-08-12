@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Injectable, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { NgIf, NgFor } from "@angular/common";
 
@@ -21,6 +21,7 @@ import { UserService } from "src/app/user/user.service";
 import { CommentRecipeComponent } from "../comment-recipe/comment-recipe.component";
 import { CommentCardComponent } from "../comment-card/comment-card.component";
 import { Comment } from "src/app/models/Comment";
+
 @Component({
   selector: "app-recipe-details",
   templateUrl: "./recipe-details.component.html",
@@ -42,12 +43,16 @@ import { Comment } from "src/app/models/Comment";
     CommentCardComponent,
   ],
 })
+@Injectable({
+  providedIn: "root",
+})
 export class RecipeDetailsComponent implements OnInit {
   recipe: Recipe | undefined;
   user: UserId | undefined;
   userId: UserId["_id"] | undefined;
   userIsOwner: boolean | undefined;
   commentsList: Comment[] | undefined;
+  fragment: string | undefined;
 
   get isLoggedIn(): boolean {
     return this.userService.isLoggedIn;
@@ -73,6 +78,21 @@ export class RecipeDetailsComponent implements OnInit {
       this.userId = user?._id;
     });
     this.getRecipeComments();
+
+    this.activatedRoute.fragment.subscribe((fragment) => {
+      if (fragment) {
+        this.fragment = fragment;
+      }
+    });
+  }
+
+  // Scroll to URL fragment
+  ngAfterViewChecked(): void {
+    try {
+      if (this.fragment) {
+        document.querySelector("#" + this.fragment)?.scrollIntoView();
+      }
+    } catch (e) {}
   }
 
   // Scroll to Comment Section
