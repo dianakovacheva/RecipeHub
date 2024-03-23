@@ -7,6 +7,8 @@
 RecipeHub is a web application built with Angular (client-side), Node.js (server-side) and MongoDB (database management system).
 It allows users to explore, search and create their own recipes. Authenticated users are able to save recipes to their profiles. The application aims to foster a community of food enthusiasts, enabling them to engage with each other through leaving comments to recipes.
 
+**<a href="https://recipehub-20652.web.app/" target="_blank">🌐 Live preview</a>**
+
 ## Table of Contents
 
 - [Features](#features)
