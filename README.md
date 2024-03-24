@@ -9,6 +9,11 @@ It allows users to explore, search and create their own recipes. Authenticated u
 
 **<a href="https://recipehub-20652.web.app/" target="_blank">🌐 Live preview</a>**
 
+### Test user
+
+- Email: maya.petrova@abv.de
+- Password: 12345678
+
 ## Table of Contents
 
 - [Features](#features)
